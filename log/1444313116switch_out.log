@@ -1,0 +1,173 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s1p.f1.williams>
+c29s1p.f1.williams>
+Expect: matched string 2: >
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+c29s1p.f1.williams>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thu 09-Feb-12 19:22 by pro
+ << d_rel_team
+Image text-base: 0x00003000, data-base: 0x01B00000
+
+ROM: Bootstrap program is Alpha board boot loader
+BOOTLDR: C2960S Boot Loader (C2960S-HBOOT-M) Version 12.2(55r)SE, RELEASE SOFTWARE (fc1)
+
+c29s1p.f1.williams uptime is 5 minutes
+System
+ <<  returned to ROM by power-on
+System image file is "flash:/c2960s-universalk9-mz.122-55.SE5/c2960s-universalk9-mz.122-55.SE5.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, e
+ << xport, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local cou
+ << ntry laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be fou
+ << nd at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-48FPD-L (PowerPC) processor (revision E0) with 131072K bytes of memory.
+Proces
+ << sor board ID FOC1629Z0FZ
+Last reset from power-on
+2 Virtual Ethernet interfaces
+1 FastEthernet interface
+50 Gigabit Ethernet interfaces
+2 Ten Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated no
+ << n-volatile configuration memory.
+Base ethernet MAC Address       : 64:D8:14:9D:BB:00
+Motherboard assembly number     : 73-12561-09
+Power supply part number        : 341-0382-02
+Motherboard serial number       : FOC16280T82
+Power supply serial number 
+ <<      : DCA1624V3J8
+Model revision number           : E0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-48FPD-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC16287TZX
+System seria
+ << l number            : FOC1629Z0FZ
+Top Assembly Part Number        : 800-32643-03
+Top Assembly Revision Number    : A0
+Version ID                      : V03
+CLEI Code Number                : COMGH00ARC
+Daughterboard revision number   : A0
+Hardware Bo
+ << ard Revision Number  : 0x01
+
+
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 52    WS-C2960S-48FPD-L  12.2(55)SE5           C2960S
+ << -UNIVERSALK9-M     
+
+
+Configuration register is 0xF
+
+c29s1p.f1.williams>
+Expect: matched string 2: >
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << write mem
+                    ^
+% Invalid input detected at '^' marker.
+
+c29s1p.f1.williams>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Password: 
+Expect: matched string 1: Password:
+ >> Area=l*w
+
+Expect: searching for 1 strs:  :#
+ << 
+c29s1p.f1.williams#
+Expect: matched string 1: #
+ >> wr erase
+ >> 
+
+ >> reload
+
+Expect: searching for 2 strs:  :# :>
+ << wr erase
+Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+[OK]
+Erase of nvram: complete
+c29s1p.f1.williams#reload
+Proceed with reload? [confirm]
+*Feb 28 18:06:10: %SYS-7-NV_BLOCK_INIT: Initialized the geometry of
+Expect: matched string 1: #
+Expect: searching for 1 strs:  :Save?
+ <<  nvram
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+ nvram
+...
+
+ >> 
+

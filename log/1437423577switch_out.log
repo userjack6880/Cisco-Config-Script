@@ -1,0 +1,1299 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+Switch>
+Switch>
+Switch>
+Switch>
+Expect: matched string 4: Switch>
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, IOS-XE Software, Catalyst 4500 L3 Switch  Software (cat4500e-UNIVERSALK9-M), Version 03.06.00.E RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+
+ << Compiled Thu 26-Jun-14 12:52 by prod_rel_team
+
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2014 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Versio
+ << n 2.0.  The
+software code licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.
+(http://www.gnu.org/licenses/gpl-2.0.html) For more
+ <<  details, see the
+documentation or "License Notice" file accompanying the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+
+ROM: 15.0(1r)SG10
+Switch uptime is 16 minutes
+System returned to ROM by po
+ << wer-on
+Running default software
+Jawa Revision 2, Winter Revision 0x0.0x41
+
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+ << 
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using 
+ << this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.c
+ << isco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+
+License Information for 'WS-C4500X-16'
+    License Level: ipbase   Type: Permanent
+    Next reboot license Leve
+ << l: ipbase
+
+cisco WS-C4500X-16 (MPC8572) processor (revision 9) with 4194304K bytes of physical memory.
+Processor board ID JAE182907D9
+MPC8572 CPU at 1.5GHz, Cisco Catalyst 4500X
+Last reset from PowerUp
+1 Virtual Ethernet interface
+16 Ten Gigabit Et
+ << hernet interfaces
+511K bytes of non-volatile configuration memory.
+
+Configuration register is 0x2101
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> sh license udi
+
+Expect: searching for 2 strs:  :# :>
+ << sh license udi
+Device#   PID                 SN              UDI
+-----------------------------------------------------------------------------
+*0        WS-C4500X-16        JAE182907D9     WS-C4500X-16:JAE182907D9
+
+Switch#
+Expect: matched string 1: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> version 15.1
+
+ >> no service pad
+
+ >> service tcp-keepalives-in
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> service internal
+
+ >> service compress-config
+
+ >> service counters max age 10
+
+ >> service unsupported-transceiver
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret Area=l*w
+
+ >> enable password Area=l*w
+
+ >> logging buffered informational
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6 0
+
+ >> clock summer-time CDT recurring
+
+ >> ip vrf mgmtVrf
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.13
+
+ >> ip name-server 130.18.80.12
+
+ >> vtp domain vtp01.mgmt.msstate.edu
+
+ >> vtp ver 2
+
+ >> vtp mode client
+
+ >> crypto pki trustpoint TP-self-signed-2399944832
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-2399944832
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-2399944832
+
+ >> crypto pki certificate chain TP-self-signed-2399944832
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#3232.cer
+
+ >> power redundancy-mode redundant
+
+ >> no spanning-tree optimize bpdu transmission
+
+ >> spanning-tree extend system-id
+
+ >> vlan internal allocation policy ascending
+
+ >> interface FastEthernet0
+
+ >>  no ip address
+
+ >>  shutdown
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >> no ip http server
+
+ >> no ip http secure-server
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.92.0 0.0.3.255
+
+ >> access-list 1 deny   any log
+
+ >> access-list 10 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 10 permit 130.18.92.0 0.0.3.255
+
+ >> access-list 10 permit 130.18.1.0 0.0.0.255
+
+ >> access-list 10 deny   any log
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps flowmon
+
+ >> snmp-server enable traps transceiver all
+
+ >> snmp-server enable traps call-home message-send-fail server-fail
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps rf
+
+ >> snmp-server enable traps memory
+
+ >> snmp-server enable traps cpu_threshold
+
+ >> snmp-server enable traps eigrp
+
+ >> snmp-server enable traps ospf state-change
+
+ >> snmp-server enable traps ospf errors
+
+ >> snmp-server enable traps ospf retransmit
+
+ >> snmp-server enable traps ospf lsa
+
+ >> snmp-server enable traps ospf cisco-specific state-change nssa-trans-change
+
+ >> snmp-server enable traps ospf cisco-specific state-change shamlink interface
+
+ >> snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+
+ >> snmp-server enable traps ospf cisco-specific errors
+
+ >> snmp-server enable traps ospf cisco-specific retransmit
+
+ >> snmp-server enable traps ospf cisco-specific lsa
+
+ >> snmp-server enable traps flex-links status
+
+ >> snmp-server enable traps fru-ctrl
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+
+ >> snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+
+ >> snmp-server enable traps ether-oam
+
+ >> snmp-server enable traps aaa_server
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps l2tc threshold sys-threshold
+
+ >> snmp-server enable traps power-ethernet police
+
+ >> snmp-server enable traps rep
+
+ >> snmp-server enable traps udld link-fail-rpt status-change
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps auth-framework sec-violation
+
+ >> snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps ethernet evc status create delete
+
+ >> snmp-server enable traps energywise
+
+ >> snmp-server enable traps ipsla
+
+ >> snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps config-ctid
+
+ >> snmp-server enable traps event-manager
+
+ >> snmp-server enable traps hsrp
+
+ >> snmp-server enable traps ipmulticast
+
+ >> snmp-server enable traps pim neighbor-change rp-mapping-change invalid-pim-message
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps isakmp policy add
+
+ >> snmp-server enable traps isakmp policy delete
+
+ >> snmp-server enable traps isakmp tunnel start
+
+ >> snmp-server enable traps isakmp tunnel stop
+
+ >> snmp-server enable traps ipsec cryptomap add
+
+ >> snmp-server enable traps ipsec cryptomap delete
+
+ >> snmp-server enable traps ipsec cryptomap attach
+
+ >> snmp-server enable traps ipsec cryptomap detach
+
+ >> snmp-server enable traps ipsec tunnel start
+
+ >> snmp-server enable traps ipsec tunnel stop
+
+ >> snmp-server enable traps ipsec too-many-sas
+
+ >> snmp-server enable traps errdisable
+
+ >> snmp-server enable traps ethernet cfm alarm
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server enable traps mac-notification change move threshold
+
+ >> snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-down
+
+ >> snmp-server host 130.18.2.208 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> line vty 5 15
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> ntp clock-period 36029390
+
+ >> ntp server 10.92.0.3
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << version 15.1
+Switch(config)#no service pad
+Switch(config)#service tcp-keepalives-in
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch
+ << (config)#service internal
+Switch(config)#service compress-config
+Switch(config)#service counters max age 10
+Switch(config)#service unsupported-transceiver
+Warning: When Cisco determines that a fault or defect can be traced to
+the use of third-party t
+ << ransceivers installed by a customer or reseller,
+then, at Cisco's discretion, Cisco may withhold support under warranty or
+a Cisco support program. In the course of providing support for a Cisco
+networking product Cisco may require that the end user in
+ << stall Cisco
+transceivers if Cisco determines that removing third-party parts will
+assist Cisco in diagnosing the cause of a support issue.
+
+Switch(config)#boot-start-marker
+Switch(config)#boot-end-marker
+Switch(config)#enable secret Area=l*w
+Switch
+ << (config)#enable password Area=l*w
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+Switch(config)#
+*Jul 20 13:20:48: %GBIC_SECURITY-4-SECURITY_DISABLED: Unsupported transc
+ << eiver support enabled
+logging buffered informational
+Switch(config)#no aaa new-model
+Switch(config)#clock timezone CST -6 0
+Switch(config)#clock summer-time CDT recurring
+Switch(config)#ip vrf mgmtVrf
+% Use 'vrf definition mgmtVrf' command
+Switch(c
+ << onfig)#
+*Jul 20 13:20:49: %SYS-5-LOG_CONFIG_CHANGE: Buffer logging: level informational, xml disabled, filtering disabled, size (32768)ip domain-name mgmt.msstate.edu
+Switch(config)#ip name-server 130.18.80.13
+Switch(config)#ip name-server 130.18.80.12
+ << 
+Switch(config)#vtp domain vtp01.mgmt.msstate.edu
+Changing VTP domain name from NULL to vtp01.mgmt.msstate.edu
+Switch(config)#vtp ver 2
+Switch(config)#
+*Jul 20 07:20:49: %SYS-6-CLOCKUPDATE: System clock has been updated from 13:20:49 UTC Mon Jul 20 2
+ << 015 to 07:20:49 CST Mon Jul 20 2015, configured from console by console.
+*Jul 20 08:20:50: %SYS-6-CLOCKUPDATE: System clock has been updated from 07:20:50 CST Mon Jul 20 2015 to 08:20:50 CDT Mon Jul 20 2015, configured from console by console.vtp mode cl
+ << ient
+Setting device to VTP Client mode for VLANS.
+Switch(config)#crypto pki trustpoint TP-self-signed-2399944832
+Switch(ca-trustpoint)# enrollment selfsigned
+Switch(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-2399944832
+Switch(ca-trus
+ << tpoint)#
+*Jul 20 08:20:51: %SW_VLAN-6-VTP_DOMAIN_NAME_CHG: VTP domain name changed to vtp01.mgmt.msstate.edu. revocation-check none
+Switch(ca-trustpoint)# rsakeypair TP-self-signed-2399944832
+Switch(ca-trustpoint)#crypto pki certificate chain TP-self-s
+ << igned-2399944832
+Switch(config-cert-chain)# certificate self-signed 01 nvram:IOS-Self-Sig#3232$e self-signed 01 nvram:IOS-Self-Sig#3232.         cer
+Switch(config-cert-chain)#power redundancy-m
+ << ode redundant
+Switch(config)#no spanning-tree optimize bpdu transmission
+Switch(config)#spanning-tree extend system-id
+Switch(config)#vlan internal allocation policy ascending
+Switch(config)#interface FastEthernet0
+                                   
+ <<   ^
+% Invalid input detected at '^' marker.
+
+Switch(config)# no ip address
+% Incomplete command.
+
+Switch(config)# shutdown
+% Incomplete command.
+
+Switch(config)#interface Vlan1
+Switch(config-if)# no ip address
+Switch(config-if)# no ip route-cac
+ << he
+Switch(config-if)# shutdown
+Switch(config-if)#interface Vlan92
+Switch(config-if)#no ip http server
+Switch(config)#no ip http secure-server
+Switch(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+Switch(config)#access-list 1 permit 130.18.92.0 0
+ << .0.3.255
+Switch(config)#access-list 1 deny   any log
+Switch(config)#access-list 10 permit 10.92.0.0 0.0.255.255
+Switch(config)#access-list 10 permit 130.18.92.0 0.0.3.255
+Switch(config)#access-list 10 permit 130.18.1.0 0.0.0.255
+Switch(config)#access
+ << -list 10 deny   any log
+Switch(config)#snmp-server community sysnet RO 1
+Switch(config)#snmp-server community c2-b2=a2 RW 1
+Switch(config)#snmp-server enable traps snmp authentication linkdown linkup c
+ << $ enable traps snmp authentication linkdown linkup co         ldstart waps snmp authentication linkdown linkup coldstart wa         rmstart
+Switch(config)#snmp-serv
+ << er enable traps flowmon
+Switch(config)#snmp-server enable traps transceiver all
+Switch(config)#snmp-server enable traps call-home message-send-fail server-fa$ enable traps call-home message-s
+ << end-fail server-fai         l
+Switch(config)#snmp-server enable traps tty
+Switch(config)#snmp-server enable traps rf
+Switch(config)#snmp-server enable traps memory
+Switch(config)#snmp-server enable traps cpu_threshold
+ This CLI will be depre
+ << cated soon. Please use cpu instead of cpu_threshold.
+Switch(config)#snmp-server enable traps eigrp
+Switch(config)#snmp-server enable traps ospf state-change
+Switch(config)#snmp-server enable traps ospf errors
+Switch(config)#snmp-server enable traps os
+ << pf retransmit
+Switch(config)#snmp-server enable traps ospf lsa
+Switch(config)#snmp-server enable traps ospf cisco-specific state-change nssa$ enable traps ospf cisco-specific state-change nss
+ << a-         trans-chaaps ospf cisco-specific state-change nssa-trans-chan         ge
+Switch(config)#snmp-server enable traps ospf cisco-specific state-change sham
+ << $ enable traps ospf cisco-specific state-change shaml         ink interaps ospf cisco-specific state-change shamlink interf         
+ << ace
+Switch(config)#snmp-server enable traps ospf cisco-specific state-change sham$ enable traps ospf cisco-specific state-change shaml         ink neigh
+ << aps ospf cisco-specific state-change shamlink neighb         or
+Switch(config)#snmp-server enable traps ospf cisco-specific errors
+Switch(config)#snmp-server enable traps ospf cisco-specific retransmit
+Switch(
+ << config)#snmp-server enable traps ospf cisco-specific lsa
+Switch(config)#snmp-server enable traps flex-links status
+Switch(config)#snmp-server enable traps fru-ctrl
+Switch(config)#snmp-server enable traps entity
+Switch(config)#snmp-server enable traps 
+ << ethernet cfm cc mep-up mep-down cross$ enable traps ethernet cfm cc mep-up mep-down cross-         connect laps ethernet cf
+ << m cc mep-up mep-down cross-connect lo         op config
+Switch(config)#snmp-server enable traps ethernet cfm crosscheck mep-missing m$ enable traps ethernet cfm crosscheck mep-missing
+ <<  me         p-unknownaps ethernet cfm crosscheck mep-missing mep-unknown          service-uet cfm crosscheck mep-mi
+ << ssing mep-unknown service-up         
+Switch(config)#snmp-server enable traps ether-oam
+Switch(config)#snmp-server enable traps aaa_server
+Switch(config)#snmp-server enable traps flash insertion removal
+Switch(config)#snmp-server enable traps
+ <<  l2tc threshold sys-threshold
+                                        ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#snmp-server enable traps power-ethernet police
+Switch(config)#snmp-server enable traps rep
+Switch(config)#snmp-server ena
+ << ble traps udld link-fail-rpt status-change
+Switch(config)#snmp-server enable traps vtp
+Switch(config)#snmp-server enable traps vlancreate
+Switch(config)#snmp-server enable traps vlandelete
+Switch(config)#snmp-server enable traps auth-framework sec-vio
+ << lation
+Switch(config)#snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-au$ enable traps dot1x auth-fail-vlan guest-vlan no-aut         h-fail-vl
+ << aps dot1x auth-fail-vlan guest-vlan no-auth-fail-vla         n no-guesuth-fail-vlan guest-vlan no-auth-fail-vlan no-guest         -vlan
+snmp-se
+ << rver enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-gu                         ^est-vlan
+
+% Invalid input detected at '^' marker.
+
+Switch(config)#snmp-server enable traps envmon fan shutdown supply temperatur
+ << $ enable traps envmon fan shutdown supply temperature          status
+Switch(config)#snmp-server enable traps entity-diag boot-up-fail hm-test-reco
+ << $ enable traps entity-diag boot-up-fail hm-test-recov         er hm-thraps entity-diag boot-up-fail hm-test-recover hm-thre         sh-reache
+ << -diag boot-up-fail hm-test-recover hm-thresh-reached          scheduleup-fail hm-test-recover hm-thresh-reached scheduled         -test-fai
+ << m-test-recover hm-thresh-reached scheduled-test-fail         
+Switch(config)#snmp-server enable traps port-security
+Switch(config)#snmp-server enable traps ethernet evc status create delete
+Sw
+ << itch(config)#snmp-server enable traps energywise
+Switch(config)#snmp-server enable traps ipsla
+Switch(config)#snmp-server enable traps cef resource-failure peer-state-chang$ enable traps cef 
+ << resource-failure peer-state-change          peer-fibaps cef resource-failure peer-state-change peer-fib-         state-cha
+ << source-failure peer-state-change peer-fib-state-chan         ge inconslure peer-state-change peer-fib-state-change inconsi         stency
+Switch(config)#snmp-server ena
+ << ble traps config-copy
+Switch(config)#snmp-server enable traps config
+Switch(config)#snmp-server enable traps config-ctid
+Switch(config)#snmp-server enable traps event-manager
+Switch(config)#snmp-server enable traps hsrp
+Switch(config)#snmp-server ena
+ << ble traps ipmulticast
+Switch(config)#snmp-server enable traps pim neighbor-change rp-mapping-change$ enable traps pim neighbor-change rp-mapping-change          invalid-p
+ << aps pim neighbor-change rp-mapping-change invalid-pi         m-message
+Switch(config)#snmp-server enable traps bridge newroot topologychange
+Switch(config)#snmp-server enable traps stpx inconsiste
+ << ncy root-inconsistency$ enable traps stpx inconsistency root-inconsistency          loop-incoaps stpx inconsistency root-in
+ << consistency loop-incon         sistency
+Switch(config)#snmp-server enable traps syslog
+Switch(config)#snmp-server enable traps isakmp policy add
+Switch(config)#snmp-server enable traps isakmp policy delete
+Switch(config)#snmp-server enable tr
+ << aps isakmp tunnel start
+Switch(config)#snmp-server enable traps isakmp tunnel stop
+Switch(config)#snmp-server enable traps ipsec cryptomap add
+Switch(config)#snmp-server enable traps ipsec cryptomap delete
+Switch(config)#snmp-server enable traps ipsec
+ <<  cryptomap attach
+Switch(config)#snmp-server enable traps ipsec cryptomap detach
+Switch(config)#snmp-server enable traps ipsec tunnel start
+Switch(config)#snmp-server enable traps ipsec tunnel stop
+Switch(config)#snmp-server enable traps ipsec too-man
+ << y-sas
+Switch(config)#snmp-server enable traps errdisable
+Switch(config)#snmp-server enable traps ethernet cfm alarm
+Switch(config)#snmp-server enable traps vlan-membership
+Switch(config)#snmp-server enable traps mac-notification change move threshol
+ << $ enable traps mac-notification change move threshold         
+Switch(config)#snmp-server enable traps vrfmib vrf-up vrf-down vnet-trunk-up 
+ << $ enable traps vrfmib vrf-up vrf-down vnet-trunk-up v         net-trunkaps vrfmib vrf-up vrf-down vnet-trunk-up vnet-trunk-         down
+Switch(config)#snmp-s
+ << erver host 130.18.2.208 sysnet 
+Switch(config)#line con 0
+Switch(config-line)#line vty 0 4
+Switch(config-line)# password Area=l*w
+Switch(config-line)# login
+Switch(config-line)#line vty 5 15
+Switch(config-line)# password Area=l*w
+Switch(config-line
+ << )# login
+Switch(config-line)#ntp clock-period 36029390
+%NTP: This configuration command is depreceated.
+Switch(config)#ntp server 10.92.0.3
+Switch(config)#end
+Switch#end
+Translating "end"...domain server (130.18.80.13)
+*Jul 20 08:21:15: %SYS-5-CONF
+ << IG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+ << 
+ << 
+ << 
+ <<  (130.18.80.12)
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+ (130.18.80.12)
+...
+
+ >> spanning-tree mode mst
+
+ >> spanning-tree etherchannel guard misconfig
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+% Unknown command or computer name, or unable to find computer address
+Switch#
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#spanning-tree mode mst
+Switch(config)#spanning-tree etherchannel g
+Expect: matched string 1: (config)#
+ >> hostname c4500s1.m0.chiomega 
+
+Expect: searching for 2 strs:  :# :>
+ << uard misconfig
+Switch(config)#spanning-tree mst configuration
+Switch(config-mst)# name msstate
+Switch(config-mst)# revision 1
+Switch(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << $ vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 5         0, 60, 63, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63,          70
+Switch(config-mst)# instance 1 vlan 78, 8
+ << 0, 86, 91, 96, 104, 110, 126, 136, 1$ vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 14         0, 152, 180, 86, 91, 96, 104, 110, 12
+ << 6, 136, 140, 152, 16         0
+Switch(config-mst)# instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 23$ vlan 162-163, 168, 189, 194, 202, 220, 222, 230         , 232, 24
+ << 163, 168, 189, 194, 202, 220, 222, 230, 232, 242         , 246
+Switch(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 996, 999
+Switch(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020
+ << , 2022, 2024, 2031,$ vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031,          2035, 203, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2
+ << 037         , 2039-2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-204         0
+Switch(config-mst)# instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096,
+ << $ vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096,          2104, 211, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110         , 2126
+Switch(confi
+ << g-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, $ vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2         189, 2194
+ << , 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194,          2202
+Switch(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, $ vlan 2220, 2222, 2232, 2242, 2246, 2611-2612
+ << , 2         654, 2999
+Switch(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128$ vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128,          144, 176
+ << 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176,          196
+Switch(config-mst)# instance 3 vlan 244, 248, 927
+Switch(config-mst)# instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,
+ << $ vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,          2108, 211, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113         , 2128
+
+ << Switch(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+Switch(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 2$ vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 2
+ << 2         8
+Switch(config-mst)# instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-$ vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2         134, 2216
+ << , 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216,          2228
+Switch(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97,$ vlan 9, 33
+ << -34, 38, 54, 56, 71, 75, 82, 84, 97,          114, 116,3-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116,          124
+Switch(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210
+ << , 240-241, 251$ vlan 172, 186, 192, 204-208, 210, 240-241, 251-         252, 630,186, 192, 204-208, 210, 240-241, 251-252, 630,     
+ <<      928
+Switch(config-mst)# instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, $ vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2         075, 2082
+ << , 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082,          2084
+Switch(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192,$ vlan 2097, 21
+ << 14, 2116, 2124, 2172, 2186, 2192,          2204-2208, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208,          2210
+Switch(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 
+ << 2928
+Switch(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 9$ vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98         -99, 102,
+ << 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102,          112
+Switch(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 50$ vlan 130, 132, 147-148, 158, 2
+ << 12, 226, 236, 500         , 505, 51132, 147-148, 158, 212, 226, 236, 500, 505, 510         -511
+Switch(config-mst)# instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 92
+ << $ vlan 522, 551-570, 603, 629, 633, 742, 802, 926         , 929
+Switch(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 
+ << $0 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2         057, 20624-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062,          2068
+Switch(config-mst)# instance 10 vlan 2076, 2
+ << 098-2099, 2102, 2112, 2130, 2132,$0 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132,          2147-21486, 2098-2099, 2102, 2112, 2130,
+ <<  2132, 2147-2148,          2158
+Switch(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522,$0 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522,          2603, 262
+ << 2, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629         , 2633
+Switch(config-mst)# instance 10 vlan 2802, 2926, 2929
+Switch(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200,
+ <<  218
+Switch(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180,$2 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180,          2200, 221
+ << 8, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218         
+Switch(config-mst)#
+Switch(config-mst)#configure terminal
+                   ^
+% Invalid input detected at '^' marker.
+
+Switch(config-mst)#hostname c4500s1.m0.chio
+ << mega 
+c4500s1.m0.chiomega(config)#end
+c4500s1.m0.chiomega#
+*Jul 20 08:21:40: %CNS IQ:0.4 ID:0 Changed:[c4500s1.m0.chiomega]
+*Jul 20 08:21:40: %CNS IQ:0.5 ID:1 Changed:[c4500s1.m0.chiomega]
+*Jul 20 08:21:40: %CNS IQ:0.6 ID:2 Changed:[c4500s1.m0.chiome
+ << ga]
+*Jul 20 08:21:40: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c4500s1.m0.chiomega#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: (config)#
+ >> snmp-server contact 6F-1991
+
+Expect: searching for 1 strs:  :#
+ << snmp-server contact 6F-1991
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c4500s1.m0.chiomega#
+ << 
+*Jul 20 08:21:47: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c4500s1.m0.chiomega#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: (config)#
+ >> interface vlan 92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface vlan 92
+c4500s1.m0.chiomega(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip address 10.92.2.196 255.255.0.0
+
+ >> ip broadcast-address 10.92.255.255
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip address 10.92.2.196 255.255.0.0
+c4500s1.m0.chiomega(config-if)#ip broadcast-address 10.92.255.255
+c4500s1.m0.chiomega(config-if)#end
+c4500s1.m0.chiomega#
+ << 
+*Jul 20 08:21:53: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c4500s1.m0.chiomega#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: (config)#
+ >> interface Vlan92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface Vlan92
+c4500s1.m0.chiomega(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip default-gateway 10.92.0.1
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip default-gateway 10.92.0.1
+c4500s1.m0.chiomega(config)#end
+c4500s1.m0.chiomega#
+*Jul 20 08:21:59: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c4500s1.m0.chiomega#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/1 - 16 
+
+ >> interface range te1/1 - 16 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/1 - 16 
+c4500s1.m0.chiomega(config)#interface range te1/1 - 16 
+c4500s1.m0.chiomega(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport access vlan 92
+
+ >> switchport mode access
+
+ >> spanning-tree portfast
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport access vlan 92
+c4500s1.m0.chiomega(config-if-range)#switchport mode access
+c4500s1.m0.chiomega(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentr
+ << ators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast will be configured in 16 interfaces due to the range command 
+ but will only have effect when the interfac
+ << es are in a non-trunking mode.
+c4500s1.m0.chiomega(config-if-range)#end
+c4500s1.m0.chiomega#
+ << 
+*Jul 20 08:22:10: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c4500s1.m0.chiomega#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4500s1.m0.chiomega(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/1 - 16 
+
+ >> interface range te1/1 - 16 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/1 - 16 
+c4500s1.m0.chiomega(config)#interface range te1/1 - 16 
+c4500s1.m0.chiomega(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport trunk encapsulation dot1q
+
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport trunk encapsulation dot1q
+                                                      ^
+% Invalid input detected at '^' marker.
+
+c4500s1.m0.chiomega(config-if-range)#switchport mode trunk
+c4500s1.m0.chiomega(config-if-range)#switchport trunk nat
+ << ive vlan 92
+c4500s1.m0.chiomega(config-if-range)#end
+c4500s1.m0.chiomega#
+ << 
+*Jul 20 08:22:21: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c4500s1.m0.chiomega#write mem
+Building configuration...
+Compressed configuration from 9012 bytes to 4213 bytes[OK]
+c4500s1.m0.chiomega#
+Expect: matched string 1: #
+ >> 
+Expect: searching for 2 strs:  :# :>
+ << 
+c4500s1.m0.chiomega#
+c4500s1.m0.chiomega#
+Expect: matched string 1: #
+ >> sh run
+
+Expect: searching for 2 strs:  :# :>
+ << sh run
+Building configuration...
+
+Current configuration : 9010 bytes
+!
+! Last configuration change at 08:22:21 CDT Mon Jul 20 2015
+!
+version 15.2
+no service pad
+service tcp-keepalives-in
+service timestamps debug datetime localtime
+service times
+ << tamps log datetime localtime
+service password-encryption
+service internal
+service compress-config
+service counters max age 10
+service unsupported-transceiver
+!
+hostname c4500s1.m0.chiomega
+!
+boot-start-marker
+boot system flash bootflash:cat4500e
+ << -universalk9.SPA.03.06.00.E.152-2.E.bin
+boot-end-marker
+!
+!
+vrf definition mgmtVrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+logging buffered informational
+enable secret 5 $1$RILO$YY/KQ11dYqbg
+ << rM066M4Q2/
+enable password 7 013214015A560A4536
+!
+no aaa new-model
+clock timezone CST -6 0
+clock summer-time CDT recurring
+!
+!
+!
+!
+!
+!
+ip vrf Liin-vrf
+!
+ip domain-name mgmt.msstate.edu
+ip name-server 130.18.80.13
+ip name-server 130.18.80.1
+ << 2
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-2399944832
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2399944832
+ revocation-check none
+ rsakeypair TP-self-signed-2399944832
+!
+!
+crypto pki certificate chain TP-self-sign
+ << ed-2399944832
+ certificate self-signed 01
+  	quit
+power redundancy-mode redundant
+!
+spanning-tree mode mst
+no spanning-tree optimize bpdu transmission
+spanning-tree extend system-id
+!
+spanning-tree mst configuration
+ name msstate
+ revision 1
+ 
+ << instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+ instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+ instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+ instance 1 vlan 256, 611-612, 654
+ << , 741, 996, 999
+ instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+ instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+ instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+ in
+ << stance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+ instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+ instance 3 vlan 244, 248, 927
+ instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+ ins
+ << tance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+ instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+ instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+ instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116,
+ <<  124
+ instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+ instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+ instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+ instance 8 vlan 2240-2
+ << 241, 2251-2252, 2630, 2928
+ instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+ instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+ instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+ instance 10
+ <<  vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+ instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+ instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+ instance 10 vlan 2802, 2926, 2929
+ i
+ << nstance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+ instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+!
+!
+vlan internal allocation policy ascending
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet1
+ vrf for
+ << warding mgmtVrf
+ no ip address
+ speed auto
+ duplex auto
+!
+interface TenGigabitEthernet1/1
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/2
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+inte
+ << rface TenGigabitEthernet1/3
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/4
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/5
+ switchport trunk native vlan 92
+ swi
+ << tchport mode trunk
+!
+interface TenGigabitEthernet1/6
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/7
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/8
+ switchport
+ <<  trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/9
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/10
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGig
+ << abitEthernet1/11
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/12
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/13
+ switchport trunk native vlan 92
+ switchport m
+ << ode trunk
+!
+interface TenGigabitEthernet1/14
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/15
+ switchport trunk native vlan 92
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/16
+ switchport trunk
+ <<  native vlan 92
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan92
+ ip address 10.92.2.196 255.255.0.0
+ ip broadcast-address 10.92.255.255
+ shutdown
+!
+ip default-gateway 10.92.0.1
+ip forwa
+ << rd-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+access-list 1 permit 10.92.0.0 0.0.255.255
+access-list 1 permit 130.18.92.0 0.0.3.255
+access-list 1 deny   any log
+access-list 10 permit 10.92.0.0 0.0.255.255
+access-list 10 permit 130
+ << .18.92.0 0.0.3.255
+access-list 10 permit 130.18.1.0 0.0.0.255
+access-list 10 deny   any log
+!
+snmp-server community sysnet RO 1
+snmp-server community c2-b2=a2 RW 1
+snmp-server contact 6F-1991
+snmp-server enable traps snmp authentication linkdown li
+ << nkup coldstart warmstart
+snmp-server enable traps flowmon
+snmp-server enable traps transceiver all
+snmp-server enable traps call-home message-send-fail server-fail
+snmp-server enable traps tty
+snmp-server enable traps rf
+snmp-server enable traps mem
+ << ory
+snmp-server enable traps cpu threshold
+snmp-server enable traps eigrp
+snmp-server enable traps ospf state-change
+snmp-server enable traps ospf errors
+snmp-server enable traps ospf retransmit
+snmp-server enable traps ospf lsa
+snmp-server enable 
+ << traps ospf cisco-specific state-change nssa-trans-change
+snmp-server enable traps ospf cisco-specific state-change shamlink interface
+snmp-server enable traps ospf cisco-specific state-change shamlink neighbor
+snmp-server enable traps ospf cisco-specif
+ << ic errors
+snmp-server enable traps ospf cisco-specific retransmit
+snmp-server enable traps ospf cisco-specific lsa
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps flex-links status
+snmp-server enable traps fru-ctrl
+snm
+ << p-server enable traps entity
+snmp-server enable traps ethernet cfm cc mep-up mep-down cross-connect loop config
+snmp-server enable traps ethernet cfm crosscheck mep-missing mep-unknown service-up
+snmp-server enable traps ether-oam
+snmp-server enable t
+ << raps aaa_server
+snmp-server enable traps flash insertion removal
+snmp-server enable traps power-ethernet police
+snmp-server enable traps rep
+snmp-server enable traps udld link-fail-rpt status-change
+snmp-server enable traps vtp
+snmp-server enable tr
+ << aps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps entity-diag boot-up-fail hm-test-recover hm-thresh-reached scheduled-test-fail
+snmp-server enable traps 
+ << port-security
+snmp-server enable traps ethernet evc status create delete
+snmp-server enable traps energywise
+snmp-server enable traps ipsla
+snmp-server enable traps cef resource-failure peer-state-change peer-fib-state-change inconsistency
+snmp-serve
+ << r enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps event-manager
+snmp-server enable traps hsrp
+snmp-server enable traps ipmulticast
+snmp-server enable traps pim neighbor-change rp
+ << -mapping-change invalid-pim-message
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps ike policy add
+snmp-
+ << server enable traps ike policy delete
+snmp-server enable traps ike tunnel start
+snmp-server enable traps ike tunnel stop
+snmp-server enable traps ipsec cryptomap add
+snmp-server enable traps ipsec cryptomap delete
+snmp-server enable traps ipsec crypt
+ << omap attach
+snmp-server enable traps ipsec cryptomap detach
+snmp-server enable traps ipsec tunnel start
+snmp-server

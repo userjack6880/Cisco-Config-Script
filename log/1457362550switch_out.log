@@ -1,0 +1,217 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+
+
+Press RETURN to get started!
+
+
+ << 
+ << 
+*Mar  1 00:00:12.294: Read env variable - LICENSE_BOOT_LEVEL = 
+*Mar  1 00:00:12.892: %IOS_LICENSE_IMAGE_APPLICATION-6-LICENSE_LEVEL: Module name = c2960s_lanbase Next reboot level = lanbase and License = lanbase
+*Mar  1 00:02:03.312: %STACKMGR-4-SWIT
+ << CH_ADDED: Switch 1 has been ADDED to the stack
+*Mar  1 00:02:04.612: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+*Mar  1 00:02:05.624: %SPANTREE-5-EXTENDED_SYSID: Extended SysId enabled for type vlan
+*Mar  1 00:02:59.07
+ << 5
+
+
+         --- System Configuration Dialog ---
+
+Enable secret warning
+----------------------------------
+In order to access the device manager, an enable secret is required
+If you enter the initial configuration dialog, you will be prompted for 
+ << the enable secret
+If you choose not to enter the intial configuration dialog, or if you exit setup without setting the enable secret,
+please set an enable secret using the following CLI in configuration mode-
+enable secret 0 <cleartext password>
+-----
+ << -----------------------------
+Would you like to ente: %STACKMGR-5-SWITCH_READY: Switch 1 is READY
+*Mar  1 00:02:59.075: %STACKMGR-4-STACK_LINK_CHANGE: Stack Port 1 Switch 1 has changed to state DOWN
+*Mar  1 00:02:59.075: %STACKMGR-4-STACK_LINK_CHANGE: 
+ << Stack Port 2 Switch 1 has changed to state DOWN
+*Mar  1 00:02:59.563: %SYS-5-RESTART: System restarted --
+Cisco IOS Sofr the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dial
+Expect: matched string 1: [yes/no]
+ >> 
+
+ >> no
+
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << og? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Wou
+ << ld you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial conftware, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http:
+ << //www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by prod_rel_team
+*Mar  1 00:03:00.014: %USB_CONSOLE-6-MEDIA_RJ45: Console media-type is RJ45.
+*Mar  1 00:03:01.283: %STACKMGR-5-MASTEiguration dial
+ << og? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: R_READY: Master Switch 1 is READY
+*M
+ << ar  1 00:03:01.288: %LINK-3-UPDOWN: Interface FastEthernet0, changed state to down
+*Mar  1 00:03:02.310: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0, changed state to down
+% Please answer 'yes' or 'no'.
+Would you like to enter the ini
+ << tial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: no
+Switch>term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by pro
+ << d_rel_team
+Image text-base: 0x00003000, data-base: 0x01B00000
+
+ROM: Bootstrap program is Alpha board boot loader
+BOOTLDR: C2960S Boot Loader (C2960S-HBOOT-M) Version 12.2(55r)SE, RELEASE SOFTWARE (fc1)
+
+Switch uptime is 3 minutes
+System returned to
+ <<  ROM by power-on
+System image file is "flash:/c2960s-universalk9-mz.122-55.SE7/c2960s-universalk9-mz.122-55.SE7.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, trans
+ << fer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. B
+ << y using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http
+ << ://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-48TS-L (PowerPC) processor (revision J0) with 131072K bytes of memory.
+Processor board ID 
+ << FOC1720Y0J2
+Last reset from power-on
+1 Virtual Ethernet interface
+1 FastEthernet interface
+52 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet M
+ << AC Address       : D0:C7:89:D9:30:80
+Motherboard assembly number     : 73-11909-09
+Power supply part number        : 341-0327-04
+Motherboard serial number       : FOC17195PBN
+Power supply serial number      : LIT17151XWF
+Model revision number        
+ <<    : J0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-48TS-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC17192DBZ
+System serial number            : FOC1720Y0J2
+Top Assembly Pa
+ << rt Number        : 800-30950-06
+Top Assembly Revision Number    : A0
+Version ID                      : V06
+CLEI Code Number                : COMGF00ARF
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0x01
+
+
+Switch Ports Mode
+ << l              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 52    WS-C2960S-48TS-L   12.2(55)SE7           C2960S-UNIVERSALK9-M     
+
+
+Configuration register is
+ <<  0xF
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#

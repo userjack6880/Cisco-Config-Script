@@ -1,0 +1,136 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c4000s1.gate.lloydricks#
+c4000s1.gate.lloydricks#
+c4000s1.gate.lloydricks#
+c4000s1.gate.lloydricks#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+c4000s1.gate.lloydricks#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, IE4000  Software (IE4000-UNIVERSALK9-M), Version 15.2(4)EA5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Tue 20-Dec-16 13:20 by pro
+ << d_rel_team
+
+ROM: Bootstrap program is IE4000 boot loader
+BOOTLDR: IE4000  Boot Loader (IE4000-HBOOT-M) Version 15.2(2r)EA, RELEASE SOFTWARE (fc1)
+
+c4000s1.gate.lloydricks uptime is 2 minutes
+System returned to ROM by power-on
+System restarted at 20
+ << :27:06 CDT Tue Mar 29 2011
+System image file is "sdflash:/ie4000-universalk9-mz.152-4.EA5/ie4000-universalk9-mz.152-4.EA5.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local co
+ << untry laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+comp
+ << liance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cry
+ << ptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License Level: lanbase
+License Type: Permanent Right-To-Use
+Nex
+ << t reload license Level: lanbase
+
+cisco IE-4000-4GS8GP4G-E (APM86XXX) processor (revision N0) with 1048576K bytes of memory.
+Processor board ID FDO2208U075
+Last reset from power-on
+2 Virtual Ethernet interfaces
+16 Gigabit Ethernet interfaces
+The pas
+ << sword-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 68:2C:7B:AE:DC:80
+Motherboard assembly number     : 73-101573-03
+Motherboard serial number       : FDO22062GB6
+M
+ << odel revision number           : N0
+Motherboard revision number     : B0
+Model number                    : IE-4000-4GS8GP4G-E
+System serial number            : FDO2208U075
+Top Assembly Part Number        : 68-6019-01
+Top Assembly Revision Number    :
+ <<  E0
+Version ID                      : V02
+Hardware Board Revision Number  : 0x05
+Backplane FPGA version          : 0.2F
+CIP Serial Number               : 0x49AEDC80
+SKU Brand Name                  : Cisco
+
+
+Switch Ports Model                     S
+ << W Version            SW Image                 
+------ ----- -----                     ----------            ----------               
+*    1 16    IE-4000-4GS8GP4G-E        15.2(4)EA5            IE4000-UNIVERSALK9-M     
+
+
+Configuration register is 0
+ << xF
+
+c4000s1.gate.lloydricks#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+c4000s1.gate.lloydricks#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c4000s1.gate.lloydri(config)#
+Expect: matched string 1: (config)#
+ >> hostname c4000s1p.gate.lloydricks 
+
+Expect: searching for 2 strs:  :# :>
+ << hostname c4000s1p.gate.lloydricks 
+c4000s1p.gate.lloydr(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c4000s1p.gate.lloydricks#
+Mar 29 20:29:41: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c4000s1p.gate.lloydricks#write mem
+Building configuration...
+
+Expect: matched string 1: #

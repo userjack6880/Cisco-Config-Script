@@ -1,0 +1,156 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+

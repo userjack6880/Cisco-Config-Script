@@ -1,0 +1,1940 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+Switch#
+Switch#
+Switch#
+Switch#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+Switch#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by pro
+ << d_rel_team
+Image text-base: 0x00003000, data-base: 0x01B00000
+
+ROM: Bootstrap program is Alpha board boot loader
+BOOTLDR: C2960S Boot Loader (C2960S-HBOOT-M) Version 12.2(55r)SE, RELEASE SOFTWARE (fc1)
+
+Switch uptime is 5 minutes
+System returned to
+ <<  ROM by power-on
+System image file is "flash:/c2960s-universalk9-mz.122-55.SE7/c2960s-universalk9-mz.122-55.SE7.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, trans
+ << fer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. B
+ << y using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http
+ << ://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-48TS-L (PowerPC) processor (revision J0) with 131072K bytes of memory.
+Processor board ID 
+ << FOC1720Y0J2
+Last reset from power-on
+1 Virtual Ethernet interface
+1 FastEthernet interface
+52 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet M
+ << AC Address       : D0:C7:89:D9:30:80
+Motherboard assembly number     : 73-11909-09
+Power supply part number        : 341-0327-04
+Motherboard serial number       : FOC17195PBN
+Power supply serial number      : LIT17151XWF
+Model revision number        
+ <<    : J0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-48TS-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC17192DBZ
+System serial number            : FOC1720Y0J2
+Top Assembly Pa
+ << rt Number        : 800-30950-06
+Top Assembly Revision Number    : A0
+Version ID                      : V06
+CLEI Code Number                : COMGF00ARF
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0x01
+
+
+Switch Ports Mode
+ << l              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 52    WS-C2960S-48TS-L   12.2(55)SE7           C2960S-UNIVERSALK9-M     
+
+
+Configuration register is
+ <<  0xF
+
+Switch#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> 
+
+ >> version 12.2
+
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> hostname c29s7.m3.bost
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret 5 $1$s6GO$UrhKVKOAEbq/smZUOjpb..
+
+ >> enable password 7 106F1B1C044A1E411B
+
+ >> username root privilege 15 secret 5 $1$pijk$IWu2HP7dYdz3xWkNFJF4q/
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6
+
+ >> clock summer-time CDT recurring
+
+ >> system mtu routing 1500
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.12
+
+ >> crypto pki trustpoint TP-self-signed-1365699840
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-1365699840
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-1365699840
+
+ >> crypto pki trustpoint TP-self-signed-102971904
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-102971904
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-102971904
+
+ >> crypto pki certificate chain TP-self-signed-1365699840
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#3030.cer
+
+ >> crypto pki certificate chain TP-self-signed-102971904
+
+ >> errdisable recovery cause udld
+
+ >> errdisable recovery cause bpduguard
+
+ >> errdisable recovery cause security-violation
+
+ >> errdisable recovery cause channel-misconfig (STP)
+
+ >> errdisable recovery cause pagp-flap
+
+ >> errdisable recovery cause dtp-flap
+
+ >> errdisable recovery cause link-flap
+
+ >> errdisable recovery cause sfp-config-mismatch
+
+ >> errdisable recovery cause gbic-invalid
+
+ >> errdisable recovery cause psecure-violation
+
+ >> errdisable recovery cause port-mode-failure
+
+ >> errdisable recovery cause dhcp-rate-limit
+
+ >> errdisable recovery cause mac-limit
+
+ >> errdisable recovery cause vmps
+
+ >> errdisable recovery cause storm-control
+
+ >> errdisable recovery cause inline-power
+
+ >> errdisable recovery cause loopback
+
+ >> errdisable recovery cause small-frame
+
+ >> errdisable recovery interval 1800
+
+ >> spanning-tree mode mst
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> no spanning-tree vlan 61,67,90,142,300,359,500,502-519,522,551-570,601-607,610
+
+ >> no spanning-tree vlan 617,627,629-630,632-637,645,649-652,654-655,674-680,690
+
+ >> no spanning-tree vlan 691-693,698,701,741-742,800-802,807,880,902-908,910-916
+
+ >> no spanning-tree vlan 927-930,970,994-1000
+
+ >> vlan internal allocation policy ascending
+
+ >> interface GigabitEthernet0/1
+
+ >>  switchport access vlan 148
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/2
+
+ >>  switchport access vlan 148
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/3
+
+ >>  description extadm06.ext
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/4
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/5
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/6
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/7
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/8
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/9
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/10
+
+ >>  description lan-sw1
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/11
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/12
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/13
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/14
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/15
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/16
+
+ >>  description ws235-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/17
+
+ >>  description ws160-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/18
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/19
+
+ >>  description 130.18.148.78
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/20
+
+ >>  description ws162-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/21
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/22
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/23
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/24
+
+ >>  description ws188-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/25
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/26
+
+ >>  description ws247-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/27
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/28
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/29
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/30
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/31
+
+ >>  description ws184-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/32
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/33
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/34
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/35
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/36
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/37
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/38
+
+ >>  description ws225-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/39
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/40
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/41
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/42
+
+ >>  description 130.18.148.8
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/43
+
+ >>  description ws195-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/44
+
+ >>  description 130.18.148.157
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/45
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/46
+
+ >>  switchport access vlan 91
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet0/47
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >> interface GigabitEthernet0/48
+
+ >>  description c29s1p.m3.bost
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >>  ip address 10.92.3.34 255.255.0.0
+
+ >>  ip broadcast-address 10.92.255.255
+
+ >>  no ip route-cache
+
+ >> ip default-gateway 10.92.0.1
+
+ >> no ip http server
+
+ >> ip http secure-server
+
+ >> ip sla enable reaction-alerts
+
+ >> logging facility local1
+
+ >> logging 130.18.8.12
+
+ >> access-list 1 permit 130.18.92.0 0.0.3.255
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.8.0 0.0.0.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server community spongebob RO
+
+ >> snmp-server contact 6F-1088
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.8.12 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  access-class 1 in
+
+ >>  password 7 0325490E07522D0659
+
+ >>  login
+
+ >>  transport input all
+
+ >> line vty 5 15
+
+ >>  access-class 1 in
+
+ >>  password 7 052A140A201142430E
+
+ >>  login
+
+ >>  transport input all
+
+ >> ntp clock-period 36029174
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << 
+Switch(config)#version 12.2
+Switch(config)#no service pad
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch(config)#hostname c29s7.m
+ << 3.bost
+c29s7.m3.bost(config)#boot-start-marker
+c29s7.m3.bost(config)#boot-end-marker
+c29s7.m3.bost(config)#enable secret 5 $1$s6GO$UrhKVKOAEbq/smZUOjpb..
+c29s7.m3.bost(config)#enable password 7 106F1B1C044A1E411B
+The enable password you have chosen i
+ << s the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+c29s7.m3.bost(config)#username root privilege 15 secret 5 $1$pijk$IWu2HP7dYdz$ot privilege 15 secret 5 $1$
+ << pijk$IWu2HP7dYdz3         xWkNFJF4qge 15 secret 5 $1$pijk$IWu2HP7dYdz3xWkNFJF4q/         
+c29s7.m3.bost(config)#no aaa new-model
+c29s7.m3.bost(config)#clock timezone CST -6
+c29s7.m
+ << 3.bost(config)#clock summer-time CDT recurring
+c29s7.m3.bost(config)#system mtu routing 1500
+                                 ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)#ip domain-name mgmt.msstate.edu
+c29s7.m3.bost(config)#ip n
+ << ame-server 130.18.80.12
+c29s7.m3.bost(config)#crypto pki trustpoint TP-self-signed-1365699840
+c29s7.m3.bost(ca-trustpoint)# enrollment selfsigned
+c29s7.m3.bost(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-136
+ << $me cn=IOS-Self-Signed-Certificate-1365         699840
+c29s7.m3.bost(ca-trustpoint)# revocation-check none
+c29s7.m3.bost(ca-trustpoint)#
+*Feb 28 18:05:34: %SYS-6-CLOCKUPDATE: System clock has been updated from 00:05:34 UTC M
+ << on Mar 1 1993 to 18:05:34 CST Sun Feb 28 1993, configured from console by console.
+*Feb 28 18:05:34: %SYS-6-CLOCKUPDATE: System clock has been updated from 18:05:34 CST Sun Feb 28 1993 to 18:05:34 CST Sun Feb 28 1993, configured from console by console. 
+ << rsakeypair TP-self-signed-1365699840
+c29s7.m3.bost(ca-trustpoint)#crypto pki trustpoint TP-self-signed-102971904
+c29s7.m3.bost(ca-trustpoint)# enrollment selfsigned
+c29s7.m3.bost(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-102
+ << $me cn=IOS-Self-Signed-Certificate-1029         71904
+c29s7.m3.bost(ca-trustpoint)# revocation-check none
+c29s7.m3.bost(ca-trustpoint)# rsakeypair TP-self-signed-102971904
+c29s7.m3.bost(ca-trustpoint)#cryp
+ << to pki certificate chain TP-self-signed-1365$certificate chain TP-self-signed-13656         99840
+c29s7.m3.bost(config-cert-chain)# certificate self-signed 01 nvram:IOS-Self-S
+ << $e self-signed 01 nvram:IOS-Self-Si         g#3030.cened 01 nvram:IOS-Self-Sig#3030.cer         
+c29s7.m3.bost(config-cert-chain)#crypto pki certificate chain TP-self-sign
+ << ed-$certificate chain TP-self-signed-1         02971904
+c29s7.m3.bost(config-cert-chain)#errdisable recovery cause udld
+c29s7.m3.bost(config)#errdisable recovery cause bpduguard
+c29s7.m3.bost(config)
+ << #errdisable recovery cause security-violation
+c29s7.m3.bost(config)#errdisable recovery cause channel-misconfig (STP)
+c29s7.m3.bost(config)#errdisable recovery cause pagp-flap
+c29s7.m3.bost(config)#errdisable recovery cause dtp-flap
+c29s7.m3.bost(conf
+ << ig)#errdisable recovery cause link-flap
+c29s7.m3.bost(config)#errdisable recovery cause sfp-config-mismatch
+c29s7.m3.bost(config)#errdisable recovery cause gbic-invalid
+c29s7.m3.bost(config)#errdisable recovery cause psecure-violation
+c29s7.m3.bost(co
+ << nfig)#errdisable recovery cause port-mode-failure
+c29s7.m3.bost(config)#errdisable recovery cause dhcp-rate-limit
+c29s7.m3.bost(config)#errdisable recovery cause mac-limit
+c29s7.m3.bost(config)#errdisable recovery cause vmps
+c29s7.m3.bost(config)#errd
+ << isable recovery cause storm-control
+c29s7.m3.bost(config)#errdisable recovery cause inline-power
+c29s7.m3.bost(config)#errdisable recovery cause loopback
+c29s7.m3.bost(config)#errdisable recovery cause small-frame
+c29s7.m3.bost(config)#errdisable reco
+ << very interval 1800
+c29s7.m3.bost(config)#spanning-tree mode mst
+c29s7.m3.bost(config)#spanning-tree portfast bpduguard default
+c29s7.m3.bost(config)#spanning-tree extend system-id
+c29s7.m3.bost(config)#spanning-tree mst configuration
+c29s7.m3.bost(co
+ << nfig-mst)# name msstate
+c29s7.m3.bost(config-mst)# revision 1
+c29s7.m3.bost(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, $ vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 3         9-4
+ << 0, 50,, 11, 20, 22, 24, 31, 35, 37, 39-40, 50,          60, 63, 722, 24, 31, 35, 37, 39-40, 50, 60, 63, 70         
+c29s7.m3.bost(config
+ << -mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126,$ vlan 78, 80, 86, 91, 96, 104, 110, 126,          136, 140,80, 86, 91, 96, 104, 110, 12
+ << 6, 136, 140,          152, 160
+c29s7.m3.bost(config-mst)# instance 1 vlan 162-163, 168, 189, 194, 202, 220, $ vlan 162-163, 168, 189, 194, 202, 220, 2         22, 230, 
+ << 163, 168, 189, 194, 202, 220, 222, 230, 2         32, 242, 89, 194, 202, 220, 222, 230, 232, 242, 2         46
+c29s7.m3.bost(config-mst)# instance 1 vlan 
+ << 256, 611-612, 654, 741, 996, 999
+c29s7.m3.bost(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024$ vlan 2002, 2007, 2011, 2020, 2022, 2024,          2031, 20
+ << , 2007, 2011, 2020, 2022, 2024, 2031, 203         5, 2037, 11, 2020, 2022, 2024, 2031, 2035, 2037, 2         039-2040
+c29s7.m3.bost(config-mst)# instance 2 vlan
+ <<  2050, 2060, 2063, 2070, 2080, 2086$ vlan 2050, 2060, 2063, 2070, 2080, 2086,          2096, 21, 2060, 2063, 2070, 2080, 2086, 2096, 210         
+ << 4, 2110, 63, 2070, 2080, 2086, 2096, 2104, 2110, 2         126
+c29s7.m3.bost(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163,
+ << $ vlan 2136, 2140, 2152, 2160, 2162-2163,          2168, 218, 2140, 2152, 2160, 2162-2163, 2168, 2189         , 2194, 252, 2160, 216
+ << 2-2163, 2168, 2189, 2194, 22         02
+c29s7.m3.bost(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611$ vlan 2220, 2222, 2232, 2242, 2246, 2611-         2612, 265
+ << , 2222, 2232, 2242, 2246, 2611-2612, 2654         , 2999
+c29s7.m3.bost(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 1$ vlan 42, 51, 59,
+ <<  64, 66, 69, 72, 108, 11         3, 128, 151, 59, 64, 66, 69, 72, 108, 113, 128, 14         4, 176, 1, 66, 69, 72, 108, 113, 128, 144, 17
+ << 6, 19         6
+c29s7.m3.bost(config-mst)# instance 3 vlan 244, 248, 927
+c29s7.m3.bost(config-mst)# instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069$ vlan 2042, 2051, 2059, 2064, 2066, 2069, 
+ <<          2072, 21, 2051, 2059, 2064, 2066, 2069, 2072, 210         8, 2113, 59, 2064, 2066, 2069, 2072, 2108, 2113, 2         12
+ << 8
+c29s7.m3.bost(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+c29s7.m3.bost(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134,$ vlan 16, 48, 58, 88, 121, 131, 133-134,    
+ <<       216, 228
+c29s7.m3.bost(config-mst)# instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131$ vlan 2016, 2048, 2058, 2088, 2121, 2131,          2133-213
+ << , 2048, 2058, 2088, 2121, 2131, 2133-2134         , 2216, 258, 2088, 2121, 2131, 2133-2134, 2216, 22         28
+c29s7.m3.bost(config-mst)# instance 7 vlan 9, 33-34, 38, 
+ << 54, 56, 71, 75, 82, $ vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 8         4, 97, 113-34, 38, 54, 56, 71, 75, 82, 84, 97, 114         , 116,
+ <<  1254, 56, 71, 75, 82, 84, 97, 114, 116, 124         
+c29s7.m3.bost(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210, 240-2$ vlan 172, 1
+ << 86, 192, 204-208, 210, 240-24         1, 251-25186, 192, 204-208, 210, 240-241, 251-252         , 630, 92204-208, 210, 240-241, 251-252, 63
+ << 0, 928         
+c29s7.m3.bost(config-mst)# instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056,$ vlan 2009, 2033-2034, 2038, 2054, 2056,          2071, 207
+ << , 2033-2034, 2038, 2054, 2056, 2071, 2075         , 2082, 24, 2038, 2054, 2056, 2071, 2075, 2082, 20         84
+c29s7.m3.bost(config-mst)# instance 8 vlan 2097, 2114, 2
+ << 116, 2124, 2172, 2186$ vlan 2097, 2114, 2116, 2124, 2172, 2186,          2192, 22, 2114, 2116, 2124, 2172, 2186, 2192, 220         4-220
+ << 8, 216, 2124, 2172, 2186, 2192, 2204-2208, 22         10
+c29s7.m3.bost(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+c29s7.m3.bost(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32
+ << , 44, 57, 62, 68$ vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68,          76, 98-912, 18-19, 32, 44, 57, 62, 68, 76, 98-99         , 102, 11
+ << , 32, 44, 57, 62, 68, 76, 98-99, 102, 112         
+c29s7.m3.bost(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, 226, $ vlan 130, 132, 14
+ << 7-148, 158, 212, 226, 2         36, 500, 132, 147-148, 158, 212, 226, 236, 500, 5         05, 510-5148, 158, 212, 226, 236, 500, 505, 510-
+ << 51         1
+c29s7.m3.bost(config-mst)# instance 9 vlan 522, 551-570, 603, 629, 633, 742, $ vlan 522, 551-570, 603, 629, 633, 742, 8         02, 926, 
+ << 551-570, 603, 629, 633, 742, 802, 926, 9         29
+c29s7.m3.bost(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019, 2032,$0 vlan 2004-2005, 2012, 2018-2019, 2032,          
+ << 2044, 2054-2005, 2012, 2018-2019, 2032, 2044, 2057         , 2062, 212, 2018-2019, 2032, 2044, 2057, 2062, 20         68
+c29s7.
+ << m3.bost(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130$0 vlan 2076, 2098-2099, 2102, 2112, 2130,          2132, 216, 2098-2099, 
+ << 2102, 2112, 2130, 2132, 214         7-2148, 299, 2102, 2112, 2130, 2132, 2147-2148, 21         58
+c29s7.m3.bost(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511
+ << $0 vlan 2212, 2236, 2500, 2505, 2510-2511,          2522, 262, 2236, 2500, 2505, 2510-2511, 2522, 260         3, 2629, 
+ << 500, 2505, 2510-2511, 2522, 2603, 2629, 2         633
+c29s7.m3.bost(config-mst)# instance 10 vlan 2802, 2926, 2929
+c29s7.m3.bost(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200
+ << $1 vlan 8, 43, 52, 146, 156-157, 180, 200,          218
+c29s7.m3.bost(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157$2 vlan 2008, 2043, 2052, 2146, 2156-215
+ << 7,          2180, 228, 2043, 2052, 2146, 2156-2157, 2180, 220         0, 2218
+c29s7.m3.bost(config-mst)#no spanning-tree vlan 61,67,90,142,300,359,500,502-
+ << $-tree vlan 61,67,90,142,300,359,500,502-5         19,522,55 61,67,90,142,300,359,500,502-519,522,551         -570,601-
+ << 142,300,359,500,502-519,522,551-570,601-6         07,610
+c29s7.m3.bost(config)#no spanning-tree vlan 617,627,629-630,632-637,645,649-6$-tree vlan 617,627,629-630,632-637,645,649-65        
+ <<  2,654-655 617,627,629-630,632-637,645,649-652,654-655,         674-680,629-630,632-637,645,649-652,654-655,674-680,69         
+ << 0
+c29s7.m3.bost(config)#no spanning-tree vlan 691-693,698,701,741-742,800-802,8$-tree vlan 691-693,698,701,741-742,800-802,80         7,880,902
+ <<  691-693,698,701,741-742,800-802,807,880,902-         908,910-998,701,741-742,800-802,807,880,902-908,910-91         6
+c29s7.m3.bost(config)#no spanning-tree vlan 927-9
+ << 30,970,994-1000
+c29s7.m3.bost(config)#vlan internal allocation policy ascending
+c29s7.m3.bost(config)#interface GigabitEthernet0/1
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switc
+ << hport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport trunk native vlan 92
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# swi
+ << tchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/2
+                                   
+ <<             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport trunk native vlan 92
+               
+ <<               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c
+ << 29s7.m3.bost(config)#interface GigabitEthernet0/3
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description extadm06.ext
+                         ^
+% Invalid input detected at '^' ma
+ << rker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+ << 
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/4
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport ac
+ << cess vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfa
+ << st
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/5
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+ << 
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(co
+ << nfig)#interface GigabitEthernet0/6
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+
+ << c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/7
+         
+ <<                                       ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+ << 
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/8
+                                               ^
+% In
+ << valid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid i
+ << nput detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/9
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.
+ << m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost
+ << (config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/10
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description lan-sw1
+      
+ <<                    ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                 
+ <<             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/11
+                                               ^
+% Invalid input detect
+ << ed at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '
+ << ^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/12
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# 
+ << switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spannin
+ << g-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/13
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                
+ <<              ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c2
+ << 9s7.m3.bost(config)#interface GigabitEthernet0/14
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at 
+ << '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEtherne
+ << t0/15
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switch
+ << port mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/16
+                                     
+ <<           ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description ws235-149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                  
+ <<            ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s
+ << 7.m3.bost(config)#interface GigabitEthernet0/17
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description ws160-149.bost.dynamic
+                         ^
+% Invalid input detected a
+ << t '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' m
+ << arker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/18
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# swit
+ << chport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tr
+ << ee portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/19
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description 130.18.148.78
+                     
+ <<     ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+
+ << % Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/20
+                                               ^
+% Invalid input detected at '^' marke
+ << r.
+
+c29s7.m3.bost(config)# description ws162-149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' mark
+ << er.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/21
+ 
+ <<                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mod
+ << e access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/22
+                                             
+ <<   ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% 
+ << Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/23
+                                               ^
+% Invalid input detected at '^' marker.
+ << 
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29
+ << s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/24
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description ws188
+ << -149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode 
+ << access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/25
+                                               
+ << ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% In
+ << valid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/26
+                                               ^
+% Invalid input detected at '^' marker.
+
+ << 
+c29s7.m3.bost(config)# description ws247-149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+ << 
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/27
+     
+ <<                                           ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode ac
+ << cess
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/28
+                                               ^
+ << 
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Inva
+ << lid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/29
+                                               ^
+% Invalid input detected at '^' marker.
+
+
+ << c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m
+ << 3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/30
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vla
+ << n 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% In
+ << complete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/31
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description ws184-149.bost.dynamic
+                         ^
+%
+ <<  Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invali
+ << d input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/32
+                                               ^
+% Invalid input detected at '^' marker.
+
+c2
+ << 9s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.
+ << bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/33
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 
+ << 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Inco
+ << mplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/34
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Inval
+ << id input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#int
+ << erface GigabitEthernet0/35
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3
+ << .bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/36
+                
+ <<                                ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+     
+ <<                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/37
+                                               ^
+% Invalid 
+ << input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input d
+ << etected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/38
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bo
+ << st(config)# description ws225-149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.b
+ << ost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/39
+                  
+ <<                              ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+       
+ <<                       ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/40
+                                               ^
+% Invalid in
+ << put detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input det
+ << ected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/41
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost
+ << (config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config
+ << )# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/42
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description 130.18.148.8
+        
+ <<                  ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                   
+ <<           ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/43
+                                               ^
+% Invalid input detected
+ <<  at '^' marker.
+
+c29s7.m3.bost(config)# description ws195-149.bost.dynamic
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                             ^
+% Invalid input detecte
+ << d at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEt
+ << hernet0/44
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# description 130.18.148.157
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switc
+ << hport access vlan 148
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tre
+ << e portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/45
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 148
+                     
+ <<         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m
+ << 3.bost(config)#interface GigabitEthernet0/46
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport access vlan 91
+                             ^
+% Invalid input detected at '^' ma
+ << rker.
+
+c29s7.m3.bost(config)# switchport mode access
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# spanning-tree portfast
+% Incomplete command.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/47
+ << 
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport trunk native vlan 92
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchp
+ << ort mode trunk
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)#interface GigabitEthernet0/48
+                                               ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(conf
+ << ig)# description c29s1p.m3.bost
+                         ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)# switchport trunk native vlan 92
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config
+ << )# switchport mode trunk
+                             ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)#interface Vlan1
+c29s7.m3.bost(config-if)# no ip address
+c29s7.m3.bost(config-if)# no ip route-cache
+c29s7.m3.bost(config-if)# shu
+ << tdown
+c29s7.m3.bost(config-if)#interface Vlan92
+c29s7.m3.bost(config-if)# ip address 10.92.3.34 255.255.0.0
+c29s7.m3.bost(config-if)# ip broadcast-address 10.92.255.255
+c29s7.m3.bost(config-if)# no ip route-cache
+c29s7.m3.bost(config-if)#ip default-g
+ << ateway 10.92.0.1
+c29s7.m3.bost(config)#no ip http server
+c29s7.m3.bost(config)#ip http secure-server
+c29s7.m3.bost(config)#ip sla enable reaction-alerts
+c29s7.m3.bost(config)#logging facility local1
+c29s7.m3.bost(config)#
+*Feb 28 18:06:35: %LINEPROT
+ << O-5-UPDOWN: Line protocol on Interface Vlan92, changed state to downlogging 130.18.8.12
+c29s7.m3.bost(config)#access-list 1 permit 130.18.92.0 0.0.3.255
+c29s7.m3.bost(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+c29s7.m3.bost(config)#access-list 
+ << 1 permit 130.18.8.0 0.0.0.255
+c29s7.m3.bost(config)#snmp-server community sysnet RO 1
+
+*Feb 28 18:06:37: %LINK-5-CHANGED: Interface Vlan1, changed state to administratively down
+c29s7.m3.bost(config)#snmp-server community c2-b2=a2 RW 1
+c29s7.m3.bost(c
+ << onfig)#snmp-server community spongebob RO
+c29s7.m3.bost(config)#snmp-server contact 6F-1088
+c29s7.m3.bost(config)#snmp-server enable traps snmp authentication linkdown l$ enable traps snmp authentic
+ << ation linkdown li         nkup coldaps snmp authentication linkdown linkup colds         tart warmuthentication linkdown linkup c
+ << oldstart warms         tart
+c29s7.m3.bost(config)#snmp-server enable traps tty
+c29s7.m3.bost(config)#
+*Feb 28 18:06:38: %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 130.18.8.12 Port 514 started - CLI initiatedsnmp-server enable traps cluster
+ << 
+c29s7.m3.bost(config)#snmp-server enable traps entity
+c29s7.m3.bost(config)#snmp-server enable traps cpu threshold
+c29s7.m3.bost(config)#snmp-server enable traps vtp
+c29s7.m3.bost(config)#snmp-server enable traps vlancreate
+c29s7.m3.bost(config)#snmp
+ << -server enable traps vlandelete
+c29s7.m3.bost(config)#snmp-server enable traps flash insertion removal
+c29s7.m3.bost(config)#snmp-server enable traps port-security
+c29s7.m3.bost(config)#snmp-server enable traps envmon fan shutdown supply tem
+ << $ enable traps envmon fan shutdown supply temp         erature saps envmon fan shutdown supply temperature st         atus
+c29s7.m3.bost(c
+ << onfig)#snmp-server enable traps config-copy
+c29s7.m3.bost(config)#snmp-server enable traps config
+c29s7.m3.bost(config)#snmp-server enable traps bridge newroot topologychange
+c29s7.m3.bost(config)#snmp-server enable traps stpx inconsistency root-incons
+ << $ enable traps stpx inconsistency root-inconsi         stency loaps stpx inconsistency root-inconsistency loo         p-inconsi
+ << nconsistency root-inconsistency loop-inconsis         tency
+c29s7.m3.bost(config)#snmp-server enable traps syslog
+c29s7.m3.bost(config)#snmp-server enable traps vlan-membership
+c29s7.m3.bost
+ << (config)#snmp-server host 130.18.8.12 sysnet 
+c29s7.m3.bost(config)#line con 0
+c29s7.m3.bost(config-line)#line vty 0 4
+c29s7.m3.bost(config-line)# access-class 1 in
+c29s7.m3.bost(config-line)# password 7 0325490E07522D0659
+c29s7.m3.bost(config-line)#
+ <<  login
+c29s7.m3.bost(config-line)# transport input all
+c29s7.m3.bost(config-line)#line vty 5 15
+c29s7.m3.bost(config-line)# access-class 1 in
+c29s7.m3.bost(config-line)# password 7 052A140A201142430E
+c29s7.m3.bost(config-line)# login
+c29s7.m3.bost(c
+ << onfig-line)# transport input all
+c29s7.m3.bost(config-line)#ntp clock-period 36029174
+%NTP: unreasonable value
+c29s7.m3.bost(config)#ntp server 10.92.0.5
+c29s7.m3.bost(config)#end
+c29s7.m3.bost#end
+Translating "end"...domain server (130.18.80.12)
+*
+ << Feb 28 18:06:46: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+

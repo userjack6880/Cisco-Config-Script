@@ -1,0 +1,169 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s3p.r316.classroom>
+c29s3p.r316.classroom>
+Expect: matched string 2: >
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+c29s3p.r316.classroom>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.2(2)E5, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 02-Jun-16 01:31 by prod_
+ << rel_team
+
+ROM: Bootstrap program is C2960X boot loader
+BOOTLDR: C2960X Boot Loader (C2960X-HBOOT-M) Version 15.2(3r)E1, RELEASE SOFTWARE (fc1)
+
+c29s3p.r316.classroom uptime is 4 minutes
+System returned to ROM by power-on
+System restarted at 14:27:3
+ << 8 CST Fri Dec 9 2016
+System image file is "flash:/c2960x-universalk9-mz.152-2.E5/c2960x-universalk9-mz.152-2.E5.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws
+ <<  governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance wit
+ << h U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic
+ <<  products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960X-48FPS-L (APM86XXX) processor (revision L0) with 524288K byt
+ << es of memory.
+Processor board ID FCW2030A04S
+Last reset from power-on
+2 Virtual Ethernet interfaces
+1 FastEthernet interface
+52 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile con
+ << figuration memory.
+Base ethernet MAC Address       : 00:87:31:27:6D:00
+Motherboard assembly number     : 73-16691-05
+Power supply part number        : 341-0527-02
+Motherboard serial number       : FOC20296KFE
+Power supply serial number      : DCB2029
+ << 6821
+Model revision number           : L0
+Motherboard revision number     : A0
+Model number                    : WS-C2960X-48FPS-L
+Daughterboard assembly number   : 73-14200-03
+Daughterboard serial number     : FOC2030047L
+System serial number      
+ <<       : FCW2030A04S
+Top Assembly Part Number        : 68-100469-01
+Top Assembly Revision Number    : C0
+Version ID                      : V04
+CLEI Code Number                : CMMLN00ARC
+Daughterboard revision number   : A0
+Hardware Board Revision N
+ << umber  : 0x18
+
+
+Switch Ports Model                     SW Version            SW Image                 
+------ ----- -----                     ----------            ----------               
+*    1 52    WS-C2960X-48FPS-L         15.2(2)E5            
+ <<  C2960X-UNIVERSALK9-M     
+
+
+Configuration register is 0xF
+
+c29s3p.r316.classroom>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Password: 
+Expect: matched string 1: Password:
+ >> Area=l*w
+
+Expect: searching for 1 strs:  :#
+ << 
+c29s3p.r316.classroom#
+Expect: matched string 1: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s3p.r316.classroo(config)#
+Expect: matched string 1: (config)#
+ >> hostname c29s3p.r316.newclassroom 
+
+Expect: searching for 2 strs:  :# :>
+ << hostname c29s3p.r316.newclassroom 
+c29s3p.r316.newclass(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s3p.r316.newclassroom#
+ << 
+Dec  9 14:33:11: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s3p.r316.newclassroom#write mem
+Building configuration...
+[OK]
+c29s3p.r316.newclassroom#
+Expect: matched string 1: #

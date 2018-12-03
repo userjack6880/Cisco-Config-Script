@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#install
+dnf install perl 'perl(DBD::mysql)' 'perl(DBI)' 'perl(Expect)' 'perl(Net::DBus)' 'perl(Net::SNMP)' 'perl(SNMP)' 'perl(Device::SerialPort)' 'perl(Term::ReadKey)'

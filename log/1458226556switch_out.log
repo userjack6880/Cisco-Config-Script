@@ -1,0 +1,1291 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+
+
+         --- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'
+Expect: matched string 1: [yes/no]
+ >> 
+
+ >> no
+
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << .
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuratio
+ << n dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: no
+Switch>term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << 
+*Mar  1 00:12:09.481: %LINK-5-CHANGED: Interface Vlan1, changed state to administratively downshow version
+Cisco IOS Software, C3560 Software (C3560-IPBASEK9-M), Version 12.2(46)SE, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2008 by Cisco Systems, Inc.
+ << 
+Compiled Thu 21-Aug-08 15:26 by nachen
+Image text-base: 0x00003000, data-base: 0x01600000
+
+ROM: Bootstrap program is C3560 boot loader
+BOOTLDR: C3560 Boot Loader (C3560-HBOOT-M) Version 12.2(25r)SEC, RELEASE SOFTWARE (fc4)
+
+Switch uptime is 12 min
+ << utes
+System returned to ROM by power-on
+System image file is "flash:c3560-ipbasek9-mz.122-46.SE.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. D
+ << elivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this pr
+ << oduct you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.co
+ << m/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C3560-24PS (PowerPC405) processor (revision Q0) with 122880K/8184K bytes of memory.
+Processor board ID FDO1119Z2
+ << EN
+Last reset from power-on
+1 Virtual Ethernet interface
+24 FastEthernet interfaces
+2 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Addre
+ << ss       : 00:1B:D5:1C:F7:00
+Motherboard assembly number     : 73-9673-09
+Power supply part number        : 341-0029-05
+Motherboard serial number       : FDO11190910
+Power supply serial number      : LIT11150ETL
+Model revision number           : Q0
+
+ << Motherboard revision number     : B0
+Model number                    : WS-C3560-24PS-S
+System serial number            : FDO1119Z2EN
+Top Assembly Part Number        : 800-25861-04
+Top Assembly Revision Number    : D0
+Version ID                      :
+ <<  V06
+CLEI Code Number                : COM1X00ARC
+Hardware Board Revision Number  : 0x01
+
+
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------              
+ <<  
+*    1 26    WS-C3560-24PS      12.2(46)SE            C3560-IPBASEK9-M         
+
+
+Configuration register is 0xF
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> logging buffered informational
+
+ >> enable secret Area=l*w
+
+ >> enable password Area=l*w
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6
+
+ >> clock summer-time CDT recurring
+
+ >> system mtu routing 1500
+
+ >> ip subnet-zero
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.13
+
+ >> ip name-server 130.18.80.12
+
+ >> vtp domain vtp01.mgmt.msstate.edu
+
+ >> vtp mode client
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> errdisable recovery cause all
+
+ >> errdisable recovery interval 1800
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >> interface Vlan92
+
+ >> no ip http server
+
+ >> logging facility local1
+
+ >> logging 130.18.8.12
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps power-ethernet group 1
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps rtr
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.8.12 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> line vty 5 15
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> ntp clock-period 36026023
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << no service pad
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch(config)#logging buffered informational
+Switch(config)#enable secret A
+ << rea=l*w
+Switch(config)#enable password Area=l*w
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+Switch(config)#no aaa new-model
+Switch(config)#clock timezone CST -6
+Swi
+ << tch(config)#clock summer-time CDT recurring
+Switch(config)#system mtu routing 1500
+Switch(config)#ip subnet-zero
+Switch(config)#ip domain-name mgmt.msstate.edu
+Switch(config)#ip name-server 130.18.80.13
+Switch(config)#
+*Feb 28 18:14:01: %SYS-6-CLOCK
+ << UPDATE: System clock has been updated from 00:14:01 UTC Mon Mar 1 1993 to 18:14:01 CST Sun Feb 28 1993, configured from console by console.
+*Feb 28 18:14:01: %SYS-6-CLOCKUPDATE: System clock has been updated from 18:14:01 CST Sun Feb 28 1993 to 18:14:01 
+ << CST Sun Feb 28 1993, configured from console by console.ip name-server 130.18.80.12
+Switch(config)#vtp domain vtp01.mgmt.msstate.edu
+Domain name already set to vtp01.mgmt.msstate.edu.
+Switch(config)#vtp mode client
+Device mode already VTP CLIENT.
+Swi
+ << tch(config)#spanning-tree portfast bpduguard default
+Switch(config)#spanning-tree extend system-id
+Switch(config)#errdisable recovery cause all
+Switch(config)#errdisable recovery interval 1800
+Switch(config)#interface Vlan1
+Switch(config-if)# no ip a
+ << ddress
+Switch(config-if)# no ip route-cache
+Switch(config-if)#interface Vlan92
+Switch(config-if)#no ip http server
+Switch(config)#logging facility local1
+Switch(config)#logging 130.18.8.12
+Switch(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+S
+ << witch(config)#snmp-server community sysnet RO 1
+Switch(config)#snmp-server community c2-b2=a2 RW 1
+Switch(config)#snmp-server enable traps snmp authentication linkdown linkup c$ enable traps 
+ << snmp authentication linkdown linkup co         ldstart waps snmp authentication linkdown linkup coldstart wa         rmstart
+Switch(config)#snmp-server enable traps tty
+Switc
+ << h(config)#snmp-server enable traps cluster
+Switch(config)#snmp-server enable traps config-copy
+Switch(config)#snmp-server enable traps config
+Switch(config)#snmp-server enable traps entity
+Switch(config)#snmp-server enable traps power-ethernet group 1
+ << 
+Switch(config)#
+*Feb 28 18:14:05: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan92, changed state to downsnmp-server enable traps cpu threshold
+Switch(config)#snmp-server enable traps rtr
+                                         ^
+% Invalid in
+ << put detected at '^' marker.
+
+Switch(config)#snmp-server enable traps bridge newroot topologychange
+Switch(config)#snmp-server enable traps stpx inconsistency root-inconsistency$ enable traps
+ <<  stpx inconsistency root-inconsistency          loop-incoaps stpx inconsistency root-inconsistency loop-incon         sistency
+Switch(config)#
+*Feb 28 18:14:06: %SYS-6-LOGGIN
+ << GHOST_STARTSTOP: Logging to host 130.18.8.12 Port 514 started - CLI initiatedsnmp-server enable traps syslog
+Switch(config)#snmp-server enable traps vtp
+Switch(config)#snmp-server enable traps vlancreate
+Switch(config)#snmp-server enable traps vlandele
+ << te
+Switch(config)#snmp-server enable traps flash insertion removal
+Switch(config)#snmp-server enable traps port-security
+Switch(config)#snmp-server enable traps envmon fan shutdown supply temperatur
+ << $ enable traps envmon fan shutdown supply temperature          status
+Switch(config)#snmp-server enable traps vlan-membership
+Switch(config)#snmp-server host 130.18.8.12 
+% Incomplete command.
+
+Switch(config)#line con 0
+Switch(confi
+ << g-line)#line vty 0 4
+Switch(config-line)# password Area=l*w
+Switch(config-line)# login
+Switch(config-line)#line vty 5 15
+Switch(config-line)# password Area=l*w
+Switch(config-line)# login
+Switch(config-line)#ntp clock-period 36026023
+Switch(config)#
+ << ntp server 10.92.0.5
+Switch(config)#end
+Switch#end
+Translating "end"...domain server (130.18.80.13) (130.18.80.12)
+% Unknown command or computer name, or unable to find computer address
+Switch#
+*Feb 28 18:14:12: %SYS-5-CONFIG_I: Configured from cons
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << ole by console
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> spanning-tree mode mst
+
+ >> spanning-tree etherchannel guard misconfig
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> 
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << spanning-tree mode mst
+Switch(config)#spanning-tree etherchannel guard misconfig
+Switch(config)#spanning-tree mst configuration
+Switch(config-mst)# name msstate
+Switch(config-mst)# revision 1
+Switch(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 
+ << 31, 35, 37, 39-40, $ vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 5         0, 60, 63, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 
+ << 63,          70
+Switch(config-mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 1$ vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 14         0, 152, 1
+ << 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 16         0
+Switch(config-mst)# instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 23$ vlan 162-1
+ << 63, 168, 189, 194, 202, 220, 222, 230         , 232, 24163, 168, 189, 194, 202, 220, 222, 230, 232, 242         , 246
+Switch(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 9
+ << 96, 999
+Switch(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031,$ vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031,          2035, 203
+ << , 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037         , 2039-2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-204         0
+Switch(config-mst)# instance 2 v
+ << lan 2050, 2060, 2063, 2070, 2080, 2086, 2096,$ vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096,          2104, 211, 2060, 2063, 2070,
+ <<  2080, 2086, 2096, 2104, 2110         , 2126
+Switch(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, $ vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2         
+ << 189, 2194, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194,          2202
+Switch(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 
+ << $ vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2         654, 2999
+Switch(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128$ vlan 42, 51, 59, 64
+ << , 66, 69, 72, 108, 113, 128,          144, 17651, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176,          196
+Switch(config-mst)# instance 3 vlan 244, 248, 927
+Switch(config-mst)# 
+ << instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,$ vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,          2108, 211, 2051,
+ <<  2059, 2064, 2066, 2069, 2072, 2108, 2113         , 2128
+Switch(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+Switch(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 2
+ << $ vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 22         8
+Switch(config-mst)# instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-$ vlan 2016, 2048, 2058, 2088, 
+ << 2121, 2131, 2133-2         134, 2216, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216,          2228
+Switch(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97,
+ << $ vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97,          114, 116,3-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116,          1
+ << 24
+Switch(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251$ vlan 172, 186, 192, 204-208, 210, 240-241, 251-         252, 630,
+ << 186, 192, 204-208, 210, 240-241, 251-252, 630,          928
+Switch(config-mst)# instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, $ vlan 2009, 2033-2034, 2038, 2054
+ << , 2056, 2071, 2         075, 2082, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082,          2084
+Switch(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192,
+ << $ vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192,          2204-2208, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208,          221
+ << 0
+Switch(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+Switch(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 9$ vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 
+ << 98         -99, 102,12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102,          112
+Switch(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 50
+ << $ vlan 130, 132, 147-148, 158, 212, 226, 236, 500         , 505, 51132, 147-148, 158, 212, 226, 236, 500, 505, 510         -511
+Switch(config-mst
+ << )# instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 92$ vlan 522, 551-570, 603, 629, 633, 742, 802, 926         , 929
+Switch(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019
+ << , 2032, 2044, $0 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2         057, 20624-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062,  
+ <<         2068
+Switch(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132,$0 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132,          2147-2148
+ << 6, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148,          2158
+Switch(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522,$0 vlan 221
+ << 2, 2236, 2500, 2505, 2510-2511, 2522,          2603, 2622, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629         , 2633
+Switch(config-mst)# instance 10 vlan 2802, 2926, 2929
+Swit
+ << ch(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+Switch(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180,$2 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180
+ << ,          2200, 2218, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218         
+Switch(config-mst)#
+Switch(config-mst)#end
+Switch#
+*Feb 28 18:14:26: %SYS-5-CONFIG_I: Configured f
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << rom console by console
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> hostname c29s1.pres.humphrey.temp 
+
+Expect: searching for 2 strs:  :# :>
+ << hostname c29s1.pres.humphrey.temp 
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:14:31: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> snmp-server contact 6F-1025
+
+Expect: searching for 1 strs:  :#
+ << snmp-server contact 6F-1025
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:14:37: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> interface vlan 92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface vlan 92
+c29s1.pres.humphrey.(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip address 10.92.3.62 255.255.0.0
+
+ >> ip broadcast-address 10.92.255.255
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip address 10.92.3.62 255.255.0.0
+c29s1.pres.humphrey.(config-if)#ip broadcast-address 10.92.255.255
+c29s1.pres.humphrey.(config-if)#end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:14:44: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> interface Vlan92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface Vlan92
+c29s1.pres.humphrey.(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip default-gateway 10.92.0.1
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip default-gateway 10.92.0.1
+c29s1.pres.humphrey.(config)#end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:14:50: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> ip dhcp snooping
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: #
+ >> ip dhcp snooping vlan 236
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping vlan 236
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:14:57: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> default interface range fa0/1 - 24 
+
+ >> interface range fa0/1 - 24 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range fa0/1 - 24 
+c29s1.pres.humphrey.(config)#interface range fa0/1 - 24 
+c29s1.pres.humphrey.(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport access vlan 236
+
+ >> switchport mode access
+
+ >> spanning-tree portfast
+
+ >> switchport port-security maximum 2
+
+ >> switchport port-security
+
+ >> switchport port-security aging time 15
+
+ >> switchport port-security violation protect
+
+ >> switchport port-security aging type inactivity
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport access vlan 236
+c29s1.pres.humphrey.(config-if-range)#switchport mode access
+c29s1.pres.humphrey.(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, conce
+ << ntrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast will be configured in 24 interfaces due to the range command 
+ but will only have effect when the inter
+ << faces are in a non-trunking mode.
+c29s1.pres.humphrey.(config-if-range)#switchport port-security maximum 2
+c29s1.pres.humphrey.(config-if-range)#switchport port-security
+c29s1.pres.humphrey.(config-if-range)#switchport port-security aging time 15
+c29s
+ << 1.pres.humphrey.(config-if-range)#switchport port-security violation prot$port-security violation prote         ct
+c29s1.pres.humphrey.(config-if-range)#switchport port-security aging type ina
+ << $port-security aging type inac         tivity
+c29s1.pres.humphrey.(config-if-range)#end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:15:10: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> default interface fa0/24 
+
+ >> interface fa0/24 
+
+Expect: searching for 1 strs:  :(config-if)#
+ << default interface fa0/24 
+Interface FastEthernet0/24 set to default configuration
+c29s1.pres.humphrey.(config)#interface fa0/24 
+c29s1.pres.humphrey.(config-if)#
+Expect: matched string 1: (config-if)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+c29s1.pres.humphrey.(config-if)#switchport trunk native vlan 92
+c29s1.pres.humphrey.(config-if)#ip dhcp snooping trust
+c29s
+ << 1.pres.humphrey.(config-if)#no keepalive
+c29s1.pres.humphrey.(config-if)#end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:15:21: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1.pres.humphrey.temp#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1.pres.humphrey.(config)#
+Expect: matched string 1: (config)#
+ >> default interface range gi0/1 - 2 
+
+ >> interface range gi0/1 - 2 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range gi0/1 - 2 
+c29s1.pres.humphrey.(config)#interface range gi0/1 - 2 
+c29s1.pres.humphrey.(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+c29s1.pres.humphre
+ << y.(config-if-range)#switchport trunk native vlan 92
+c29s1.pres.humphrey.(config-if-range)#ip dhcp snooping trust
+c29s1.pres.humphrey.(config-if-range)#no keepalive
+c29s1.pres.humphrey.(config-if-range)#end
+c29s1.pres.humphrey.temp#
+ << 
+*Feb 28 18:15:32: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s1.pres.humphrey.temp#write mem
+Building configuration...
+[OK]
+c29s1.pres.humphrey.temp#
+Expect: matched string 1: #
+ >> 
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s1.pres.humphrey.temp#
+c29s1.pres.humphrey.temp#
+Expect: matched string 1: #
+ >> sh run
+
+Expect: searching for 2 strs:  :# :>
+ << sh run
+Building configuration...
+
+Current configuration : 12072 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname c29s1.pres.humphrey
+ << .temp
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered informational
+enable secret 5 $1$Sp7L$GH4aVCjjToULPW5p5h5ZU0
+enable password 7 06271D244D13055312
+!
+no aaa new-model
+clock timezone CST -6
+clock summer-time CDT recurring
+system mtu 
+ << routing 1500
+ip subnet-zero
+ip domain-name mgmt.msstate.edu
+ip name-server 130.18.80.13
+ip name-server 130.18.80.12
+!
+!
+ip dhcp snooping vlan 236
+ip dhcp snooping
+!
+!
+!
+!
+!
+!
+errdisable recovery cause udld
+errdisable recovery cause bpdugua
+ << rd
+errdisable recovery cause security-violation
+errdisable recovery cause channel-misconfig
+errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+err
+ << disable recovery cause gbic-invalid
+errdisable recovery cause l2ptguard
+errdisable recovery cause psecure-violation
+errdisable recovery cause port-mode-failure
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause mac-limit
+errdisable 
+ << recovery cause vmps
+errdisable recovery cause storm-control
+errdisable recovery cause inline-power
+errdisable recovery cause arp-inspection
+errdisable recovery cause loopback
+errdisable recovery cause small-frame
+errdisable recovery interval 1800
+!
+ << 
+!
+!
+spanning-tree mode mst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+spanning-tree mst configuration
+ name msstate
+ revision 1
+ instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+ instance 1
+ <<  vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+ instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+ instance 1 vlan 256, 611-612, 654, 741, 996, 999
+ instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 20
+ << 37, 2039-2040
+ instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+ instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+ instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+ instance 3 vlan 
+ << 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+ instance 3 vlan 244, 248, 927
+ instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+ instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+ instance 5 vlan 16, 48, 58, 88, 12
+ << 1, 131, 133-134, 216, 228
+ instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+ instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+ instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+ ins
+ << tance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+ instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+ instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+ instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76,
+ <<  98-99, 102, 112
+ instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+ instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+ instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+ instance 10 vlan 20
+ << 76, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+ instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+ instance 10 vlan 2802, 2926, 2929
+ instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+ instance 12 vlan 2008, 2043
+ << , 2052, 2146, 2156-2157, 2180, 2200, 2218
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchpo
+ << rt port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 236
+ switchport mode access
+ switchport port-sec
+ << urity maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport access vl
+ << an 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+ << 
+!
+interface FastEthernet0/4
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-se
+ << curity aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport
+ <<  port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ << 
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ switchport access vlan 236
+ switchport mode access
+ switchpor
+ << t port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ switchport
+ <<  access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tre
+ << e portfast
+!
+interface FastEthernet0/9
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchpo
+ << rt port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+
+ <<  switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport po
+ << rt-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ switchport access vlan 236
+ switchport mode acces
+ << s
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/1
+ << 3
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ << 
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation pro
+ << tect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security 
+ << aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ << 
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ switchport access vlan 236
+ switch
+ << port mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface 
+ << FastEthernet0/18
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging t
+ << ype inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-securit
+ << y violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/20
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport
+ <<  port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ switchport access vlan 236
+ switchport mode access
+ switchport port-secu
+ << rity maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ switchport access vl
+ << an 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+ << 
+!
+interface FastEthernet0/23
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-s
+ << ecurity aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ switchport trunk native vlan 92
+ no keepalive
+ ip dhcp snooping trust
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 92
+ ip dhcp snooping trust
+!
+ << 
+interface GigabitEthernet0/2
+ switchport trunk native vlan 92
+ ip dhcp snooping trust
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ no ip mroute-cache
+ shutdown
+!
+interface Vlan92
+ ip address 10.92.3.62 255.255.0.0
+ ip broadcast-addres
+ << s 10.92.255.255
+!
+ip default-gateway 10.92.0.1
+ip classless
+no ip http server
+ip http secure-server
+!
+logging facility local1
+logging 130.18.8.12
+access-list 1 permit 10.92.0.0 0.0.255.255
+snmp-server community sysnet RO 1
+snmp-server community
+ <<  c2-b2=a2 RW 1
+snmp-server contact 6F-1025
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps entity
+snmp-server enable traps cpu th
+ << reshold
+snmp-server enable traps power-ethernet group 1
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snm
+ << p-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsiste
+ << ncy loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+!
+control-plane
+!
+!
+line con 0
+line vty 0 4
+ password 7 052A140A201142430E
+ login
+line vty 5 15
+ password 7 132405170A5108603C
+ login
+!
+ntp cloc
+ << k-period 36026023
+ntp server 10.92.0.5
+end
+
+c29s1.pres.humphrey.temp#
+Expect: matched string 1: #
+ >> show interface status
+
+Expect: searching for 2 strs:  :# :>
+ << show interface status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/2                        notconnect   236          auto   auto 10/100Bas
+ << eTX
+Fa0/3                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/4                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/5                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/6  
+ <<                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/7                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/8                        notconnect   236          auto   auto 10/100BaseTX
+Fa0/9              
+ <<           notconnect   236          auto   auto 10/100BaseTX
+Fa0/10                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/11                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/12                       no
+ << tconnect   236          auto   auto 10/100BaseTX
+Fa0/13                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/14                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/15                       notconnect   2
+ << 36          auto   auto 10/100BaseTX
+Fa0/16                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/17                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/18                       notconnect   236          
+ << auto   auto 10/100BaseTX
+Fa0/19                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/20                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/21                       notconnect   236          auto   auto 
+ << 10/100BaseTX
+Fa0/22                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/23                       notconnect   236          auto   auto 10/100BaseTX
+Fa0/24                       notconnect   1            auto   auto 10/100BaseTX
+ << 
+Gi0/1                        notconnect   1            auto   auto Not Present
+Gi0/2                        notconnect   1            auto   auto Not Present
+c29s1.pres.humphrey.temp#
+Expect: matched string 1: #

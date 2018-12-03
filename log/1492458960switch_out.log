@@ -1,0 +1,246 @@
+trying to use serial port: /dev/ttyUSB1
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c35s1c.r3300.newclas(config)#
+c35s1c.r3300.newclas(config)#
+c35s1c.r3300.newclas(config)#
+c35s1c.r3300.newclas(config)#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+                               ^
+% Invalid input detected at '^' marker.
+
+c35s1c.r3300.newclas(config)#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+                               ^
+% Invalid input detected at '^' marker.
+
+c35s1c.r3300.newclas(config)#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+% Incomplete command.
+
+c35s1c.r3300.newclas(config)#
+Expect: matched string 2: #
+ >> sh license udi
+
+Expect: searching for 2 strs:  :# :>
+ << sh license udi
+                                ^
+% Invalid input detected at '^' marker.
+
+c35s1c.r3300.newclas(config)#
+Expect: matched string 1: #
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c35s1c.r3300.newclassroom#
+c35s1c.r3300.newclassroom#
+Expect: matched string 3: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C3560CX Software (C3560CX-UNIVERSALK9-M), Version 15.2(4)E1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 28-Jan-16 16:14 by pro
+ << d_rel_team
+
+ROM: Bootstrap program is C3560CX boot loader
+BOOTLDR: C3560CX Boot Loader (C3560CX-HBOOT-M) Version 15.2(3r)E2, RELEASE SOFTWARE (fc2)
+
+c35s1c.r3300.newclassroom uptime is 55 minutes
+System returned to ROM by power-on
+System restarted 
+ << at 20:07:36 CDT Mon Apr 17 2017
+System image file is "flash:/c3560cx-universalk9-mz.152-4.E1/c3560cx-universalk9-mz.152-4.E1.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local
+ <<  country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+ --More-- 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+show version
+Cisco IOS Software, C3560CX Software (C3560CX-UNIVERSALK9-M), Version 15.2(4)E1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 28-Jan-16 16:14 by prod_rel_team
+
+ROM: Bootstrap program is C3560CX boot loader
+BOOTLDR: C3560CX Boot Loader (C3560CX-HBOOT-M) Version 15.2(3r)E2, RELEASE SOFTWARE (fc2)
+
+c35s1c.r3300.newclassroom uptime is 55 minutes
+System returned to ROM by power-on
+System restarted at 20:07:36 CDT Mon Apr 17 2017
+System image file is "flash:/c3560cx-universalk9-mz.152-4.E1/c3560cx-universalk9-mz.152-4.E1.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+ --More-- 
+...
+
+ >> sh license udi
+
+Expect: searching for 2 strs:  :# :>
+ <<         
+c35s1c.r3300.newclassroom#h license udi
+help license udi
+     ^
+% Invalid input detected at '^' marker.
+
+c35s1c.r3300.newclassroom#
+Expect: matched string 1: #
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c35s1c.r3300.newclassroom#
+c35s1c.r3300.newclassroom#
+Expect: matched string 3: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C3560CX Software (C3560CX-UNIVERSALK9-M), Version 15.2(4)E1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 28-Jan-16 16:14 by pro
+ << d_rel_team
+
+ROM: Bootstrap program is C3560CX boot loader
+BOOTLDR: C3560CX Boot Loader (C3560CX-HBOOT-M) Version 15.2(3r)E2, RELEASE SOFTWARE (fc2)
+
+c35s1c.r3300.newclassroom uptime is 56 minutes
+System returned to ROM by power-on
+System restarted 
+ << at 20:07:36 CDT Mon Apr 17 2017
+System image file is "flash:/c3560cx-universalk9-mz.152-4.E1/c3560cx-universalk9-mz.152-4.E1.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local
+ <<  country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+ --More-- 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+show version
+Cisco IOS Software, C3560CX Software (C3560CX-UNIVERSALK9-M), Version 15.2(4)E1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 28-Jan-16 16:14 by prod_rel_team
+
+ROM: Bootstrap program is C3560CX boot loader
+BOOTLDR: C3560CX Boot Loader (C3560CX-HBOOT-M) Version 15.2(3r)E2, RELEASE SOFTWARE (fc2)
+
+c35s1c.r3300.newclassroom uptime is 56 minutes
+System returned to ROM by power-on
+System restarted at 20:07:36 CDT Mon Apr 17 2017
+System image file is "flash:/c3560cx-universalk9-mz.152-4.E1/c3560cx-universalk9-mz.152-4.E1.bin"
+Last reload reason: power-on
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+ --More-- 
+...
+
+ >> sh license udi
+
+Expect: searching for 2 strs:  :# :>
+ <<         
+c35s1c.r3300.newclassroom#h license udi
+help license udi
+     ^
+% Invalid input detected at '^' marker.
+
+c35s1c.r3300.newclassroom#
+Expect: matched string 1: #
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+

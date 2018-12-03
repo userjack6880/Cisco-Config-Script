@@ -1,0 +1,46 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Switch(config)#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+                 ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+                 ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+% Incomplete command.
+
+Switch(config)#
+Expect: matched string 2: #
+ >> sh license udi
+
+Expect: searching for 2 strs:  :# :>
+ << sh license udi
+                  ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#
+Expect: matched string 1: #

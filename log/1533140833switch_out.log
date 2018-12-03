@@ -1,0 +1,1650 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+Switch>
+Switch>
+Switch>
+Switch>
+Expect: matched string 4: Switch>
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software [Denali], Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 16.3.6, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Wed 28-
+ << Feb-18 15:23 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code
+ <<  licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanyin
+ << g the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+BOOTLDR: CAT3K_CAA Boot Loader (CAT3K_CAA-HBOOT-M) Version 4.68, RELEASE SOFTWARE (P)
+
+Switch uptime is 6 minutes
+Uptime for
+ <<  this control processor is 9 minutes
+System returned to ROM by Power Failure at 10:42:35 CDT Wed Aug 1 2018
+System image file is "flash:packages.conf"
+Last reload reason: Power Failure
+
+
+
+This product contains cryptographic features and is subject 
+ << to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and u
+ << sers are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of
+ <<  U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+
+Technology Package License Inform
+ << ation: 
+
+-----------------------------------------------------------------
+Technology-package                   Technology-package
+Current             Type             Next reboot  
+------------------------------------------------------------------
+
+ << ipbasek9            Permanent        ipbasek9
+
+cisco WS-C3850-12XS (MIPS) processor (revision L0) with 864936K/6147K bytes of memory.
+Processor board ID FOC2224X01Z
+1 Virtual Ethernet interface
+32 Ten Gigabit Ethernet interfaces
+2048K bytes of non-v
+ << olatile configuration memory.
+4194304K bytes of physical memory.
+253984K bytes of Crash Files at crashinfo:.
+253984K bytes of Crash Files at crashinfo-2:.
+3334464K bytes of Flash at flash:.
+3334464K bytes of Flash at flash-2:.
+0K bytes of  at webui:
+ << .
+
+Base Ethernet MAC Address          : 6c:6c:d3:bb:2c:00
+Motherboard Assembly Number        : 73-16285-06
+Motherboard Serial Number          : FOC22228J6X
+Model Revision Number              : L0
+Motherboard Revision Number        : B0
+Model Number
+ <<                        : WS-C3850-12XS
+System Serial Number               : FOC2224X01Z
+
+
+Switch Ports Model              SW Version        SW Image              Mode   
+------ ----- -----              ----------        ----------            ----   
+ << 
+*    1 16    WS-C3850-12XS      16.3.6            CAT3K_CAA-UNIVERSALK9 INSTALL
+     2 16    WS-C3850-12XS      16.3.6            CAT3K_CAA-UNIVERSALK9 INSTALL
+
+
+Switch 02
+---------
+Switch uptime                      : 9 minutes 
+
+Base Ethernet M
+ << AC Address          : 6c:6c:d3:bb:48:80
+Motherboard Assembly Number        : 73-16285-06
+Motherboard Serial Number          : FOC22207U86
+Model Revision Number              : L0
+Motherboard Revision Number        : B0
+Model Number                    
+ <<    : WS-C3850-12XS
+System Serial Number               : FOC2224U0C3
+
+Configuration register is 0x102
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret W2w1cD0mIliG!
+
+ >> enable password W2w1cD0mIliG!
+
+ >> username root privilege 15 secret W2w1cD0mIliG!
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6 0
+
+ >> clock summer-time CDT recurring
+
+ >> authentication mac-move permit
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.12
+
+ >> vtp domain vtp01.mgmt.msstate.edu
+
+ >> vtp mode client
+
+ >> crypto pki trustpoint TP-self-signed-2494998912
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-2494998912
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-2494998912
+
+ >> crypto pki certificate chain TP-self-signed-2494998912
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#3232.cer
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> vlan internal allocation policy ascending
+
+ >> lldp run
+
+ >> errdisable recovery cause all
+
+ >> errdisable recovery interval 1800
+
+ >> interface GigabitEthernet0/0
+
+ >>  no ip address
+
+ >>  shutdown
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >> no ip http server
+
+ >> no ip http secure-server
+
+ >> logging facility local1
+
+ >> logging host 130.18.8.12
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.8.0 0.0.0.255
+
+ >> access-list 1 permit 10.93.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.1.0 0.0.0.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps transceiver all
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps config-ctid
+
+ >> snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps power-ethernet police
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps rep
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps errdisable
+
+ >> snmp-server enable traps mac-notification change move threshold
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.8.12 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 15
+
+ >>  access-class 1 in
+
+ >>  password W2w1cD0mIliG!
+
+ >>  login local
+
+ >>  transport input ssh
+
+ >> ntp server 10.92.0.5
+
+ >> no ap hyperlocation
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << no service pad
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch(config)#boot-start-marker
+Switch(config)#boot-end-marker
+Switch(conf
+ << ig)#enable secret W2w1cD0mIliG!
+Switch(config)#enable password W2w1cD0mIliG!
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+Switch(config)#username root privilege 15 sec
+ << ret W2w1cD0mIliG!
+Switch(config)#no aaa new-model
+Switch(config)#clock timezone CST -6 0
+Switch(config)#clock summer-time CDT recurring
+Switch(config)#authentication mac-move permit
+Switch(config)#ip domain-name mgmt.msstate.edu
+Switch(config)#ip na
+ << me-server 130.18.80.12
+Switch(config)#vtp domain vtp01.mgmt.msstate.edu
+Domain name already set to vtp01.mgmt.msstate.edu.
+Switch(config)#vtp mode client
+Device mode already VTP Client for VLANS.
+Switch(config)#
+*Aug  1 10:25:02: %SYS-6-CLOCKUPDATE:
+ <<  System clock has been updated from 16:25:02 UTC Wed Aug 1 2018 to 10:25:02 CST Wed Aug 1 2018, configured from console by console.
+*Aug  1 11:25:02: %SYS-6-CLOCKUPDATE: System clock has been updated from 10:25:02 CST Wed Aug 1 2018 to 11:25:02 CDT Wed A
+ << ug 1 2018, configured from console by console.crypto pki trustpoint TP-self-signed-2494998912
+Switch(ca-trustpoint)# enrollment selfsigned
+Switch(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-2494998912
+Switch(ca-trustpoint)# revocation-c
+ << heck none
+Switch(ca-trustpoint)# rsakeypair TP-self-signed-2494998912
+Switch(ca-trustpoint)#crypto pki certificate chain TP-self-signed-2494998912
+Switch(config-cert-chain)# certificate self-signed 01 nvram:IOS-Self-Sig#3232
+ << $e self-signed 01 nvram:IOS-Self-Sig#3232.         cer
+Switch(config-cert-chain)#spanning-tree portfast bpduguard default
+Switch(config)#spanning-tree extend system-id
+Switch(config)#vlan internal allocation policy ascen
+ << ding
+                             ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#lldp run
+Switch(config)#errdisable recovery cause all
+Switch(config)#errdisable recovery interval 1800
+Switch(config)#interface GigabitEthernet0/0
+Switch(c
+ << onfig-if)#
+*Aug  1 11:25:05: % Multiple self signed certificates in config
+    certificate for trust point TP-self-signed-2494998912 ignored
+ no ip address
+Switch(config-if)# shutdown
+Switch(config-if)#interface Vlan1
+Switch(config-if)# no ip addres
+ << s
+Switch(config-if)# no ip route-cache
+Switch(config-if)# shutdown
+Switch(config-if)#interface Vlan92
+Switch(config-if)#no ip http server
+Switch(config)#no ip http secure-server
+Switch(config)#logging facility local1
+Switch(config)#logging host 130
+ << .18.8.12
+Switch(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+Switch(config)#access-list 1 permit 130.18.8.0 0.0.0.255
+Switch(config)#access-list 1 permit 10.93.0.0 0.0.255.255
+Switch(config)#
+*Aug  1 11:25:09: %LINK-5-CHANGED: Interface Gigabit
+ << Ethernet0/0, changed state to administratively down
+*Aug  1 11:25:09: %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 130.18.8.12 port 514 started - CLI initiatedaccess-list 1 permit 130.18.1.0 0.0.0.255
+Switch(config)#snmp-server community sysnet RO 1
+S
+ << witch(config)#snmp-server community c2-b2=a2 RW 1
+Switch(config)#snmp-server enable traps snmp authentication linkdown linkup c$ enable traps snmp authentication linkdown linkup co         
+ << ldstart waps snmp authentication linkdown linkup coldstart wa         rmstart
+Switch(config)#snmp-server enable traps transceiver all
+Switch(config)#
+*Aug  1 11:25:09: %LINEPRO
+ << TO-5-UPDOWN: Line protocol on Interface Vlan92, changed state to downsnmp-server enable traps tty
+Switch(config)#snmp-server enable traps cluster
+                                         ^
+% Invalid input detected at '^' marker.
+
+Switch(config)#snmp-
+ << server enable traps config-copy
+Switch(config)#snmp-server enable traps config
+Switch(config)#snmp-server enable traps config-ctid
+Switch(config)#snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-au
+ << $ enable traps dot1x auth-fail-vlan guest-vlan no-aut         h-fail-vlaps dot1x auth-fail-vlan guest-vlan no-auth-fail-vla         n no-gues
+ << uth-fail-vlan guest-vlan no-auth-fail-vlan no-guest         -vlan
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-gu                          ^est-vlan
+
+% Invalid input d
+ << etected at '^' marker.
+
+Switch(config)#snmp-server enable traps entity
+Switch(config)#snmp-server enable traps power-ethernet police
+Switch(config)#snmp-server enable traps cpu threshold
+Switch(config)#snmp-server enable traps rep
+Switch(config)#snm
+ << p-server enable traps bridge newroot topologychange
+Switch(config)#snmp-server enable traps stpx inconsistency root-inconsistency$ enable traps stpx inconsistency root-inconsistency          
+ << loop-incoaps stpx inconsistency root-inconsistency loop-incon         sistency
+Switch(config)#snmp-server enable traps syslog
+Switch(config)#snmp-server enable traps vtp
+Swit
+ << ch(config)#snmp-server enable traps vlancreate
+Switch(config)#snmp-server enable traps vlandelete
+Switch(config)#snmp-server enable traps flash insertion removal
+Switch(config)#snmp-server enable traps port-security
+Switch(config)#snmp-server enable t
+ << raps envmon fan shutdown supply temperatur$ enable traps envmon fan shutdown supply temperature          status
+Switch(config)#snmp-server enable traps errdisable
+Switch(config)#snmp
+ << -server enable traps mac-notification change move threshol$ enable traps mac-notification change move threshold         
+Switch(config)#snmp-server enable traps vlan-membership
+Switc
+ << h(config)#snmp-server host 130.18.8.12 sysnet 
+Switch(config)#line con 0
+Switch(config-line)#line vty 0 15
+Switch(config-line)# access-class 1 in
+Switch(config-line)# password W2w1cD0mIliG!
+Switch(config-line)# login local
+Switch(config-line)# trans
+ << port input ssh
+Switch(config-line)#ntp server 10.92.0.5
+Switch(config)#no ap hyperlocation
+Switch(config)#end
+Switch#
+ << 
+*Aug  1 11:25:17: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> spanning-tree mode mst
+
+ >> spanning-tree etherchannel guard misconfig
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> 
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << spanning-tree mode mst
+Switch(config)#spanning-tree etherchannel guard misconfig
+Switch(config)#spanning-tree mst configuration
+Switch(config-mst)# name msstate
+Switch(config-mst)# revision 1
+Switch(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 
+ << 31, 35, 37, 39-40, $ vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 5         0, 60, 63, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 
+ << 63,          70
+Switch(config-mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 1$ vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 14         0, 152, 1
+ << 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 16         0
+Switch(config-mst)# instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 23$ vlan 162-1
+ << 63, 168, 189, 194, 202, 220, 222, 230         , 232, 24163, 168, 189, 194, 202, 220, 222, 230, 232, 242         , 246
+Switch(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 9
+ << 96, 999
+Switch(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031,$ vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031,          2035, 203
+ << , 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037         , 2039-2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-204         0
+Switch(config-mst)# instance 2 v
+ << lan 2050, 2060, 2063, 2070, 2080, 2086, 2096,$ vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096,          2104, 211, 2060, 2063, 2070,
+ <<  2080, 2086, 2096, 2104, 2110         , 2126
+Switch(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, $ vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2         
+ << 189, 2194, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194,          2202
+Switch(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 
+ << $ vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2         654, 2999
+Switch(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128$ vlan 42, 51, 59, 64
+ << , 66, 69, 72, 108, 113, 128,          144, 17651, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176,          196
+Switch(config-mst)# instance 3 vlan 244, 248, 927
+Switch(config-mst)# 
+ << instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,$ vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072,          2108, 211, 2051,
+ <<  2059, 2064, 2066, 2069, 2072, 2108, 2113         , 2128
+Switch(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+Switch(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 2
+ << $ vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 22         8
+Switch(config-mst)# instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-$ vlan 2016, 2048, 2058, 2088, 
+ << 2121, 2131, 2133-2         134, 2216, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216,          2228
+Switch(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97,
+ << $ vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97,          114, 116,3-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116,          1
+ << 24
+Switch(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251$ vlan 172, 186, 192, 204-208, 210, 240-241, 251-         252, 630,
+ << 186, 192, 204-208, 210, 240-241, 251-252, 630,          928
+Switch(config-mst)# instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, $ vlan 2009, 2033-2034, 2038, 2054
+ << , 2056, 2071, 2         075, 2082, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082,          2084
+Switch(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192,
+ << $ vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192,          2204-2208, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208,          221
+ << 0
+Switch(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+Switch(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 9$ vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 
+ << 98         -99, 102,12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102,          112
+Switch(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 50
+ << $ vlan 130, 132, 147-148, 158, 212, 226, 236, 500         , 505, 51132, 147-148, 158, 212, 226, 236, 500, 505, 510         -511
+Switch(config-mst
+ << )# instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 92$ vlan 522, 551-570, 603, 629, 633, 742, 802, 926         , 929
+Switch(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019
+ << , 2032, 2044, $0 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2         057, 20624-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062,  
+ <<         2068
+Switch(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132,$0 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132,          2147-2148
+ << 6, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148,          2158
+Switch(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522,$0 vlan 221
+ << 2, 2236, 2500, 2505, 2510-2511, 2522,          2603, 2622, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629         , 2633
+Switch(config-mst)# instance 10 vlan 2802, 2926, 2929
+Swit
+ << ch(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+Switch(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180,$2 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180
+ << ,          2200, 2218, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218         
+Switch(config-mst)#
+Switch(config-mst)#end
+Switch#
+*Aug  1 11:25:31: %SYS-5-CONFIG_I: Configured f
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << rom console by console
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> hostname c3850s1s.isilon.dc.mcarthur 
+
+Expect: searching for 2 strs:  :# :>
+ << hostname c3850s1s.isilon.dc.mcarthur 
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:25:36: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> snmp-server contact 6F-2300 - 6F-2301
+
+Expect: searching for 1 strs:  :#
+ << snmp-server contact 6F-2300 - 6F-2301
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:25:42: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> interface vlan 92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface vlan 92
+c3850s1s.isilon.dc.m(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip address 10.92.6.32 255.255.0.0
+
+ >> ip broadcast-address 10.92.255.255
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip address 10.92.6.32 255.255.0.0
+c3850s1s.isilon.dc.m(config-if)#ip broadcast-address 10.92.255.255
+c3850s1s.isilon.dc.m(config-if)#end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:25:49: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> interface Vlan92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface Vlan92
+c3850s1s.isilon.dc.m(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip default-gateway 10.92.0.1
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip default-gateway 10.92.0.1
+c3850s1s.isilon.dc.m(config)#end
+c3850s1s.isilon.dc.mcarthur#
+*Aug  1 11:25:54: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> ip dhcp snooping
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: #
+ >> ip dhcp snooping vlan 236
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping vlan 236
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c3850s1s.isilon.dc.mcarthur#
+*Aug  1 11:26:01: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/0/1 - 12 
+
+ >> interface range te1/0/1 - 12 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/0/1 - 12 
+c3850s1s.isilon.dc.m(config)#interface range te1/0/1 - 12 
+c3850s1s.isilon.dc.m(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport access vlan 236
+
+ >> switchport mode access
+
+ >> spanning-tree portfast
+
+ >> switchport port-security maximum 2
+
+ >> switchport port-security
+
+ >> switchport port-security aging time 15
+
+ >> switchport port-security violation protect
+
+ >> switchport port-security aging type inactivity
+
+ >> power inline never
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport access vlan 236
+c3850s1s.isilon.dc.m(config-if-range)#switchport mode access
+c3850s1s.isilon.dc.m(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, conce
+ << ntrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast will be configured in 12 interfaces due to the range command 
+ but will only have effect when the inter
+ << faces are in a non-trunking mode.
+c3850s1s.isilon.dc.m(config-if-range)#switchport port-security maximum 2
+c3850s1s.isilon.dc.m(config-if-range)#switchport port-security
+c3850s1s.isilon.dc.m(config-if-range)#switchport port-security aging time 15
+c385
+ << 0s1s.isilon.dc.m(config-if-range)#switchport port-security violation prot$port-security violation prote         ct
+c3850s1s.isilon.dc.m(config-if-range)#switchport port-security aging type ina
+ << $port-security aging type inac         tivity
+c3850s1s.isilon.dc.m(config-if-range)#power inline never
+                                       ^
+% Invalid input detected at '^' marker.
+
+c3850s1s.isilon.dc.m(config-if-
+ << range)#end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:26:14: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> default interface te1/0/12 
+
+ >> interface te1/0/12 
+
+Expect: searching for 1 strs:  :(config-if)#
+ << default interface te1/0/12 
+Interface TenGigabitEthernet1/0/12 set to default configuration
+c3850s1s.isilon.dc.m(config)#interface te1/0/12 
+c3850s1s.isilon.dc.m(config-if)#
+Expect: matched string 1: (config-if)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+c3850s1s.isilon.dc.m(config-if)#switchport trunk native vlan 92
+c3850s1s.isilon.dc.m(config-if)#ip dhcp snooping trust
+c3850s1s.isilon.dc.m(config-if)#no keepalive
+c3850s1s.isilon.dc.m(config-if)#end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+ << 
+*Aug  1 11:26:25: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/1/1 - 4 
+
+ >> interface range te1/1/1 - 4 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config)#interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+c3850s1s.isilon.dc.m(config-if-range)#switchport trunk native vlan 92
+c3850s1s.isilon.dc.m(config-if-range)#ip dhcp snooping trust
+c3850s1s.isilon.dc.m(config-if-range)#no keepalive
+c3850s1s.isilon.dc.m(config-if-range)#end
+c385
+ << 0s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:26:36: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/1/1 - 4 
+
+ >> interface range te1/1/1 - 4 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config)#interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+c3850s1s.isilon.dc.m(config-if-range)#switchport trunk native vlan 92
+c3850s1s.isilon.dc.m(config-if-range)#ip dhcp snooping trust
+c3850s1s.isilon.dc.m(config-if-range)#no keepalive
+c3850s1s.isilon.dc.m(config-if-range)#end
+c385
+ << 0s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:26:42: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> default interface range te1/1/1 - 4 
+
+ >> interface range te1/1/1 - 4 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config)#interface range te1/1/1 - 4 
+c3850s1s.isilon.dc.m(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+c3850s1s.isilon.dc.m(config-if-range)#switchport trunk native vlan 92
+c3850s1s.isilon.dc.m(config-if-range)#ip dhcp snooping trust
+c3850s1s.isilon.dc.m(config-if-range)#no keepalive
+c3850s1s.isilon.dc.m(config-if-range)#end
+c385
+ << 0s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:26:48: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c3850s1s.isilon.dc.mcarthur#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: (config)#
+ >> crypto key generate rsa
+
+ >> no
+
+ >> 2048
+
+Expect: searching for 2 strs:  :OK :(config)#
+ << crypto key generate rsa
+The name for the keys will be: c3850s1s.isilon.dc.mcarthur.mgmt.msstate.edu
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a fe
+ << w minutes.
+
+How many bits in the modulus [512]: no
+% A decimal number between 360 and 4096.
+How many bits in the modulus [512]: 2048
+% Generating 2048 bit RSA keys, keys will be non-exportable...
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+[OK] (elapsed time was 7 seconds)
+
+c3850s1s.isilon.dc.m(config)#
+Expect: matched string 1: OK
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c3850s1s.isilon.dc.mcarthur#
+ << 
+*Aug  1 11:27:10: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c3850s1s.isilon.dc.mcarthur#write mem
+Building configuration...
+
+Expect: matched string 1: #
+ >> 
+Expect: searching for 2 strs:  :# :>
+ << 
+ << [OK]
+c3850s1s.isilon.dc.mcarthur#
+c3850s1s.isilon.dc.mcarthur#
+c3850s1s.isilon.dc.mcarthur#
+Expect: matched string 1: #
+ >> sh run
+
+Expect: searching for 2 strs:  :# :>
+ << sh run
+Building configuration...
+
+Current configuration : 17345 bytes
+!
+! Last configuration change at 11:27:10 CDT Wed Aug 1 2018
+!
+version 16.3
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localtim
+ << e
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+!
+hostname c3850s1s.isilon.dc.mcarthur
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enab
+ << le secret 5 $1$JV7b$URxJHXT.ytGVjXCDpouV81
+enable password 7 0033411155582F56020840472E58
+!
+no aaa new-model
+clock timezone CST -6 0
+clock summer-time CDT recurring
+switch 1 provision ws-c3850-12xs
+switch 2 provision ws-c3850-12xs
+!
+!
+!
+!
+!
+!
+ << 
+!
+ip name-server 130.18.80.12
+ip domain name mgmt.msstate.edu
+!
+!
+!
+ip dhcp snooping vlan 236
+ip dhcp snooping
+!
+!
+!
+!
+!
+authentication mac-move permit
+!
+crypto pki trustpoint TP-self-signed-3265535150
+ enrollment selfsigned
+ subject-na
+ << me cn=IOS-Self-Signed-Certificate-3265535150
+ revocation-check none
+ rsakeypair TP-self-signed-3265535150
+!
+crypto pki trustpoint TP-self-signed-2494998912
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2494998912
+ revocation-c
+ << heck none
+ rsakeypair TP-self-signed-2494998912
+!
+!
+crypto pki certificate chain TP-self-signed-3265535150
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 
+ << 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323635 35333531 3530301E 170D3138 30383031 31363230 
+  32325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 
+ << 32363535 
+  33353135 30308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 0100D1DD AD686619 CF66BA24 F0B2DC0C 8C4CE006 18C56CFD DEC53CCD 
+  18177264 457DA263 B9048165 1D41D23E 0941DE8C 9E0AD42D D7079095 7FAFDDB7 
+  BE4C8E9C EE944
+ << 2BF ECFFF849 9A1FF1AB 9AFCD8CD 301DE449 F71197EE 92B63757 
+  2D5FB14F 289D9679 232BAB7C 69089304 D04AEA85 2428CF55 91B4A3AA FE929BC1 
+  6A6CAA49 59CD1614 6C68F7CD 65B4B951 F49AA8B1 6E08F9A0 43FC35A0 2DDF495D 
+  5B71E901 DCD9413C B02F11BE CDE4FF96 3B0D7
+ << BCF 80A7C762 51D75259 1B3574BE 
+  DA6C9689 25651E76 C54E4986 5DD9C584 A15FEEEF D0BB968E D2FF07F3 0DB4A04C 
+  BB83A9E0 D7E8C50F B079FF04 07EFF6AB FF7BDFB1 37C079E2 4AAFD0F6 9312737C 
+  7CE20BAA 627D0203 010001A3 53305130 0F060355 1D130101 FF040530 03010
+ << 1FF 
+  301F0603 551D2304 18301680 14248257 CEA5ADD1 A81B508F 64B89EA2 E9433A27 
+  92301D06 03551D0E 04160414 248257CE A5ADD1A8 1B508F64 B89EA2E9 433A2792 
+  300D0609 2A864886 F70D0101 05050003 82010100 02EB4645 9F641ADB BC3FB32C 
+  9A6667A4 3CE8B417 1
+ << B32C149 ED0BC74E 4A266ABF 58C5C851 5477C40A FA7B1336 
+  82CA776F 93B9FD40 22A5459B 1781F157 E51527FF 2B96C1FB 182E13B8 03A0E683 
+  A19D9F6A 7EB159E5 F512CD27 1FDA7142 BA08E150 1F0C5A45 6CDC4382 1EF27006 
+  534ACD92 6D914B04 715CE2B1 06C996B1 E79F48A6 7
+ << 71B442C 47FDB717 A4FEAF9C 
+  052FCF4C B5824E31 D0AF3545 E4BD64A7 7AC25BE3 E39B573B 10BA9176 11B5EEEC 
+  6D6E2865 759C805E 80EE5973 165FA8CF FB7CE127 251760CD CA1AE850 B468C8BB 
+  0F075D8A EF86726D B89BFDD3 2B8C1173 DDAB4072 180820C2 17A9B528 06B6148F 
+ << 
+  4A0A2D6F 87A3BDCA 44136E82 8B20CFD5 3A9D1351
+  	quit
+crypto pki certificate chain TP-self-signed-2494998912
+!
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause security-violation
+errdisable recovery cau
+ << se channel-misconfig
+errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause gbic-invalid
+errdisable recovery cause l2ptguard
+ << 
+errdisable recovery cause psecure-violation
+errdisable recovery cause port-mode-failure
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause pppoe-ia-rate-limit
+errdisable recovery cause mac-limit
+errdisable recovery cause vmps
+errdi
+ << sable recovery cause storm-control
+errdisable recovery cause inline-power
+errdisable recovery cause arp-inspection
+errdisable recovery cause link-monitor-failure
+errdisable recovery cause oam-remote-failure
+errdisable recovery cause loopback
+errdisa
+ << ble recovery cause psp
+errdisable recovery interval 1800
+license boot level ipbasek9
+diagnostic bootup level minimal
+!
+spanning-tree mode mst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+spanning-tree mst configuratio
+ << n
+ name msstate
+ revision 1
+ instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+ instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+ instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+ i
+ << nstance 1 vlan 256, 611-612, 654, 741, 996, 999
+ instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+ instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+ instance 2 vlan 2136, 2140, 2152, 2160, 2162-2
+ << 163, 2168, 2189, 2194, 2202
+ instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+ instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+ instance 3 vlan 244, 248, 927
+ instance 4 vlan 2042, 2051, 2059, 2064, 2066, 20
+ << 69, 2072, 2108, 2113, 2128
+ instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+ instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+ instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+ instance 7 vlan 9, 33-34, 38, 54, 5
+ << 6, 71, 75, 82, 84, 97, 114, 116, 124
+ instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+ instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+ instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-220
+ << 8, 2210
+ instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+ instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+ instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+ instance 9 vlan 522, 551-570, 603, 629, 633, 
+ << 742, 802, 926, 929
+ instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+ instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+ instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+ insta
+ << nce 10 vlan 2802, 2926, 2929
+ instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+ instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+!
+!
+!
+username root privilege 15 secret 5 $1$xzQX$ZfTWg1yZeBcNpm/Ym.WXz1
+!
+redundancy
+ mod
+ << e sso
+!
+lldp run
+!
+!
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, SGT Cache Full, LOGGING
+class-map match-any system-cpp-defaul
+ << t
+  description DHCP snooping, show forward and rest of traffic
+class-map match-any system-cpp-police-sys-data
+  description Learning cache ovfl, Crypto Control, Exception, EGR Exception, NFL SAMPLED DATA, Gold Pkt, RPF Failed
+class-map match-any syst
+ << em-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+cl
+ << ass-map match-any system-cpp-police-multicast
+  description Transit Traffic and MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map 
+ << match-any system-cpp-police-data
+  description ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-control-low-priority
+  description ICMP redirect and general punt
+class-map match-any system-cpp-police-wireless-priority1
+  description Wirel
+ << ess priority 1
+class-map match-any system-cpp-police-wireless-priority2
+  description Wireless priority 2
+class-map match-any system-cpp-police-wireless-priority3-4-5
+  description Wireless priority 3,4 and 5
+class-map match-any non-client-nrt-class
+ << 
+class-map match-any system-cpp-police-routing-control
+  description Routing control
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+!
+policy-map port_child_policy
+ class non-client-nrt-class
+  bandwidth rema
+ << ining ratio 10
+policy-map system-cpp-policy
+ class system-cpp-police-data
+  police rate 200 pps
+ class system-cpp-police-sys-data
+  police rate 100 pps
+ class system-cpp-police-sw-forward
+  police rate 1000 pps
+ class system-cpp-police-multicast
+
+ <<   police rate 500 pps
+ class system-cpp-police-multicast-end-station
+  police rate 2000 pps
+ class system-cpp-police-punt-webauth
+ class system-cpp-police-l2-control
+ class system-cpp-police-routing-control
+  police rate 1800 pps
+ class system-cpp-
+ << police-control-low-priority
+ class system-cpp-police-wireless-priority1
+ class system-cpp-police-wireless-priority2
+ class system-cpp-police-wireless-priority3-4-5
+ class system-cpp-police-topology-control
+ class system-cpp-police-dot1x-auth
+ class 
+ << system-cpp-police-protocol-snooping
+ class system-cpp-police-forus
+ class system-cpp-default
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface T
+ << enGigabitEthernet1/0/1
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ swit
+ << chport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/2
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging ti
+ << me 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/3
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-s
+ << ecurity violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/4
+ switchport access vlan 236
+ switchport mode ac
+ << cess
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEt
+ << hernet1/0/5
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port
+ << -security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/6
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ swi
+ << tchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/7
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security vio
+ << lation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/8
+ switchport access vlan 236
+ switchport mode access
+ swit
+ << chport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/9
+ << 
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+
+ <<  spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/10
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation protect
+ switchport port-security aging time 15
+ switchport po
+ << rt-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/11
+ switchport access vlan 236
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security violation pr
+ << otect
+ switchport port-security aging time 15
+ switchport port-security aging type inactivity
+ switchport port-security
+ spanning-tree portfast
+!
+interface TenGigabitEthernet1/0/12
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp 
+ << snooping trust
+!
+interface TenGigabitEthernet1/1/1
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface TenGigabitEthernet1/1/2
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp snooping trus
+ << t
+!
+interface TenGigabitEthernet1/1/3
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface TenGigabitEthernet1/1/4
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interfa
+ << ce TenGigabitEthernet2/0/1
+!
+interface TenGigabitEthernet2/0/2
+!
+interface TenGigabitEthernet2/0/3
+!
+interface TenGigabitEthernet2/0/4
+!
+interface TenGigabitEthernet2/0/5
+!
+interface TenGigabitEthernet2/0/6
+!
+interface TenGigabitEthernet2/0/7
+ << 
+!
+interface TenGigabitEthernet2/0/8
+!
+interface TenGigabitEthernet2/0/9
+!
+interface TenGigabitEthernet2/0/10
+!
+interface TenGigabitEthernet2/0/11
+!
+interface TenGigabitEthernet2/0/12
+!
+interface TenGigabitEthernet2/1/1
+!
+interface TenGigabit
+ << Ethernet2/1/2
+!
+interface TenGigabitEthernet2/1/3
+!
+interface TenGigabitEthernet2/1/4
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan92
+ ip address 10.92.6.32 255.255.0.0
+ ip broadcast-address 10.92.255.255
+!
+
+ << ip default-gateway 10.92.0.1
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http secure-server
+!
+ip access-list extended AutoQos-4.0-wlan-Acl-Bulk-Data
+ permit tcp any any eq 22
+ permit tcp any any eq 465
+ permit tcp 
+ << any any eq 143
+ permit tcp any any eq 993
+ permit tcp any any eq 995
+ permit tcp any any eq 1914
+ permit tcp any any eq ftp
+ permit tcp any any eq ftp-data
+ permit tcp any any eq smtp
+ permit tcp any any eq pop3
+ip access-list extended AutoQos-4.0
+ << -wlan-Acl-MultiEnhanced-Conf
+ permit udp any any range 16384 32767
+ permit tcp any any range 50000 59999
+ip access-list extended AutoQos-4.0-wlan-Acl-Scavanger
+ permit tcp any any range 2300 2400
+ permit udp any any range 2300 2400
+ permit tcp any a
+ << ny range 6881 6999
+ permit tcp any any range 28800 29100
+ permit tcp any any eq 1214
+ permit udp any any eq 1214
+ permit tcp any any eq 3689
+ permit udp any any eq 3689
+ permit tcp any any eq 11999
+ip access-list extended AutoQos-4.0-wlan-Acl-Signa
+ << ling
+ permit tcp any any range 2000 2002
+ permit tcp any any range 5060 5061
+ permit udp any any range 5060 5061
+ip access-list extended AutoQos-4.0-wlan-Acl-Transactional-Data
+ permit tcp any any eq 443
+ permit tcp any any eq 1521
+ permit udp any 
+ << any eq 1521
+ permit tcp any any eq 1526
+ permit udp any any eq 1526
+ permit tcp any any eq 1575
+ permit udp any any eq 1575
+ permit tcp any any eq 1630
+ permit udp any any eq 1630
+ permit tcp any any eq 1527
+ permit tcp any any eq 6200
+ permit tc
+ << p any any eq 3389
+ permit tcp any any eq 5985
+ permit tcp any any eq 8080
+!
+logging facility local1
+logging host 130.18.8.12
+access-list 1 permit 10.92.0.0 0.0.255.255
+access-list 1 permit 130.18.8.0 0.0.0.255
+access-list 1 permit 10.93.0.0 0.0.25
+ << 5.255
+access-list 1 permit 130.18.1.0 0.0.0.255
+!
+snmp-server community sysnet RO 1
+snmp-server community c2-b2=a2 RW 1
+snmp-server contact 6F-2300 - 6F-2301
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-serv
+ << er enable traps tty
+snmp-server enable traps rep
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps port-security
+snmp-server enable traps cpu threshold
+snmp-server enable t
+ << raps envmon fan shutdown supply temperature status
+snmp-server enable traps flash insertion removal
+snmp-server enable traps power-ethernet police
+snmp-server enable traps entity
+snmp-server enable traps config-copy
+snmp-server enable traps config
+s
+ << nmp-server enable traps config-ctid
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp
+ << -server enable traps errdisable
+snmp-server enable traps transceiver all
+snmp-server enable traps mac-notification change move threshold
+snmp-server host 130.18.8.12 sysnet 
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+!
+no vstack
+!
+ << 
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class 1 in
+ password 7 10795B0E5414365B012D26220369
+ login local
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ password 7 10795B0E5414365B012D26220369
+ login local
+
+ <<  transport input ssh
+!
+ntp server 10.92.0.5
+!
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent notify
+!
+!
+ap dot11 airtime-fairness policy-name Default 0
+ap group default-group
+ap hyperlocation ble-beacon 0
+ap hyperloc
+ << ation ble-beacon 1
+ap hyperlocation ble-beacon 2
+ap hyperlocation ble-beacon 3
+ap hyperlocation ble-beacon 4
+end
+
+c3850s1s.isilon.dc.mcarthur#
+Expect: matched string 1: #

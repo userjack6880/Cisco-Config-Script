@@ -1,0 +1,2418 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+
+
+         --- System Configuration Dialog ---
+
+Enable secret warning
+----------------------------------
+In order to access the device manager, an enable secret is required
+If you enter the initial configuration dialog, you will be prompted for t
+ << he enable secret
+If you choose not to enter the intial configuration dialog, or if you exit setup without setting the enable secret,
+please set an enable secret using the following CLI in configuration mode-
+enable secret 0 <cleartext password>
+------
+ << ----------------------------
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to ent
+Expect: matched string 1: [yes/no]
+ >> 
+
+ >> no
+
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << er the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% 
+ << Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: no
+Switch>term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960X Software (C2960X-UNIVERSALK9-M), Version 15.0(2)EX5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Fri 21-Feb-14 05:54 by prod
+ << _rel_team
+
+ROM: Bootstrap program is C2960X boot loader
+BOOTLDR: C2960X Boot Loader (C2960X-HBOOT-M) Version 15.2(2r)E1, RELEASE SOFTWARE (fc1)
+
+Switch uptime is 3 minutes
+System returned to ROM by power-on
+System restarted at 09:45:13 UTC Tue Mar 
+ << 1 2016
+System image file is "flash:/c2960x-universalk9-mz.150-2.EX5/c2960x-universalk9-mz.150-2.EX5.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use
+ << . Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this
+ <<  product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco
+ << .com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960X-48FPD-L (APM86XXX) processor (revision F0) with 524288K bytes of memory.
+Processor board ID FCW1905A5U
+ << H
+Last reset from power-on
+1 Virtual Ethernet interface
+1 FastEthernet interface
+50 Gigabit Ethernet interfaces
+2 Ten Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration
+ <<  memory.
+Base ethernet MAC Address       : BC:F1:F2:85:19:00
+Motherboard assembly number     : 73-15964-02
+Power supply part number        : 341-0527-01
+Motherboard serial number       : FOC19052W0H
+Power supply serial number      : DCB1903642T
+Mode
+ << l revision number           : F0
+Motherboard revision number     : C0
+Model number                    : WS-C2960X-48FPD-L
+Daughterboard assembly number   : 73-14200-03
+Daughterboard serial number     : FOC190577P5
+System serial number            : FC
+ << W1905A5UH
+Top Assembly Part Number        : 800-41461-01
+Top Assembly Revision Number    : C0
+Version ID                      : V02
+CLEI Code Number                : CMMLJ00ARB
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0
+ << x12
+
+
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 52    WS-C2960X-48FPD-L  15.0(2)EX5            C2960X-UNIVERSALK9-M     
+
+
+ << 
+Configuration register is 0xF
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> 
+
+ >> version 15.0
+
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> hostname c29s1p.r246b.allen
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> logging buffered informational
+
+ >> enable secret 5 $1$QEtp$Db.rljLovXT/46abar6hH/
+
+ >> enable password 7 11280B00164F074613
+
+ >> username root privilege 15 secret 5 $1$zH.D$fXC54n9ABHnGo0q1QsgM./
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6 0
+
+ >> clock summer-time CDT recurring
+
+ >> switch 1 provision ws-c2960s-48lpd-l
+
+ >> authentication mac-move permit
+
+ >> ip dhcp snooping vlan 24
+
+ >> ip dhcp snooping
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.12
+
+ >> mls qos map policed-dscp  24 26 46 to 0
+
+ >> mls qos map cos-dscp 0 8 16 24 32 46 48 56
+
+ >> mls qos srr-queue output cos-map queue 1 threshold 3 5
+
+ >> mls qos srr-queue output cos-map queue 2 threshold 3 3 6 7
+
+ >> mls qos srr-queue output cos-map queue 3 threshold 3 2 4
+
+ >> mls qos srr-queue output cos-map queue 4 threshold 2 1
+
+ >> mls qos srr-queue output cos-map queue 4 threshold 3 0
+
+ >> mls qos srr-queue output dscp-map queue 1 threshold 3 40 41 42 43 44 45 46 47
+
+ >> mls qos srr-queue output dscp-map queue 2 threshold 3 24 25 26 27 28 29 30 31
+
+ >> mls qos srr-queue output dscp-map queue 2 threshold 3 48 49 50 51 52 53 54 55
+
+ >> mls qos srr-queue output dscp-map queue 2 threshold 3 56 57 58 59 60 61 62 63
+
+ >> mls qos srr-queue output dscp-map queue 3 threshold 3 16 17 18 19 20 21 22 23
+
+ >> mls qos srr-queue output dscp-map queue 3 threshold 3 32 33 34 35 36 37 38 39
+
+ >> mls qos srr-queue output dscp-map queue 4 threshold 1 8
+
+ >> mls qos srr-queue output dscp-map queue 4 threshold 2 9 10 11 12 13 14 15
+
+ >> mls qos srr-queue output dscp-map queue 4 threshold 3 0 1 2 3 4 5 6 7
+
+ >> mls qos queue-set output 1 threshold 1 138 138 92 138
+
+ >> mls qos queue-set output 1 threshold 2 138 138 92 400
+
+ >> mls qos queue-set output 1 threshold 3 36 77 100 318
+
+ >> mls qos queue-set output 1 threshold 4 20 50 67 400
+
+ >> mls qos queue-set output 2 threshold 1 149 149 100 149
+
+ >> mls qos queue-set output 2 threshold 2 118 118 100 235
+
+ >> mls qos queue-set output 2 threshold 3 41 68 100 272
+
+ >> mls qos queue-set output 2 threshold 4 42 72 100 242
+
+ >> mls qos queue-set output 1 buffers 10 10 26 54
+
+ >> mls qos queue-set output 2 buffers 16 6 17 61
+
+ >> mls qos
+
+ >> crypto pki trustpoint TP-self-signed-1649893888
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-1649893888
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-1649893888
+
+ >> crypto pki certificate chain TP-self-signed-1649893888
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+
+ >> spanning-tree mode mst
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> errdisable recovery cause udld
+
+ >> errdisable recovery cause bpduguard
+
+ >> errdisable recovery cause security-violation
+
+ >> errdisable recovery cause channel-misconfig (STP)
+
+ >> errdisable recovery cause pagp-flap
+
+ >> errdisable recovery cause dtp-flap
+
+ >> errdisable recovery cause link-flap
+
+ >> errdisable recovery cause sfp-config-mismatch
+
+ >> errdisable recovery cause gbic-invalid
+
+ >> errdisable recovery cause psecure-violation
+
+ >> errdisable recovery cause port-mode-failure
+
+ >> errdisable recovery cause dhcp-rate-limit
+
+ >> errdisable recovery cause pppoe-ia-rate-limit
+
+ >> errdisable recovery cause mac-limit
+
+ >> errdisable recovery cause vmps
+
+ >> errdisable recovery cause storm-control
+
+ >> errdisable recovery cause inline-power
+
+ >> errdisable recovery cause arp-inspection
+
+ >> errdisable recovery cause loopback
+
+ >> errdisable recovery cause small-frame
+
+ >> errdisable recovery interval 1800
+
+ >> vlan internal allocation policy ascending
+
+ >> class-map match-all AutoQoS-VoIP-RTP-Trust
+
+ >>   match ip dscp ef 
+
+ >> class-map match-all AutoQoS-VoIP-Control-Trust
+
+ >>   match ip dscp cs3  af31 
+
+ >> policy-map AutoQoS-Police-CiscoPhone
+
+ >>  class AutoQoS-VoIP-RTP-Trust
+
+ >>    set dscp ef
+
+ >>   police 320000 8000 exceed-action policed-dscp-transmit
+
+ >>  class AutoQoS-VoIP-Control-Trust
+
+ >>    set dscp cs3
+
+ >>   police 32000 8000 exceed-action policed-dscp-transmit
+
+ >> interface FastEthernet0
+
+ >>  no ip address
+
+ >>  shutdown
+
+ >> interface GigabitEthernet1/0/1
+
+ >>  description allen.ap1-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/2
+
+ >>  description allen.ap2-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/3
+
+ >>  description allen.ap3-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/4
+
+ >>  description allen.ap4-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/5
+
+ >>  description allen.ap2-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/6
+
+ >>  description allen.ap7-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/7
+
+ >>  description allen.ap3-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >> interface GigabitEthernet1/0/8
+
+ >>  description allen.ap1-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/9
+
+ >>  description allen.ap5-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/10
+
+ >>  description 130.18.23.106
+
+ >>  switchport access vlan 802
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/11
+
+ >>  description 130.18.23.32
+
+ >>  switchport access vlan 802
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/12
+
+ >>  description allen.ap14-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/13
+
+ >>  description allen.ap10-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/14
+
+ >>  description allen.ap9-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/15
+
+ >>  description allen.ap13-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/16
+
+ >>  description allen255.ivn
+
+ >>  switchport access vlan 91
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/17
+
+ >>  description allen.ap12-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/18
+
+ >>  switchport access vlan 60
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/19
+
+ >>  switchport access vlan 514
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/20
+
+ >>  switchport access vlan 514
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/21
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/22
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/23
+
+ >>  switchport access vlan 514
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/24
+
+ >>  switchport access vlan 506
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/25
+
+ >>  description allen.ap7-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/26
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/27
+
+ >>  switchport access vlan 506
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/28
+
+ >>  switchport access vlan 506
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/29
+
+ >>  switchport access vlan 506
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/30
+
+ >>  switchport access vlan 506
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/31
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/32
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/33
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/34
+
+ >>  description allen.ap11-1
+
+ >>  switchport access vlan 551
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/35
+
+ >>  description sep0004f28f906e
+
+ >>  switchport access vlan 60
+
+ >>  switchport mode access
+
+ >>  switchport voice vlan 614
+
+ >>  srr-queue bandwidth share 10 10 60 20
+
+ >>  queue-set 2
+
+ >>  priority-queue out 
+
+ >>  snmp trap mac-notification change added
+
+ >>  snmp trap mac-notification change removed
+
+ >>  mls qos trust device cisco-phone
+
+ >>  mls qos trust cos
+
+ >>  auto qos voip cisco-phone 
+
+ >>  spanning-tree portfast
+
+ >>  service-policy input AutoQoS-Police-CiscoPhone
+
+ >> interface GigabitEthernet1/0/36
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/37
+
+ >>  description 130.18.25.19
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/38
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/39
+
+ >>  switchport access vlan 24
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/40
+
+ >>  description allen.ap6-2
+
+ >>  switchport access vlan 551
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security aging type inactivity
+
+ >>  switchport port-security
+
+ >>  spanning-tree portfast
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/41
+
+ >>  description c29s9.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/42
+
+ >>  description c29s2.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/43
+
+ >>  description c29s3.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/44
+
+ >>  description c29s4.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/45
+
+ >>  description c29s5.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/46
+
+ >>  description c29s6.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/47
+
+ >>  description c29s7.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/48
+
+ >>  description c29s8.r246b.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/49
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet1/0/50
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface TenGigabitEthernet1/0/1
+
+ >>  description c29s1p.r111e.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface TenGigabitEthernet1/0/2
+
+ >>  description c29s1p.r319c.allen
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >>  ip address 10.92.1.241 255.255.0.0
+
+ >>  ip broadcast-address 10.92.255.255
+
+ >> ip default-gateway 10.92.0.1
+
+ >> no ip http server
+
+ >> ip http secure-server
+
+ >> logging facility local1
+
+ >> logging host 130.18.8.12
+
+ >> access-list 1 permit 130.18.92.0 0.0.3.255
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.8.0 0.0.0.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server community spongebob RO
+
+ >> snmp-server contact 6f-1244
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps transceiver all
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps config-ctid
+
+ >> snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps power-ethernet group 1
+
+ >> snmp-server enable traps power-ethernet police
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps rep
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps errdisable
+
+ >> snmp-server enable traps mac-notification change move threshold
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.8.12 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  access-class 1 in
+
+ >>  password 7 106F1B1C044A1E411B
+
+ >>  login
+
+ >>  transport input all
+
+ >> line vty 5 15
+
+ >>  access-class 1 in
+
+ >>  password 7 123817121356004E3D
+
+ >>  login
+
+ >>  transport input all
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << 
+Switch(config)#version 15.0
+Switch(config)#no service pad
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch(config)#hostname c29s1p.
+ << r246b.allen
+c29s1p.r246b.allen(config)#boot-start-marker
+c29s1p.r246b.allen(config)#boot-end-marker
+c29s1p.r246b.allen(config)#logging buffered informational
+c29s1p.r246b.allen(config)#enable secret 5 $1$QEtp$Db.rljLovXT/46abar6hH/
+c29s1p.r246b.allen
+ << (config)#enable password 7 11280B00164F074613
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+c29s1p.r246b.allen(config)#username root privilege 15 secret 5 $1$zH.D$fXC54n
+ << $ot privilege 15 secret 5 $1$zH.D$fXC54n9         ABHnGo0q1ge 15 secret 5 $1$zH.D$fXC54n9ABHnGo0q1Q         sgM./
+c29s1p.r246b.allen(conf
+ << ig)#no aaa new-model
+c29s1p.r246b.allen(config)#clock timezone CST -6 0
+c29s1p.r246b.allen(config)#clock summer-time CDT recurring
+
+Mar  1 03:49:05: %SYS-6-CLOCKUPDATE: System clock has been updated from 09:49:03 UTC Tue Mar 1 2016 to 03:49:05 CST Tue 
+ << Mar 1 2016, configured from console by console.
+c29s1p.r246b.allen(config)#switch 1 provision ws-c2960s-48lpd-l
+%Command rejected: switch 1 (ws-c2960x-48fpd-l) already present in the stack
+
+c29s1p.r246b.allen(config)#authentication mac-move permit
+c2
+ << 9s1p.r246b.allen(config)#ip dhcp snooping vlan 24
+c29s1p.r246b.allen(config)#ip dhcp snooping
+c29s1p.r246b.allen(config)#ip domain-name mgmt.msstate.edu
+c29s1p.r246b.allen(config)#ip name-server 130.18.80.12
+c29s1p.r246b.allen(config)#mls qos map poli
+ << ced-dscp  24 26 46 to 0
+c29s1p.r246b.allen(config)#mls qos map cos-dscp 0 8 16 24 32 46 48 56
+c29s1p.r246b.allen(config)#mls qos srr-queue output cos-map queue 1 threshold$-queue output cos-map queue 1 t
+ << hreshold          3 5
+c29s1p.r246b.allen(config)#mls qos srr-queue output cos-map queue 2 threshold$-queue output cos-map queue 2 threshold          3 3 6 7
+c29s1p.r246b.allen(config)#m
+ << ls qos srr-queue output cos-map queue 3 threshold$-queue output cos-map queue 3 threshold          3 2 4
+c29s1p.r246b.allen(config)#mls qos srr-queue output cos-map queue 4 threshold
+ << $-queue output cos-map queue 4 threshold          2 1
+c29s1p.r246b.allen(config)#mls qos srr-queue output cos-map queue 4 threshold$-queue output cos-map queu
+ << e 4 threshold          3 0
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 1 threshol$-queue output dscp-map queue 1 threshold          3 40 41 
+ << put dscp-map queue 1 threshold 3 40 41 4         2 43 44 4ap queue 1 threshold 3 40 41 42 43 44 45          46 47
+c29s1p.r246b.allen(config)#mls qos srr-queue ou
+ << tput
+Mar  1 03:49:07: %SYS-6-CLOCKUPDATE: System clock has been u dscp-map queue 2 threshol$-queue output dscp-map queue 2 threshold          3 24 25 
+ << put dscp-map queue 2 threshold 3 24 25 2         6 27 28 2ap queue 2 threshold 3 24 25 26 27 28 29          30 31
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 2 
+ << threshol$-queue output dpdated from 03:49:05 CST Tue Mar 1 2016 to 03:49:07 CST Tue Mar 1 2016, configured from console by console.scp-map queue 2 threshold          3 48 49 
+ << put dscp-map queue 2 threshold 3 48 49 5         0 51 52 5ap queue 2 threshold 3 48 49 50 51 52 53          54 55
+c29s1p.r246b.allen(config)#mls qos srr-queue o
+ << utput dscp-map queue 2 threshol$-queue output dscp-map queue 2 threshold          3 56 57 put dscp-map queue 2 threshold 3 56 57 5         
+ << 8 59 60 6ap queue 2 threshold 3 56 57 58 59 60 61          62 63
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 3 threshol$-q
+ << ueue output dscp-map queue 3 threshold          3 16 17 put dscp-map queue 3 threshold 3 16 17 1         8 19 20 2ap queue 3 threshold 3 16
+ <<  17 18 19 20 21          22 23
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 3 threshol$-queue output dscp-map queue 3 threshold          3 32 33 
+ << put dscp-map queue 3 threshold 3 32 33 3         4 35 36 3ap queue 3 threshold 3 32 33 34 35 36 37          38 39
+c29s1p.r246b.allen(config)#mls qos srr-queu
+ << e output dscp-map queue 4 threshol$-queue output dscp-map queue 4 threshold          1 8
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 4 threshol
+ << $-queue output dscp-map queue 4 threshold          2 9 10 1put dscp-map queue 4 threshold 2 9 10 11          12 13 14a
+ << p queue 4 threshold 2 9 10 11 12 13 14          15
+c29s1p.r246b.allen(config)#mls qos srr-queue output dscp-map queue 4 threshol$-queue output dscp-map queue 4 threshold          3 0 1 2
+ <<  put dscp-map queue 4 threshold 3 0 1 2 3          4 5 6 7
+c29s1p.r246b.allen(config)#mls qos queue-set output 1 threshold 1 138 138 92 $ue-set ou
+ << tput 1 threshold 1 138 138 92 1         38
+c29s1p.r246b.allen(config)#mls qos queue-set output 1 threshold 2 138 138 92 $ue-set output 1 threshold 2 138 138 92 4         00
+c29s1p.r246b
+ << .allen(config)#mls qos queue-set output 1 threshold 3 36 77 100 3$ue-set output 1 threshold 3 36 77 100 31         8
+c29s1p.r246b.allen(config)#mls qos queue-set output 1 threshold 4 20 50 67 40
+ << $ue-set output 1 threshold 4 20 50 67 400         
+c29s1p.r246b.allen(config)#mls qos queue-set output 2 threshold 1 149 149 100$ue-set output 2 t
+ << hreshold 1 149 149 100          149
+c29s1p.r246b.allen(config)#mls qos queue-set output 2 threshold 2 118 118 100$ue-set output 2 threshold 2 118 118 100          235
+c29s1p.r246b.allen
+ << (config)#mls qos queue-set output 2 threshold 3 41 68 100 2$ue-set output 2 threshold 3 41 68 100 27         2
+c29s1p.r246b.allen(config)#mls qos queue-set output 2 threshold 4 42 72 100 2
+ << $ue-set output 2 threshold 4 42 72 100 24         2
+c29s1p.r246b.allen(config)#mls qos queue-set output 1 buffers 10 10 26 54
+c29s1p.r246b.allen(config)#mls qos queue-set output 2 buffers 16 6 17 61
+c
+ << 29s1p.r246b.allen(config)#mls qos
+c29s1p.r246b.allen(config)#crypto pki trustpoint TP-self-signed-1649893888
+c29s1p.r246b.allen(ca-trustpoint)# enrollment selfsigned
+c29s1p.r246b.allen(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificat
+ << $me cn=IOS-Self-Signed-Certificate         -16498938Self-Signed-Certificate-164989388         8
+c29s1p.r246b.allen(ca-trustpoint)# revocation-check none
+c29s1p
+ << .r246b.allen(ca-trustpoint)# rsakeypair TP-self-signed-1649893888
+c29s1p.r246b.allen(ca-trustpoint)#crypto pki certificate chain TP-self-signed$certificate chain TP-self-signed-         164989388
+ << e chain TP-self-signed-1649893888         
+c29s1p.r246b.allen(config-cert-chain)# certificate self-signed 01 nvram:IOS-S$e self-signed 01 nvram:IOS-Se         lf-
+ << Sig#1.ned 01 nvram:IOS-Self-Sig#1.c         er
+c29s1p.r246b.allen(config-cert-chain)#spanning-tree mode mst
+c29s1p.r246b.allen(config)#spanning-tree portfast bpduguard default
+c29s1p.r246b.allen(config)#sp
+ << anning-tree extend system-id
+c29s1p.r246b.allen(config)#spanning-tree mst configuration
+c29s1p.r246b.allen(config-mst)# name msstate
+c29s1p.r246b.allen(config-mst)# revision 1
+c29s1p.r246b.allen(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 3
+ << 5,$ vlan 2, 7, 11, 20, 22, 24, 31, 35,          37, 39-40, 11, 20, 22, 24, 31, 35, 37, 39-40,          50, 60, 
+ << 22, 24, 31, 35, 37, 39-40, 50, 60, 6         3, 70
+c29s1p.r246b.allen(config-mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 110,$ vlan 78, 80, 86, 91, 96, 104, 110,          126, 1
+ << 36,80, 86, 91, 96, 104, 110, 126, 136,          140, 152,, 96, 104, 110, 126, 136, 140, 152,          160
+c29s1p.r246b.allen(config-mst)# instance
+ <<  1 vlan 162-163, 168, 189, 194, 202, $ vlan 162-163, 168, 189, 194, 202, 2         20, 222, 163, 168, 189, 194, 202, 220, 222, 2         30, 232, 
+ << 89, 194, 202, 220, 222, 230, 232, 2         42, 246
+c29s1p.r246b.allen(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 996, $ vlan 256, 611-612, 654, 
+ << 741, 996, 9         99
+c29s1p.r246b.allen(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020, 2022,$ vlan 2002, 2007, 2011, 2020, 2022,          2024, 203
+ << , 2007, 2011, 2020, 2022, 2024, 2031         , 2035, 211, 2020, 2022, 2024, 2031, 2035, 20         37, 2039-2022, 2024, 2031, 2035, 2037,
+ <<  2039-2         040
+c29s1p.r246b.allen(config-mst)# instance 2 vlan 2050, 2060, 2063, 2070, 2080,$ vlan 2050, 2060, 2063, 2070, 2080,          2086, 209
+ << , 2060, 2063, 2070, 2080, 2086, 2096         , 2104, 263, 2070, 2080, 2086, 2096, 2104, 21         10, 2126
+c29s1p.r246b.allen(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162
+ << -$ vlan 2136, 2140, 2152, 2160, 2162-2         163, 2168, 2140, 2152, 2160, 2162-2163, 2168,          2189, 21
+ << 52, 2160, 2162-2163, 2168, 2189, 219         4, 2202
+c29s1p.r246b.allen(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 2246,$ vlan 2220, 2222, 2232, 2242, 2246,          2611-
+ << 2612, 2222, 2232, 2242, 2246, 2611-2612,          2654, 2932, 2242, 2246, 2611-2612, 2654, 299         9
+c29s1p.r246b.allen(config-mst)# instance 
+ << 3 vlan 42, 51, 59, 64, 66, 69, 72, 1$ vlan 42, 51, 59, 64, 66, 69, 72, 10         8, 113, 151, 59, 64, 66, 69, 72, 108, 113, 12         8, 144, 1
+ << , 66, 69, 72, 108, 113, 128, 144, 17         6, 196
+c29s1p.r246b.allen(config-mst)# instance 3 vlan 244, 248, 927
+c29s1p.r246b.allen(config-mst)# instance 4 vlan 2042, 2051, 2059, 2064, 2066,
+ << $ vlan 2042, 2051, 2059, 2064, 2066,          2069, 207, 2051, 2059, 2064, 2066, 2069, 2072         , 2108, 25
+ << 9, 2064, 2066, 2069, 2072, 2108, 21         13, 2128
+c29s1p.r246b.allen(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248,$ vlan 2144, 2176, 2196, 2244, 2248,          2927
+c29s1p.r
+ << 246b.allen(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133$ vlan 16, 48, 58, 88, 121, 131, 133-         134, 216,48, 58, 88, 121, 131, 133-134, 
+ << 216,          228
+c29s1p.r246b.allen(config-mst)# instance 6 vlan 2016, 2048, 2058, 2088, 2121,$ vlan 2016, 2048, 2058, 2088, 2121,          2131, 213
+ << , 2048, 2058, 2088, 2121, 2131, 2133         -2134, 2258, 2088, 2121, 2131, 2133-2134, 221         6, 2228
+c29s1p.r246b.allen(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75,
+ << $ vlan 9, 33-34, 38, 54, 56, 71, 75,          82, 84, 93-34, 38, 54, 56, 71, 75, 82, 84, 97         , 114, 11
+ << 54, 56, 71, 75, 82, 84, 97, 114, 116         , 124
+c29s1p.r246b.allen(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210, $ vlan 172, 186, 192, 204-208, 210, 2         40-241, 2
+ << 186, 192, 204-208, 210, 240-241, 25         1-252, 63204-208, 210, 240-241, 251-252, 630         , 928
+c29s1p.r246b.allen(config-mst)# instance 8 vla
+ << n 2009, 2033-2034, 2038, 2054, $ vlan 2009, 2033-2034, 2038, 2054, 2         056, 2071, 2033-2034, 2038, 2054, 2056, 2071,          2075, 20
+ << 4, 2038, 2054, 2056, 2071, 2075, 208         2, 2084
+c29s1p.r246b.allen(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 2172,$ vlan 2097, 2114, 2116, 2124,
+ <<  2172,          2186, 219, 2114, 2116, 2124, 2172, 2186, 2192         , 2204-2216, 2124, 2172, 2186, 2192, 2204-220         8, 2210
+c29s1
+ << p.r246b.allen(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 2$ vlan 2240-2241, 2251-2252, 2630, 29         28
+c29s1p.r246b.allen(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 6
+ << $ vlan 4-5, 12, 18-19, 32, 44, 57, 62         , 68, 76,12, 18-19, 32, 44, 57, 62, 68, 76,          98-99, 10
+ << , 32, 44, 57, 62, 68, 76, 98-99, 102         , 112
+c29s1p.r246b.allen(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, $ vlan 130, 132, 147-148, 158, 212, 2         26, 236, 
+ << 132, 147-148, 158, 212, 226, 236, 5         00, 505, 148, 158, 212, 226, 236, 500, 505, 5         10-511
+c29s1p.r246b.allen(config-mst)# instance 9 v
+ << lan 522, 551-570, 603, 629, 633, $ vlan 522, 551-570, 603, 629, 633, 7         42, 802, 551-570, 603, 629, 633, 742, 802, 9         26, 929
+c29s1p
+ << .r246b.allen(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019, $0 vlan 2004-2005, 2012, 2018-2019, 2         032, 20444-2005, 2012, 2018-2019, 2032
+ << , 2044,          2057, 2012, 2018-2019, 2032, 2044, 2057, 206         2, 2068
+c29s1p.r246b.allen(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 2112,
+ << $0 vlan 2076, 2098-2099, 2102, 2112,          2130, 2136, 2098-2099, 2102, 2112, 2130, 2132         , 2147-2199, 2102, 2112, 2130, 2132, 
+ << 2147-214         8, 2158
+c29s1p.r246b.allen(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510$0 vlan 2212, 2236, 2500, 2505, 2510-         2511, 252
+ << 2, 2236, 2500, 2505, 2510-2511, 2522         , 2603, 2500, 2505, 2510-2511, 2522, 2603, 26         29, 2633
+c29s1p.r246b.allen(config-mst)# instance 10 vlan 2802, 2926, 2929
+c29s
+ << 1p.r246b.allen(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180$1 vlan 8, 43, 52, 146, 156-157, 180,          200, 218
+c29s1p.r246b.allen(config-mst)# instance 12 vlan 2008, 2043, 2052, 214
+ << 6, 2156$2 vlan 2008, 2043, 2052, 2146, 2156-         2157, 2188, 2043, 2052, 2146, 2156-2157, 2180         , 2200, 2
+ << 052, 2146, 2156-2157, 2180, 2200, 22         18
+c29s1p.r246b.allen(config-mst)#errdisable recovery cause udld
+c29s1p.r246b.allen(config)#errdisable recovery cause bpduguard
+c29s1p.r246b.allen(config)#errdisable recovery cause se
+ << curity-violation
+c29s1p.r246b.allen(config)#errdisable recovery cause channel-misconfig (STP)
+c29s1p.r246b.allen(config)#errdisable recovery cause pagp-flap
+c29s1p.r246b.allen(config)#errdisable recovery cause dtp-flap
+c29s1p.r246b.allen(config)#errdi
+ << sable recovery cause link-flap
+c29s1p.r246b.allen(config)#errdisable recovery cause sfp-config-mismatch
+c29s1p.r246b.allen(config)#errdisable recovery cause gbic-invalid
+c29s1p.r246b.allen(config)#errdisable recovery cause psecure-violation
+c29s1p.r24
+ << 6b.allen(config)#errdisable recovery cause port-mode-failure
+c29s1p.r246b.allen(config)#errdisable recovery cause dhcp-rate-limit
+c29s1p.r246b.allen(config)#errdisable recovery cause pppoe-ia-rate-limit
+c29s1p.r246b.allen(config)#errdisable recovery ca
+ << use mac-limit
+c29s1p.r246b.allen(config)#errdisable recovery cause vmps
+c29s1p.r246b.allen(config)#errdisable recovery cause storm-control
+c29s1p.r246b.allen(config)#errdisable recovery cause inline-power
+c29s1p.r246b.allen(config)#errdisable recovery
+ <<  cause arp-inspection
+c29s1p.r246b.allen(config)#errdisable recovery cause loopback
+c29s1p.r246b.allen(config)#errdisable recovery cause small-frame
+c29s1p.r246b.allen(config)#errdisable recovery interval 1800
+c29s1p.r246b.allen(config)#vlan internal 
+ << allocation policy ascending
+c29s1p.r246b.allen(config)#class-map match-all AutoQoS-VoIP-RTP-Trust
+c29s1p.r246b.allen(config-cmap)#  match ip dscp ef 
+c29s1p.r246b.allen(config-cmap)#class-map match-all AutoQoS-VoIP-Control-Trus
+ << $atch-all AutoQoS-VoIP-Control-Trust         
+c29s1p.r246b.allen(config-cmap)#  match ip dscp cs3  af31 
+c29s1p.r246b.allen(config-cmap)#policy-map AutoQoS-Police-CiscoPhone
+c29s1p.r246b.allen(config-pmap)# class AutoQoS-Vo
+ << IP-RTP-Trust
+c29s1p.r246b.allen(config-pmap-c)#   set dscp ef
+c29s1p.r246b.allen(config-pmap-c)#  police 320000 8000 exceed-action policed-$0000 8000 exceed-action policed-d         scp-trans
+ << exceed-action policed-dscp-transm         it
+c29s1p.r246b.allen(config-pmap-c)# class AutoQoS-VoIP-Control-Trust
+c29s1p.r246b.allen(config-pmap-c)#   set dscp cs3
+c29s1p.r246b.allen(config-pmap-c)#  police 32000
+ <<  8000 exceed-action policed-d$000 8000 exceed-action policed-ds         cp-transmxceed-action policed-dscp-transmi         t
+c29s1p.r246b.allen(config-
+ << pmap-c)#interface FastEthernet0
+c29s1p.r246b.allen(config-if)# no ip address
+c29s1p.r246b.allen(config-if)# shutdown
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/1
+c29s1p.r246b.allen(config-if)# description allen.ap1-1
+c29s1p.r246b.alle
+ << n(config-if)# switchport access vlan 551
+% Access VLAN does not exist. Creating vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/2
+c29s1p.r246b.allen(config-if)# description alle
+ << n.ap2-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/3
+c29s1p.r246b.allen(config-if)# description allen.ap3-2
+c29s1p.r246b.a
+ << llen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/4
+c29s1p.r246b.allen(config-if)# description allen.ap4-2
+c29s1p.r246b.allen(config-if)# switch
+ << port access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/5
+c29s1p.r246b.allen(config-if)# description allen.ap2-2
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c
+ << 29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/6
+c29s1p.r246b.allen(config-if)# description allen.ap7-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(confi
+ << g-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/7
+c29s1p.r246b.allen(config-if)# description allen.ap3-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode 
+ << access
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/8
+c29s1p.r246b.allen(config-if)#
+Mar  1 03:49:32: %LINK-5-CHANGED: Interface FastEthernet0, changed state to administratively down description allen.ap1-2
+c29s1p.r246b.allen(config-if)#
+ <<  switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)
+ << # switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast sho
+ << uld only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on 
+ << GigabitEthernet1/0/8 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/9
+c29s1p.r246b.allen(config-if)# description allen.ap5-2
+c29s1p.r246b.allen(config-if)# switchport
+ <<  access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchpor
+ << t port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be
+ <<  enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthe
+ << rnet1/0/9 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/10
+c29s1p.r246b.allen(config-if)# description 130.18.23.106
+c29s1p.r246b.allen(config-if)# switchport access 
+ << vlan 802
+% Access VLAN does not exist. Creating vlan 802
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+ << 
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree po
+ << rtfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Po
+ << rtfast has been configured on GigabitEthernet1/0/10 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/11
+c29s1p.r246b.allen(config-if)# description 130.18.23.32
+c29s1p.r
+ << 246b.allen(config-if)# switchport access vlan 802
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.
+ << r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+
+ << %Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast h
+ << as been configured on GigabitEthernet1/0/11 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/12
+c29s1p.r246b.allen(config-if)# description allen.ap14-1
+c29s1p.r246b.all
+ << en(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.al
+ << len(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning
+ << : portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been 
+ << configured on GigabitEthernet1/0/12 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/13
+c29s1p.r246b.allen(config-if)# description allen.ap10-1
+c29s1p.r246b.allen(confi
+ << g-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrator
+ << s, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/13 but will only
+ have effect when the interface is in a non-trunkin
+ << g mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/14
+c29s1p.r246b.allen(config-if)# description allen.ap9-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.
+ << allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security
+ <<  aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switch
+ << es, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/14 but will only
+ have effect when the interface is in a non-trunking mode.
+
+ << c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/15
+c29s1p.r246b.allen(config-if)# description allen.ap13-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(co
+ << nfig-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ << 
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/15 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/16
+c29s1p.r246b.allen(config-if)# descript
+ << ion allen255.ivn
+c29s1p.r246b.allen(config-if)# switchport access vlan 91
+% Access VLAN does not exist. Creating vlan 91
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast sh
+ << ould only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on
+ <<  GigabitEthernet1/0/16 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/17
+c29s1p.r246b.allen(config-if)# description allen.ap12-1
+c29s1p.r246b.allen(config-if)# switch
+ << port access vlan 551
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switc
+ << hport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should onl
+ << y be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on Gigabit
+ << Ethernet1/0/17 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/18
+c29s1p.r246b.allen(config-if)# switchport access vlan 60
+% Access VLAN does not exist. Creating vlan 
+ << 60
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-securit
+ << y aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on po
+ << rts connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/18 but
+ <<  will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/19
+c29s1p.r246b.allen(config-if)# switchport access vlan 514
+% Access VLAN does not exist. Creating vlan 514
+c29s1p.r246b
+ << .allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+ << 
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to
+ <<  a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/19 but will only
+ hav
+ << e effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/20
+c29s1p.r246b.allen(config-if)# switchport access vlan 514
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(con
+ << fig-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging ty
+ << pe inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridg
+ << es, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/20 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r2
+ << 46b.allen(config-if)#interface GigabitEthernet1/0/21
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+% Access VLAN does not exist. Creating vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchpor
+ << t port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29
+ << s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ << 
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/21 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-i
+ << f)#interface GigabitEthernet1/0/22
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchpo
+ << rt port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b
+ << .allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridgi
+ << ng loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/22 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/23
+c29s1p.r246b.allen(config-if)#
+ <<  switchport access vlan 514
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)
+ << # switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast sho
+ << uld only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on 
+ << GigabitEthernet1/0/23 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/24
+c29s1p.r246b.allen(config-if)# switchport access vlan 506
+% Access VLAN does not exist. Creati
+ << ng vlan 506
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport por
+ << t-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enab
+ << led on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1
+ << /0/24 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/25
+c29s1p.r246b.allen(config-if)# description allen.ap7-2
+c29s1p.r246b.allen(config-if)# switchport access vlan 5
+ << 51
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-securit
+ << y aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on po
+ << rts connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/25 but
+ <<  will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/26
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.
+ << r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-se
+ << curity aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, 
+ << switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/26 but will only
+ have effect when the interface is in a non-trunking m
+ << ode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/27
+c29s1p.r246b.allen(config-if)# switchport access vlan 506
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1
+ << p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# swit
+ << chport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is e
+ << nabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/27 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/
+ << 28
+c29s1p.r246b.allen(config-if)# switchport access vlan 506
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation prot
+ << ect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tre
+ << e portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+ << 
+%Portfast has been configured on GigabitEthernet1/0/28 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/29
+c29s1p.r246b.allen(config-if)# switchport access vlan 506
+c2
+ << 9s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security agin
+ << g time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports co
+ << nnected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/29 but will 
+ << only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/30
+c29s1p.r246b.allen(config-if)# switchport access vlan 506
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b
+ << .allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-securit
+ << y aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switc
+ << hes, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/30 but will only
+ have effect when the interface is in a non-trunking mode.
+ << 
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/31
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246
+ << b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport
+ <<  port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled
+ << , can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/31 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/32
+c2
+ << 9s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c2
+ << 9s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portf
+ << ast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portf
+ << ast has been configured on GigabitEthernet1/0/32 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/33
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r24
+ << 6b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 1
+ << 5
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected 
+ << to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/33 but will only
+ h
+ << ave effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/34
+c29s1p.r246b.allen(config-if)# description allen.ap11-1
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen
+ << (config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1
+ << p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a sin
+ << gle
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/34 but will only
+ have effe
+ << ct when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/35
+c29s1p.r246b.allen(config-if)# description sep0004f28f906e
+c29s1p.r246b.allen(config-if)# switchport access vlan 60
+c29s1p.r246b.allen(confi
+ << g-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport voice vlan 614
+% Voice VLAN does not exist. Creating vlan 614
+c29s1p.r246b.allen(config-if)# srr-queue bandwidth share 10 10 60 20
+c29s1p.r246b.allen(config-if)# queue-set 2
+c29s
+ << 1p.r246b.allen(config-if)# priority-queue out 
+c29s1p.r246b.allen(config-if)# snmp trap mac-notification change added
+c29s1p.r246b.allen(config-if)# snmp trap mac-notification change removed
+c29s1p.r246b.allen(config-if)# mls qos trust device cisco-pho
+ << ne
+c29s1p.r246b.allen(config-if)# mls qos trust cos
+c29s1p.r246b.allen(config-if)# auto qos voip cisco-phone 
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+c29s1p.r246b.allen(config-if)# service-policy input AutoQoS-Police-CiscoPhone
+c29s1p.r
+ << 246b.allen(config-if)#interface GigabitEthernet1/0/36
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(c
+ << onfig-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-sec
+ << urity
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cau
+ << se temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/36 but will only
+ have effect when the interface is
+Mar  1 03:50:29: %PARSE_RC-4-PRC_NON_COMPLIANCE: `no policy-map AUTOQOS-SRND4-SOFTPHONE-POLICY '
+
+ << Mar  1 03:50:29: %PARSE_RC-4-PRC_NON_COMPLIANCE: `no policy-map AUTOQOS-SRND4-CISCOPHONE-POLICY '
+Mar  1 03:50:29: %PARSE_RC-4-PRC_NON_COMPLIANCE: `no policy-map AUTOQOS-SRND4-C in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthe
+ << rnet1/0/37
+c29s1p.r246b.allen(config-if)# description 130.18.25.19
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p
+ << .r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)#LASSIFY-POLICY '
+Mar  1 03:50:29: %PARSE_RC-4-PRC_NON_COMPLIANCE: `no policy-map AUT
+ << OQOS-SRND4-CLASSIFY-POLICE-POLICY ' switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connecte
+ << d to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/37 but will only
+
+ <<  have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/38
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(
+ << config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging
+ <<  type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, br
+ << idges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/38 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p
+ << .r246b.allen(config-if)#interface GigabitEthernet1/0/39
+c29s1p.r246b.allen(config-if)# switchport access vlan 24
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)# switchport port-security maximum 2
+c29s1p.r246b.allen
+ << (config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inactivity
+c29s1p.r246b.allen(config-if)# switchport port-s
+ << ecurity
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can c
+ << ause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/39 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/40
+c29s1p.r2
+ << 46b.allen(config-if)# description allen.ap6-2
+c29s1p.r246b.allen(config-if)# switchport access vlan 551
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode access
+c29s1p.r246b.allen(config-if)#
+ <<  switchport port-security maximum 2
+c29s1p.r246b.allen(config-if)# switchport port-security violation protect
+c29s1p.r246b.allen(config-if)# switchport port-security aging time 15
+c29s1p.r246b.allen(config-if)# switchport port-security aging type inact
+ << ivity
+c29s1p.r246b.allen(config-if)# switchport port-security
+c29s1p.r246b.allen(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc.
+ << .. to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/40 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1p.r246b.alle
+ << n(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/41
+c29s1p.r246b.allen(config-if)# description c29s9.r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if
+ << )# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/42
+c29s1p.r246b.allen(config-if)# description c29s2.r246b.allen
+c29s
+ << 1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface G
+ << igabitEthernet1/0/43
+c29s1p.r246b.allen(config-if)# description c29s3.r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r
+ << 246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/44
+c29s1p.r246b.allen(config-if)# description c29s4.r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(
+ << config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/45
+c29s1p.r246b.allen(config-if)# description c29s5.r246b.al
+ << len
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#in
+ << terface GigabitEthernet1/0/46
+c29s1p.r246b.allen(config-if)# description c29s6.r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+ << 
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/47
+c29s1p.r246b.allen(config-if)# description c29s7.r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r24
+ << 6b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface GigabitEthernet1/0/48
+c29s1p.r246b.allen(config-if)# description c29s8
+ << .r246b.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# no keepalive
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(conf
+ << ig-if)#interface GigabitEthernet1/0/49
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface Gi
+ << gabitEthernet1/0/50
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface TenGigabitEthernet1/0
+ << /1
+c29s1p.r246b.allen(config-if)# description c29s1p.r111e.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(config-if)# ip dhcp snooping trust
+c29s1p.r246b.al
+ << len(config-if)#interface TenGigabitEthernet1/0/2
+c29s1p.r246b.allen(config-if)# description c29s1p.r319c.allen
+c29s1p.r246b.allen(config-if)# switchport trunk native vlan 92
+c29s1p.r246b.allen(config-if)# switchport mode trunk
+c29s1p.r246b.allen(confi
+ << g-if)# ip dhcp snooping trust
+c29s1p.r246b.allen(config-if)#interface Vlan1
+c29s1p.r246b.allen(config-if)# no ip address
+c29s1p.r246b.allen(config-if)# shutdown
+c29s1p.r246b.allen(config-if)#interface Vlan92
+c29s1p.r246b.allen(config-if)# ip address 
+ << 10.92.1.241 255.255.0.0
+c29s1p.r246b.allen(config-if)# ip broadcast-address 10.92.255.255
+c29s1p.r246b.allen(config-if)#ip default-gateway 10.92.0.1
+c29s1p.r246b.allen(config)#no ip http server
+c29s1p.r246b.allen(config)#ip http secure-server
+% Gener
+ << ating 1024 bit RSA keys, keys will be non-exportable...
+Mar  1 03:50:54: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan92, changed state to down
+[OK] (elapsed time was 1 seconds)
+
+c29s1p.r246b.allen(config)#logging facility local1
+c29s1p.r246b.
+ << allen(config)#logging host 130.18.8.12
+c29s1p.r246b.allen(config)#access-list 1 permit 130.18.92.0 0.0.3.255
+c29s1p.r246b.allen(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+c29s1p.r246b.allen(config)#access-list 1 permit 130.18.8.0 0.0.0.255
+c29
+ << s1p.r246b.allen(config)#snmp-server community sysnet RO 1
+c29s1p.r246b.allen(config)#snmp-server community c2-b2=a2 RW 1
+c29s1p.r246b.allen(config)#snmp-server community spongebob 
+Mar  1 03:50:55: %LINK-5-CHANGED: Interface Vlan1, changed state to adm
+ << inistratively down
+Mar  1 03:50:56: %SSH-5-ENABLED: SSH 1.99 has been enabledRO
+c29s1p.r246b.allen(config)#snmp-server contact 6f-1244
+c29s1p.r246b.allen(config)#snmp-server enable traps snmp authentication linkd
+ << $ enable traps snmp authentication linkdo         wn linkupaps snmp authentication linkdown linkup          coldstartuthenticatio
+ << n linkdown linkup coldstart          warmstart
+c29s1p.r246b.allen(config)#snmp-server enable traps transceiver all
+c29s1p.r246b.allen(config)#snmp-server enable traps tty
+c29s1p.r246b.allen(config)#snmp-server enable traps cluster
+c29s1p.r246
+ << b.allen(config)#snmp-server enable traps config-copy
+c29s1p.r246b.allen(config)#
+Mar  1 03:50:56: %PKI-4-NOAUTOSAVE: Configuration was modified.  Issue "write memory" to save new certificatesnmp-server enable traps config
+c29s1p.r246b.allen(config)#snm
+ << p-server enable traps config-ctid
+c29s1p.r246b.allen(config)#snmp-server enable traps dot1x auth-fail-vlan gues$ enable traps dot1x auth-fail-vlan guest         -vlan no-
+ << aps dot1x auth-fail-vlan guest-vlan no-a         uth-fail-uth-fail-vlan guest-vlan no-auth-fail-v         lan no-guv
+ << lan guest-vlan no-auth-fail-vlan no-gue         st-vlan
+c29s1p.r246b.allen(config)#snmp-server enable traps entity
+c29s1p.r246b.allen(config)#
+Mar  1 03:50:57: %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 130.18.8.12 port 514 started - CLI in
+ << itiatedsnmp-server enable traps power-ethernet group 1
+c29s1p.r246b.allen(config)#snmp-server enable traps power-ethernet police
+c29s1p.r246b.allen(config)#snmp-server enable traps cpu threshold
+c29s1p.r246b.allen(config)#snmp-server enable traps rep
+
+ << c29s1p.r246b.allen(config)#snmp-server enable traps bridge newroot topologych$ enable traps bridge newroot topologycha         nge
+c29s1p.r246b.allen(config)#snmp-server enable traps stpx inconsi
+ << stency root-i$ enable traps stpx inconsistency root-in         consistenaps stpx inconsistency root-inconsistenc         y loop-in
+ << nconsistency root-inconsistency loop-inc         onsistenccy root-inconsistency loop-inconsistency         
+c29s1p.r246b.allen(config)#snmp-server
+ <<  enable traps vtp
+c29s1p.r246b.allen(config)#snmp-server enable traps vlancreate
+c29s1p.r246b.allen(config)#snmp-server enable traps vlandelete
+c29s1p.r246b.allen(config)#snmp-server enable traps flash insertion removal
+c29s1p.r246b.allen(config)#snmp
+ << -server enable traps port-security
+c29s1p.r246b.allen(config)#snmp-server enable traps envmon fan shutdown suppl$ enable traps envmon fan shutdown supply          temperat
+ << aps envmon fan shutdown supply temperatu         re status
+c29s1p.r246b.allen(config)#snmp-server enable traps errdisable
+c29s1p.r246b.allen(config)#snmp-server enable traps mac-notification change m
+ << $ enable traps mac-notification change mo         ve threshaps mac-notification change move thresho         ld
+c29s1p.r246b.allen(config)#snmp-server enable 
+ << traps vlan-membership
+c29s1p.r246b.allen(config)#snmp-server host 130.18.8.12 sysnet 
+c29s1p.r246b.allen(config)#line con 0
+c29s1p.r246b.allen(config-line)#line vty 0 4
+c29s1p.r246b.allen(config-line)# access-class 1 in
+c29s1p.r246b.allen(config-line
+ << )# password 7 106F1B1C044A1E411B
+c29s1p.r246b.allen(config-line)# login
+c29s1p.r246b.allen(config-line)# transport input all
+c29s1p.r246b.allen(config-line)#line vty 5 15
+c29s1p.r246b.allen(config-line)# access-class 1 in
+c29s1p.r246b.allen(config-li
+ << ne)# password 7 123817121356004E3D
+c29s1p.r246b.allen(config-line)# login
+c29s1p.r246b.allen(config-line)# transport input all
+c29s1p.r246b.allen(config-line)#ntp server 10.92.0.5
+c29s1p.r246b.allen(config)#end
+c29s1p.r246b.allen#end
+Translating "en
+ << d"...domain server (130.18.80.12)
+ << 
+Mar  1 03:51:05: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+

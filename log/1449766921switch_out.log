@@ -1,0 +1,1000 @@
+trying to use serial port: /dev/ttyUSB1
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+
+
+         --- System Configuration Dialog ---
+
+Enable secret warning
+----------------------------------
+In order to access the device manager, an enable secret is required
+If you enter the initial configuration dialog, you will be prompted for t
+ << he enable secret
+If you choose not to enter the intial configuration dialog, or if you exit setup without setting the enable secret,
+please set an enable secret using the following CLI in configuration mode-
+enable secret 0 <cleartext password>
+------
+ << ----------------------------
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to ent
+Expect: matched string 1: [yes/no]
+ >> 
+
+ >> no
+
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << er the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% 
+ << Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: no
+Switch>term len 0
+Switch>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << 
+Mar 30 01:48:56.272: %LINK-5-CHANGED: Interface Vlan1, changed state to administratively downshow version
+Cisco IOS Software, C2960C Software (C2960c405-UNIVERSALK9-M), Version 15.0(2)SE5, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com
+ << /techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Fri 25-Oct-13 14:35 by prod_rel_team
+
+ROM: Bootstrap program is C2960C boot loader
+BOOTLDR: C2960C Boot Loader (C2960c405-HBOOT-M) Version 12.2(55r)EX9, RELEASE SOFTWARE (fc1)
+
+Sw
+ << itch uptime is 21 minutes
+System returned to ROM by power-on
+System restarted at 01:27:24 UTC Wed Mar 30 2011
+System image file is "flash:/c2960c405-universalk9-mz.150-2.SE5/c2960c405-universalk9-mz.150-2.SE5.bin"
+
+
+This product contains cryptograph
+ << ic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, ex
+ << porters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product i
+ << mmediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+License 
+ << Level: lanlite
+License Type: Permanent
+Next reload license Level: lanlite
+
+cisco WS-C2960C-8TC-S (PowerPC405) processor (revision H0) with 131072K bytes of memory.
+Processor board ID FOC1920W23P
+Last reset from power-on
+1 Virtual Ethernet interface
+ << 
+8 FastEthernet interfaces
+2 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+64K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : DC:EB:94:04:41:00
+Motherboard assembly number   
+ <<   : 73-13528-04
+Power supply part number        : 341-0208-02
+Motherboard serial number       : FOC19195A5F
+Power supply serial number      : LIT19170N01
+Model revision number           : H0
+Motherboard revision number     : A0
+Model number         
+ <<            : WS-C2960C-8TC-S
+System serial number            : FOC1920W23P
+Top Assembly Part Number        : 800-35232-01
+Top Assembly Revision Number    : M0
+Version ID                      : V01
+CLEI Code Number                : CMMGA00ARA
+Hardwar
+ << e Board Revision Number  : 0x01
+
+
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 10    WS-C2960C-8TC-S    15.0(2)SE5            C2
+ << 960c405-UNIVERSALK9-M  
+
+
+Configuration register is 0xF
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret Area=l*w
+
+ >> enable password Area=l*w
+
+ >> no aaa new-model
+
+ >> clock summer-time CDT recurring
+
+ >> authentication mac-move permit
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.2.210
+
+ >> vtp domain vtp01.mgmt.msstate.edu
+
+ >> vtp mode client
+
+ >> crypto pki trustpoint TP-self-signed-2494998912
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-2494998912
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-2494998912
+
+ >> crypto pki certificate chain TP-self-signed-2494998912
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#3232.cer
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> vlan internal allocation policy ascending
+
+ >> errdisable recovery cause all
+
+ >> errdisable recovery interval 1800
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >> ip http server
+
+ >> ip http secure-server
+
+ >> logging facility local1
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps transceiver all
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps config-ctid
+
+ >> snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps power-ethernet police
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps rep
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps errdisable
+
+ >> snmp-server enable traps mac-notification change move threshold
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.2.208 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> line vty 5 15
+
+ >>  password Area=l*w
+
+ >>  login
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << no service pad
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#service password-encryption
+Switch(config)#boot-start-marker
+Switch(config)#boot-end-marker
+Switch(conf
+ << ig)#enable secret Area=l*w
+Switch(config)#enable password Area=l*w
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+Switch(config)#no aaa new-model
+Switch(config)#clock s
+ << ummer-time CDT recurring
+Switch(config)#authentication mac-move permit
+Switch(config)#ip domain-name mgmt.msstate.edu
+Switch(config)#ip name-server 130.18.2.210
+Switch(config)#vtp domain vtp01.mgmt.msstate.edu
+Changing VTP domain name from NULL to vt
+ << p01.mgmt.msstate.edu
+Switch(config)#vtp mode client
+Setting device to VTP Client mode for VLANS.
+Switch(config)#crypto pki trustpoint TP-self-signed-2494998912
+Switch(ca-trustpoint)# enrollment selfsigned
+Switch(ca-trustpoint)# subject-name cn=IOS-Se
+ << lf-Signed-Certificate-2494998912
+Switch(ca-trustpoint)#
+Mar 30 02:49:52: %SYS-6-CLOCKUPDATE: System clock has been updated from 01:49:52 UTC Wed Mar 30 2011 to 02:49:52 CDT Wed Mar 30 2011, configured from console by console.
+Mar 30 02:49:53: %SW_VLAN-
+ << 6-VTP_DOMAIN_NAME_CHG: VTP domain name changed to vtp01.mgmt.msstate.edu. revocation-check none
+Switch(ca-trustpoint)# rsakeypair TP-self-signed-2494998912
+Switch(ca-trustpoint)#crypto pki certificate chain TP-self-signed-2494998912
+Switch(config-cert-
+ << chain)# certificate self-signed 01 nvram:IOS-Self-Sig#3232$e self-signed 01 nvram:IOS-Self-Sig#3232.         cer
+Switch(config-cert-chain)#spanning-tree portfast bpduguard default
+Switch(config
+ << )#spanning-tree extend system-id
+Switch(config)#vlan internal allocation policy ascending
+Switch(config)#errdisable recovery cause all
+Switch(config)#errdisable recovery interval 1800
+Switch(config)#interface Vlan1
+Switch(config-if)# no ip address
+S
+ << witch(config-if)# no ip route-cache
+Switch(config-if)# shutdown
+Switch(config-if)#interface Vlan92
+Switch(config-if)#ip http server
+Switch(config)#ip http secure-server
+% Generating 1024 bit RSA keys, keys will be non-exportable...
+Mar 30 02:49:57: 
+ << %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan92, changed state to down
+[OK] (elapsed time was 4 seconds)
+
+Switch(config)#logging facility local1
+Switch(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+Switch(config)#snmp-server community sys
+ << net RO 1
+Switch(config)#snmp-server community c2-b2=a2 RW 1
+Switch(config)#snmp-server enable traps snmp authentication linkdown linkup c$ enable traps snmp authentication linkdown linkup co 
+ <<         ldstart waps snmp authentication linkdown linkup coldstart wa         rmstart
+Switch(config)#snmp-server enable traps transceiver all
+Switch(config)#snmp-server enabl
+ << e traps tty
+Switch(config)#snmp-server enable traps cluster
+Switch(config)#snmp-server enable traps config-copy
+Switch(config)#snmp-server enable traps config
+Switch(config)#snmp-server enable traps config-ctid
+Switch(config)#snmp-server enable traps
+ <<  dot1x auth-fail-vlan guest-vlan no-au$ enable traps dot1x auth-f
+Mar 30 02:50:01: %SSH-5-ENABLED: SSH 1.99 has been enabledail-vlan guest-vlan no-aut         h-fail-vl
+ << aps dot1x auth-fail-vlan guest-vlan no-auth-fail-vla         n no-guesuth-fail-vlan guest-vlan no-auth-fail-vlan no-guest         -
+ << vlan
+Switch(config)#snmp-server enable traps entity
+Switch(config)#snmp-server enable traps power-ethernet police
+Switch(config)#snmp-server enable traps cpu threshold
+Switch(config)#snmp-server enable traps rep
+Switch(config)#snmp-server enable trap
+ << s bridge newroot topologychange
+Switch(config)#snmp-server enable traps stpx inconsistency root-inconsistency$ enable traps stpx inconsistency root-inconsistency          loop-inco
+ << 
+Mar 30 02:50:01: %PKI-4-NOAUTOSAVE: Configuration was modified.  Issue "write memory" taps stpx inconsistency root-inconsistency loop-incon         sistency
+Switch(config)#snmp-server e
+ << nable traps syslog
+Switch(config)#snmp-server enable traps vtp
+Switch(config)#snmp-server enable traps vlancreate
+Switch(config)#snmp-server enable traps vlandelete
+Switch(config)#snmp-server enable traps flash insertion removal
+Switch(config)#snmp-s
+ << erver enable traps port-security
+Switch(config)#snmp-server enable traps envmon fan shutdown supply temperatur$ enable traps envmon fan shutdown supply temperature          status
+Sw
+ << itch(config)#snmp-server eo save new certificatenable traps errdisable
+Switch(config)#snmp-server enable traps mac-notification change move threshol$ enable traps mac-notification change move 
+ << threshold         
+Switch(config)#snmp-server enable traps vlan-membership
+Switch(config)#snmp-server host 130.18.2.208 sysnet 
+Switch(config)#line con 0
+Switch(config-line)#line vty 0 4
+Switch(config-line)# password Area=l*w
+Switch(config-
+ << line)# login
+Switch(config-line)#line vty 5 15
+Switch(config-line)# password Area=l*w
+Switch(config-line)# login
+Switch(config-line)#ntp server 10.92.0.5
+Switch(config)#end
+Switch#
+ << 
+Mar 30 02:50:05: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> spanning-tree mode pvst
+
+ >> no spanning-tree vlan 2-91,93-505,507-560,562-600,602-609,611-616,618-648,653
+
+ >> no spanning-tree vlan 654-1000
+
+ >> spanning-tree vlan 1-1000 priority 61440
+
+ >> 
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << spanning-tree mode pvst
+Switch(config)#no spanning-tree vlan 2-91,93-505,507-560,562-600,602-609,611-$-tree vlan 2-91,93-505,507-560,562-600,602-609,611-6         16,618-64
+ <<  2-91,93-505,507-560,562-600,602-609,611-616,618-648         ,653
+Switch(config)#no spanning-tree vlan 654-1000
+Switch(config)#spanning-tree vlan 1-1000 priority 61440
+Switch(config)#
+Switch(c
+ << onfig)#end
+Switch#
+ << 
+Mar 30 02:50:12: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> hostname c29s1c.r115.rosenbaum 
+
+Expect: searching for 2 strs:  :# :>
+ << hostname c29s1c.r115.rosenbaum 
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1c.r115.rosenbaum#
+ << 
+Mar 30 02:50:19: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> snmp-server contact  
+
+Expect: searching for 1 strs:  :#
+ << snmp-server contact  
+% Incomplete command.
+
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1c.r115.rosenbaum#
+ << 
+Mar 30 02:50:25: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> interface vlan 92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface vlan 92
+c29s1c.r115.rosenbau(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip address 10.92.2.214 255.255.0.0
+
+ >> ip broadcast-address 10.92.255.255
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip address 10.92.2.214 255.255.0.0
+c29s1c.r115.rosenbau(config-if)#ip broadcast-address 10.92.255.255
+c29s1c.r115.rosenbau(config-if)#end
+c29s1c.r115.rosenbaum#
+ << 
+Mar 30 02:50:31: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> interface Vlan92
+
+Expect: searching for 1 strs:  :(config-if)#
+ << interface Vlan92
+c29s1c.r115.rosenbau(config-if)#
+Expect: matched string 1: (config-if)#
+ >> ip default-gateway 10.92.0.1
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << ip default-gateway 10.92.0.1
+c29s1c.r115.rosenbau(config)#end
+c29s1c.r115.rosenbaum#
+Mar 30 02:50:37: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> ip dhcp snooping
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: #
+ >> ip dhcp snooping vlan 651
+
+Expect: searching for 1 strs:  :#
+ << ip dhcp snooping vlan 651
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: #
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << end
+c29s1c.r115.rosenbaum#
+Mar 30 02:50:44: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> default interface range fa0/1 - 8 
+
+ >> interface range fa0/1 - 8 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range fa0/1 - 8 
+c29s1c.r115.rosenbau(config)#interface range fa0/1 - 8 
+c29s1c.r115.rosenbau(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport access vlan 651
+
+ >> switchport mode access
+
+ >> spanning-tree portfast
+
+ >> switchport port-security maximum 2
+
+ >> switchport port-security
+
+ >> switchport port-security aging time 15
+
+ >> switchport port-security violation protect
+
+ >> switchport port-security aging type inactivity
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport access vlan 651
+c29s1c.r115.rosenbau(config-if-range)#switchport mode access
+c29s1c.r115.rosenbau(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, conce
+ << ntrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast will be configured in 8 interfaces due to the range command 
+ but will only have effect when the interf
+ << aces are in a non-trunking mode.
+c29s1c.r115.rosenbau(config-if-range)#switchport port-security maximum 2
+c29s1c.r115.rosenbau(config-if-range)#switchport port-security
+c29s1c.r115.rosenbau(config-if-range)#switchport port-security aging time 15
+c29s1
+ << c.r115.rosenbau(config-if-range)#switchport port-security violation prot$port-security violation prote         ct
+c29s1c.r115.rosenbau(config-if-range)#switchport port-security aging type ina
+ << $port-security aging type inac         tivity
+c29s1c.r115.rosenbau(config-if-range)#end
+c29s1c.r115.rosenbaum#
+ << 
+Mar 30 02:50:58: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << 
+c29s1c.r115.rosenbaum#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s1c.r115.rosenbau(config)#
+Expect: matched string 1: (config)#
+ >> default interface range gi0/1 - 2 
+
+ >> interface range gi0/1 - 2 
+
+Expect: searching for 1 strs:  :(config-if-range)#
+ << default interface range gi0/1 - 2 
+c29s1c.r115.rosenbau(config)#interface range gi0/1 - 2 
+c29s1c.r115.rosenbau(config-if-range)#
+Expect: matched string 1: (config-if-range)#
+ >> switchport mode trunk
+
+ >> switchport trunk native vlan 92
+
+ >> ip dhcp snooping trust
+
+ >> no keepalive
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << switchport mode trunk
+c29s1c.r115.rosenbau(config-if-range)#switchport trunk native vlan 92
+c29s1c.r115.rosenbau(config-if-range)#ip dhcp snooping trust
+c29s1c.r115.rosenbau(config-if-range)#no keepalive
+c29s1c.r115.rosenbau(config-if-range)#end
+c29s
+ << 1c.r115.rosenbaum#
+ << 
+Mar 30 02:51:09: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s1c.r115.rosenbaum#write mem
+Building configuration...
+[OK]
+c29s1c.r115.rosenbaum#
+Expect: matched string 1: #
+ >> 
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s1c.r115.rosenbaum#
+c29s1c.r115.rosenbaum#
+Expect: matched string 1: #
+ >> sh run
+
+Expect: searching for 2 strs:  :# :>
+ << sh run
+Building configuration...
+
+Current configuration : 7624 bytes
+!
+! Last configuration change at 02:51:09 CDT Wed Mar 30 2011
+! NVRAM config last updated at 02:51:17 CDT Wed Mar 30 2011
+!
+version 15.0
+no service pad
+service timestamps debug
+ <<  datetime localtime
+service timestamps log datetime localtime
+service password-encryption
+!
+hostname c29s1c.r115.rosenbaum
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$xNUF$1CbiesvURu2uK1M7gVbGy1
+enable password 7 096D5C0C18581B58
+ << 1C
+!
+no aaa new-model
+clock summer-time CDT recurring
+system mtu routing 1500
+authentication mac-move permit
+!
+!
+ip dhcp snooping vlan 651
+ip dhcp snooping
+!
+ip domain-name mgmt.msstate.edu
+ip name-server 130.18.2.210
+!
+!
+crypto pki trustpo
+ << int TP-self-signed-2483306752
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2483306752
+ revocation-check none
+ rsakeypair TP-self-signed-2483306752
+!
+!
+crypto pki certificate chain TP-self-signed-2483306752
+ certificate self-
+ << signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32343833 33303637 3532301E 170D3131 30333330 30313530 
+  30315A17 0D323
+ << 030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 34383333 
+  30363735 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100AA49 6E5B62E9 7350BB84 207074AA 54104
+ << 2EE EBA77C81 2EEBF6E1 BA7DF269 
+  B9B67F24 388A505C 722F1867 A43C023F 9CA25CC6 21228B22 899E08C6 CE71DAD8 
+  EB77DD66 E98C912C CE7AAC28 88DB852F ADA72B91 C0CBEE33 09EF29E5 A2FB8FBC 
+  FA42B269 7BE18EED BD81342D 91F19D16 FB369A27 B6568477 3F8610E2 28505
+ << DE4 
+  F1A10203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14DDF88F 02C43034 0879DF2F 35A93CEA B8117C9F 63301D06 
+  03551D0E 04160414 DDF88F02 C4303408 79DF2F35 A93CEAB8 117C9F63 300D0609 
+  2A864886 F70D0101 0
+ << 5050003 81810085 ED99C49F D756E151 40998EF3 E661F2E4 
+  E4574635 0469AE97 68C6318A 24FBD960 DA4C98A6 F95C6EB7 84FB697B 7FDACBB5 
+  65089561 065B814D D40A3C57 787875FD 82F6BF63 09C9C78A 90D28380 DD6D7439 
+  72BD8899 8503AB52 033ED15F 0C9DB9D9 5CD49E56 1
+ << 7CF8C23 C95F8FC9 7C0AC0FC 
+  1627F4B8 B3EBD8DE 75DE672A 537F01
+  	quit
+!
+spanning-tree mode pvst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+no spanning-tree vlan 2-91,93-505,507-560,562-600,602-609,611-616,618-648,653
+
+ << no spanning-tree vlan 654-1000
+spanning-tree vlan 1-1000 priority 61440
+!
+!
+!
+!
+!
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause security-violation
+errdisable recovery cause channel-misconfig (STP)
+
+ << errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdisable recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause gbic-invalid
+errdisable recovery cause psecure-violation
+errdisable re
+ << covery cause port-mode-failure
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause pppoe-ia-rate-limit
+errdisable recovery cause mac-limit
+errdisable recovery cause vmps
+errdisable recovery cause storm-control
+errdisable recovery cau
+ << se inline-power
+errdisable recovery cause loopback
+errdisable recovery cause small-frame
+errdisable recovery cause psp
+errdisable recovery interval 1800
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interfac
+ << e FastEthernet0/1
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging 
+ << type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-securit
+ << y violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport 
+ << port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ switchport access vlan 651
+ switchport mode access
+ switchport port-securi
+ << ty maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ switchport access vlan 
+ << 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+ << 
+interface FastEthernet0/6
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-secur
+ << ity aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ switchport port-security aging time 15
+ switchport po
+ << rt-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ switchport access vlan 651
+ switchport mode access
+ switchport port-security maximum 2
+ switchport port-security
+ s
+ << witchport port-security aging time 15
+ switchport port-security violation protect
+ switchport port-security aging type inactivity
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dh
+ << cp snooping trust
+!
+interface GigabitEthernet0/2
+ switchport trunk native vlan 92
+ switchport mode trunk
+ ip dhcp snooping trust
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan92
+ ip address 10.92.2.214 255.255.
+ << 0.0
+ ip broadcast-address 10.92.255.255
+!
+ip default-gateway 10.92.0.1
+ip http server
+ip http secure-server
+!
+logging facility local1
+access-list 1 permit 10.92.0.0 0.0.255.255
+snmp-server community sysnet RO 1
+snmp-server community c2-b2=a2 RW 
+ << 1
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps config-copy
+snmp-server enable traps c
+ << onfig
+snmp-server enable traps config-ctid
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps entity
+snmp-server enable traps power-ethernet police
+snmp-server enable traps cpu threshold
+ << 
+snmp-server enable traps rep
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vtp
+snmp-server enable tra
+ << ps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps errdisable
+snmp
+ << -server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server host 130.18.2.208 sysnet 
+!
+!
+line con 0
+line vty 0 4
+ password 7 072E33494F54154F00
+ login
+line vty 5 15
+ password 7 096D5C0C18581B
+ << 581C
+ login
+!
+ntp server 10.92.0.5
+end
+
+c29s1c.r115.rosenbaum#
+Expect: matched string 1: #
+ >> show interface status
+
+Expect: searching for 2 strs:  :# :>
+ << show interface status
+
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        notconnect   651          auto   auto 10/100BaseTX
+Fa0/2                        notconnect   651          auto   auto 10/100Bas
+ << eTX
+Fa0/3                        notconnect   651          auto   auto 10/100BaseTX
+Fa0/4                        notconnect   651          auto   auto 10/100BaseTX
+Fa0/5                        notconnect   651          auto   auto 10/100BaseTX
+Fa0/6  
+ <<                       notconnect   651          auto   auto 10/100BaseTX
+Fa0/7                        notconnect   651          auto   auto 10/100BaseTX
+Fa0/8                        notconnect   651          auto   auto 10/100BaseTX
+Gi0/1              
+ <<           notconnect   1            auto   auto Not Present
+Gi0/2                        notconnect   1            auto   auto Not Present
+c29s1c.r115.rosenbaum#
+Expect: matched string 1: #

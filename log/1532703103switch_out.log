@@ -1,0 +1,594 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+test#
+test#
+test#
+test#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+test#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software [Denali], Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 16.3.6, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Wed 28-
+ << Feb-18 15:23 by mcpre
+
+
+Cisco IOS-XE software, Copyright (c) 2005-2018 by cisco Systems, Inc.
+All rights reserved.  Certain components of Cisco IOS-XE software are
+licensed under the GNU General Public License ("GPL") Version 2.0.  The
+software code
+ <<  licensed under GPL Version 2.0 is free software that comes
+with ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such
+GPL code under the terms of GPL Version 2.0.  For more details, see the
+documentation or "License Notice" file accompanyin
+ << g the IOS-XE software,
+or the applicable URL provided on the flyer accompanying the IOS-XE
+software.
+
+
+ROM: IOS-XE ROMMON
+BOOTLDR: CAT3K_CAA Boot Loader (CAT3K_CAA-HBOOT-M) Version 4.68, RELEASE SOFTWARE (P)
+
+test uptime is 25 minutes
+Uptime for 
+ << this control processor is 27 minutes
+System returned to ROM by Power Failure
+System image file is "flash:packages.conf"
+Last reload reason: Power Failure
+
+
+
+This product contains cryptographic features and is subject to United
+States and local cou
+ << ntry laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compl
+ << iance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryp
+ << tographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+
+Technology Package License Information: 
+
+--------------------
+ << ---------------------------------------------
+Technology-package                   Technology-package
+Current             Type             Next reboot  
+------------------------------------------------------------------
+ipbasek9            Permanent  
+ <<       ipbasek9
+
+cisco WS-C3850-12XS (MIPS) processor (revision L0) with 864936K/6147K bytes of memory.
+Processor board ID FOC2224X01Z
+2 Virtual Ethernet interfaces
+16 Ten Gigabit Ethernet interfaces
+2048K bytes of non-volatile configuration memory.
+ << 
+4194304K bytes of physical memory.
+253984K bytes of Crash Files at crashinfo:.
+3334464K bytes of Flash at flash:.
+0K bytes of  at webui:.
+
+Base Ethernet MAC Address          : 6c:6c:d3:bb:2c:00
+Motherboard Assembly Number        : 73-16285-06
+Moth
+ << erboard Serial Number          : FOC22228J6X
+Model Revision Number              : L0
+Motherboard Revision Number        : B0
+Model Number                       : WS-C3850-12XS
+System Serial Number               : FOC2224X01Z
+
+
+Switch Ports Model   
+ <<            SW Version        SW Image              Mode   
+------ ----- -----              ----------        ----------            ----   
+*    1 16    WS-C3850-12XS      16.3.6            CAT3K_CAA-UNIVERSALK9 INSTALL
+
+
+Configuration register is 0x1
+ << 02
+
+test#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+test#
+Expect: matched string 2: #
+ >> sh run
+
+Expect: searching for 2 strs:  :# :>
+ << sh run
+Building configuration...
+
+Current configuration : 13275 bytes
+!
+! Last configuration change at 09:44:13 CDT Fri Jul 27 2018
+!
+version 16.3
+no service pad
+service timestamps debug datetime localtime
+service timestamps log datetime localti
+ << me
+service password-encryption
+no platform punt-keepalive disable-kernel-core
+!
+hostname test
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$TazZ$Js
+ << df80DN4o1JDuWk0dwPN0
+enable password 7 0738735B1F0A3D551A3B0705236B
+!
+no aaa new-model
+clock timezone CST -6 0
+clock summer-time CDT recurring
+switch 1 provision ws-c3850-12xs
+!
+!
+!
+!
+!
+!
+!
+ip name-server 130.18.80.12
+ip domain name mgmt.ms
+ << state.edu
+!
+!
+!
+!
+!
+!
+!
+!
+authentication mac-move permit
+!
+crypto pki trustpoint TP-self-signed-3265535150
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3265535150
+ revocation-check none
+ rsakeypair TP-self-signed-3265
+ << 535150
+!
+crypto pki trustpoint TP-self-signed-2494998912
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2494998912
+ revocation-check none
+ rsakeypair TP-self-signed-2494998912
+!
+!
+crypto pki certificate chain TP-self-signed-3
+ << 265535150
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323635 35333531 3530301E 170D3138 3037323
+ << 7 31343334 
+  31385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 32363535 
+  33353135 30308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 010
+ << 0C968 3CFCC7B6 74F524B4 C7FDC923 BCDDE72E 2F917008 008E5AAD 
+  EFDCFA66 C86148AC DD5A0B15 55FB2237 3CB6EE50 2DF5AC34 99F6A1D9 74617FF4 
+  CA657DA5 5D68E5E3 D920AA36 E1DA716D 85794CA1 C363DF94 15A5B0CE 95045625 
+  CF732F6C DC67D8B8 D036C8D1 7438ACC9 98B
+ << 99A88 4BA4D048 ED271154 F796FBC1 
+  1554565C A08C36BE 638D8ED3 06188ED2 1992D883 5ED4B79C 6481968C C8DDA8C6 
+  9D61430E 55384CEF F6457A8F 82A91177 21107E07 C0E34DD1 B10471A5 7CD685B4 
+  6DE61D93 92589596 20FF8AE6 90F023F0 E9C5A0C9 E4A6A4E0 33F5B932 B0B
+ << 1C3EE 
+  FD76BE47 1467A5F3 DFE9B9F8 07D79ABD C3D516CD E27E9166 9CE91271 19F25FB0 
+  2C46EB5A F1CB0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 14273A32 CF2DD332 D528ED03 34BC2C18 618E713E 
+  F1301D06 03551D0E
+ <<  04160414 273A32CF 2DD332D5 28ED0334 BC2C1861 8E713EF1 
+  300D0609 2A864886 F70D0101 05050003 82010100 8B927CD1 B1089F6A 4CA08C4C 
+  A9109741 EBCAD99E 84D782D4 F4C6A2C6 9EDC5CB6 4C66DB55 B0D72142 F38CA067 
+  46E35854 DF187E75 0A481ABB AEF3150A A5BD7916
+ <<  4509211E E6884363 D62861FD 
+  8BC547FF 6DE905C7 7DFE9941 6EDFDDF3 514F5CAB 48734AD7 EEF3AF49 8D603ED1 
+  D08A427A 37B4CFCE AB16E97B E9310A59 89E8221C B2CE9736 8F922D40 769B1303 
+  8DBF07E7 A17C3855 37B1D8B6 06F1AA3C 294584E0 493B4253 F28621BE 9EE97919
+ <<  
+  F488529E A2D299EC D905A011 EAEFF1C9 DD39D302 888CF057 5AC8CB62 94CB81CC 
+  0B45F15E D8272614 DDFACD4E F59AC367 54623A6D BF601FD9 931651C5 30984FE5 
+  4E9BDCA3 1F9036B4 53C87E66 8EB55210 981FABE5
+  	quit
+crypto pki certificate chain TP-self-signed
+ << -2494998912
+!
+errdisable recovery cause udld
+errdisable recovery cause bpduguard
+errdisable recovery cause security-violation
+errdisable recovery cause channel-misconfig
+errdisable recovery cause pagp-flap
+errdisable recovery cause dtp-flap
+errdis
+ << able recovery cause link-flap
+errdisable recovery cause sfp-config-mismatch
+errdisable recovery cause gbic-invalid
+errdisable recovery cause l2ptguard
+errdisable recovery cause psecure-violation
+errdisable recovery cause port-mode-failure
+errdisable
+ <<  recovery cause dhcp-rate-limit
+errdisable recovery cause pppoe-ia-rate-limit
+errdisable recovery cause mac-limit
+errdisable recovery cause vmps
+errdisable recovery cause storm-control
+errdisable recovery cause inline-power
+errdisable recovery cause
+ <<  arp-inspection
+errdisable recovery cause link-monitor-failure
+errdisable recovery cause oam-remote-failure
+errdisable recovery cause loopback
+errdisable recovery cause psp
+errdisable recovery interval 1800
+license boot level ipbasek9
+diagnostic bo
+ << otup level minimal
+!
+spanning-tree mode mst
+spanning-tree portfast bpduguard default
+spanning-tree extend system-id
+!
+spanning-tree mst configuration
+ name msstate
+ revision 1
+ instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 
+ << 70
+ instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+ instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+ instance 1 vlan 256, 611-612, 654, 741, 996, 999
+ instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024,
+ <<  2031, 2035, 2037, 2039-2040
+ instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+ instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+ instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+ i
+ << nstance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+ instance 3 vlan 244, 248, 927
+ instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+ instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+ instance 5 vlan 16,
+ <<  48, 58, 88, 121, 131, 133-134, 216, 228
+ instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+ instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+ instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252,
+ <<  630, 928
+ instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+ instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+ instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+ instance 9 vlan 4-5, 12, 18-19, 32, 44, 
+ << 57, 62, 68, 76, 98-99, 102, 112
+ instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+ instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+ instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+ inst
+ << ance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+ instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+ instance 10 vlan 2802, 2926, 2929
+ instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+ instance 12 
+ << vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+!
+!
+!
+username root privilege 15 secret 5 $1$FZil$8iwagmTqM4fuO48LqWu4K1
+!
+redundancy
+ mode sso
+!
+lldp run
+!
+!
+class-map match-any system-cpp-police-topology-control
+  description Topol
+ << ogy control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, SGT Cache Full, LOGGING
+class-map match-any system-cpp-default
+  description DHCP snooping, show forward and rest of traffic
+class-map match-any system-cpp-poli
+ << ce-sys-data
+  description Learning cache ovfl, Crypto Control, Exception, EGR Exception, NFL SAMPLED DATA, Gold Pkt, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-forus
+
+ <<   description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-multicast
+  description Transit Traffic and MCAST Data
+class-ma
+ << p match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP_GEN and BROADCAST
+class-map match-any system-cp
+ << p-police-control-low-priority
+  description ICMP redirect and general punt
+class-map match-any system-cpp-police-wireless-priority1
+  description Wireless priority 1
+class-map match-any system-cpp-police-wireless-priority2
+  description Wireless prio
+ << rity 2
+class-map match-any system-cpp-police-wireless-priority3-4-5
+  description Wireless priority 3,4 and 5
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control
+class-map matc
+ << h-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+!
+policy-map port_child_policy
+ class non-client-nrt-class
+  bandwidth remaining ratio 10
+policy-map system-cpp-policy
+ class system-cpp-police-data
+  police rate 200 pps
+ 
+ << class system-cpp-police-sys-data
+  police rate 100 pps
+ class system-cpp-police-sw-forward
+  police rate 1000 pps
+ class system-cpp-police-multicast
+  police rate 500 pps
+ class system-cpp-police-multicast-end-station
+  police rate 2000 pps
+ class
+ <<  system-cpp-police-punt-webauth
+ class system-cpp-police-l2-control
+ class system-cpp-police-routing-control
+  police rate 1800 pps
+ class system-cpp-police-control-low-priority
+ class system-cpp-police-wireless-priority1
+ class system-cpp-police-wi
+ << reless-priority2
+ class system-cpp-police-wireless-priority3-4-5
+ class system-cpp-police-topology-control
+ class system-cpp-police-dot1x-auth
+ class system-cpp-police-protocol-snooping
+ class system-cpp-police-forus
+ class system-cpp-default
+!
+! 
+ << 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ negotiation auto
+!
+interface TenGigabitEthernet1/0/1
+!
+interface TenGigabitEthernet1/0/2
+!
+interface TenGigabitEthernet1/0/3
+!
+interface
+ <<  TenGigabitEthernet1/0/4
+!
+interface TenGigabitEthernet1/0/5
+!
+interface TenGigabitEthernet1/0/6
+!
+interface TenGigabitEthernet1/0/7
+!
+interface TenGigabitEthernet1/0/8
+!
+interface TenGigabitEthernet1/0/9
+!
+interface TenGigabitEthernet1/0/10
+
+ << !
+interface TenGigabitEthernet1/0/11
+!
+interface TenGigabitEthernet1/0/12
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface TenGigabitEthernet1/1/3
+!
+interface TenGigabitEthernet1/1/4
+!
+interface Vlan1
+ no i
+ << p address
+ no ip route-cache
+ shutdown
+!
+interface Vlan92
+ ip address 10.92.6.32 255.255.0.0
+ ip broadcast-address 10.92.255.255
+!
+ip default-gateway 10.92.0.1
+ip forward-protocol nd
+no ip http server
+ip http authentication local
+no ip http se
+ << cure-server
+!
+ip access-list extended AutoQos-4.0-wlan-Acl-Bulk-Data
+ permit tcp any any eq 22
+ permit tcp any any eq 465
+ permit tcp any any eq 143
+ permit tcp any any eq 993
+ permit tcp any any eq 995
+ permit tcp any any eq 1914
+ permit tcp any
+ <<  any eq ftp
+ permit tcp any any eq ftp-data
+ permit tcp any any eq smtp
+ permit tcp any any eq pop3
+ip access-list extended AutoQos-4.0-wlan-Acl-MultiEnhanced-Conf
+ permit udp any any range 16384 32767
+ permit tcp any any range 50000 59999
+ip acces
+ << s-list extended AutoQos-4.0-wlan-Acl-Scavanger
+ permit tcp any any range 2300 2400
+ permit udp any any range 2300 2400
+ permit tcp any any range 6881 6999
+ permit tcp any any range 28800 29100
+ permit tcp any any eq 1214
+ permit udp any any eq 1214
+ << 
+ permit tcp any any eq 3689
+ permit udp any any eq 3689
+ permit tcp any any eq 11999
+ip access-list extended AutoQos-4.0-wlan-Acl-Signaling
+ permit tcp any any range 2000 2002
+ permit tcp any any range 5060 5061
+ permit udp any any range 5060 5061
+ << 
+ip access-list extended AutoQos-4.0-wlan-Acl-Transactional-Data
+ permit tcp any any eq 443
+ permit tcp any any eq 1521
+ permit udp any any eq 1521
+ permit tcp any any eq 1526
+ permit udp any any eq 1526
+ permit tcp any any eq 1575
+ permit udp any 
+ << any eq 1575
+ permit tcp any any eq 1630
+ permit udp any any eq 1630
+ permit tcp any any eq 1527
+ permit tcp any any eq 6200
+ permit tcp any any eq 3389
+ permit tcp any any eq 5985
+ permit tcp any any eq 8080
+!
+logging facility local1
+logging hos
+ << t 130.18.8.12
+access-list 1 permit 10.92.0.0 0.0.255.255
+access-list 1 permit 130.18.8.0 0.0.0.255
+access-list 1 permit 10.93.0.0 0.0.255.255
+access-list 1 permit 130.18.1.0 0.0.0.255
+!
+snmp-server community sysnet RO 1
+snmp-server community c2-b2=
+ << a2 RW 1
+snmp-server contact test
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps tty
+snmp-server enable traps rep
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server
+ <<  enable traps vlandelete
+snmp-server enable traps port-security
+snmp-server enable traps cpu threshold
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps flash insertion removal
+snmp-server enable traps po
+ << wer-ethernet police
+snmp-server enable traps entity
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx incons
+ << istency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps vlan-membership
+snmp-server enable traps errdisable
+snmp-server enable traps transceiver all
+snmp-server enable traps mac-notification change move 
+ << threshold
+snmp-server host 130.18.8.12 sysnet 
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+!
+no vstack
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ access-class 1 in
+ password 7 0333091C570C051C4320150C3053
+ 
+ << login local
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ password 7 0333091C570C051C4320150C3053
+ login local
+ transport input ssh
+!
+ntp server 10.92.0.5
+!
+wsma agent exec
+!
+wsma agent config
+!
+wsma agent filesys
+!
+wsma agent not
+ << ify
+!
+!
+ap dot11 airtime-fairness policy-name Default 0
+ap group default-group
+ap hyperlocation ble-beacon 0
+ap hyperlocation ble-beacon 1
+ap hyperlocation ble-beacon 2
+ap hyperlocation ble-beacon 3
+ap hyperlocation ble-beacon 4
+end
+
+test#
+Expect: matched string 1: #

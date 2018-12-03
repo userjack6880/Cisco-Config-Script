@@ -1,0 +1,753 @@
+#fOrTyTwO
+$hz=100;
+$XS_VERSION='DProf 20080331.00';
+# All values are given in HZ
+$over_utime=0; $over_stime=0; $over_rtime=2;
+$over_tests=10000;
+$rrun_utime=2; $rrun_stime=0; $rrun_rtime=11;
+$total_marks=579                                                                                                                                                                                  
+
+PART2
+& 2 MSUNETHW::Cisco BEGIN
++ 2
+& 3 strict bits
++ 3
+- 3
+& 4 strict import
++ 4
+- 4
+- 2
+& 5 MSUNETHW::Cisco BEGIN
++ 5
+@ 0 0 3
+& 6 MSUNETHW::Cisco BEGIN
++ 6
+- 6
+& 7 Expect BEGIN
++ 7
+& 8 IO::Pty BEGIN
++ 8
++ 4
+- 4
+- 8
+& 9 IO::Pty BEGIN
++ 9
+& a Carp BEGIN
++ a
+& b strict unimport
++ b
++ 3
+- 3
+- b
+- a
+& c Carp BEGIN
++ c
+& d warnings unimport
++ d
+- d
+- c
+@ 0 0 1
+& e Exporter import
++ e
+- e
+- 9
+& f IO::Pty BEGIN
++ f
+& 10 IO::Tty BEGIN
++ 10
+& 11 IO::Handle BEGIN
++ 11
+- 11
+& 12 IO::Handle BEGIN
++ 12
++ 4
+- 4
+- 12
+& 13 IO::Handle BEGIN
++ 13
++ e
+- e
+- 13
+& 14 IO::Handle BEGIN
++ 14
+& 15 Symbol BEGIN
++ 15
+- 15
++ e
+- e
+- 14
+& 16 IO::Handle BEGIN
++ 16
+& 17 SelectSaver BEGIN
++ 17
++ e
+- e
+- 17
+& 18 SelectSaver BEGIN
++ 18
++ e
+- e
+- 18
+- 16
+& 19 IO::Handle BEGIN
++ 19
+& 1a IO BEGIN
++ 1a
+- 1a
+& 1b IO BEGIN
++ 1b
++ e
+- e
+- 1b
+& 1c IO BEGIN
++ 1c
++ 4
+- 4
+- 1c
+& 1d IO BEGIN
++ 1d
+& 1e warnings import
++ 1e
+- 1e
+- 1d
+& 1f XSLoader load
++ 1f
+& 20 DynaLoader dl_load_file
++ 20
+- 20
+& 21 DynaLoader dl_undef_symbols
++ 21
+- 21
+& 22 DynaLoader dl_find_symbol
++ 22
+- 22
+& 23 DynaLoader dl_install_xsub
++ 23
+- 23
+& 24 IO bootstrap
++ 24
+- 24
+- 1f
+- 19
+& 25 IO::Handle BEGIN
++ 25
++ b
++ 3
+- 3
+- b
+- 25
++ e
+- e
+- 10
+& 26 IO::Tty BEGIN
++ 26
+& 27 IO::File BEGIN
++ 27
+- 27
+& 28 IO::File BEGIN
++ 28
++ 4
+- 4
+- 28
+& 29 IO::File BEGIN
++ 29
++ e
+- e
+- 29
+& 2a IO::File BEGIN
++ 2a
++ e
+- e
+- 2a
+& 2b IO::File BEGIN
++ 2b
+- 2b
+& 2c IO::File BEGIN
++ 2c
+& 2d IO::Seekable BEGIN
++ 2d
+- 2d
+& 2e IO::Seekable BEGIN
++ 2e
++ e
+- e
+- 2e
+& 2f IO::Seekable BEGIN
++ 2f
++ 4
+- 4
+- 2f
+& 30 IO::Seekable BEGIN
++ 30
+- 30
+& 31 IO::Seekable BEGIN
++ 31
+& 32 Fcntl BEGIN
++ 32
++ 4
+- 4
+- 32
+& 33 Fcntl BEGIN
++ 33
+- 33
+& 34 Fcntl BEGIN
++ 34
+- 34
+& 35 Fcntl BEGIN
++ 35
++ 1f
++ 20
+- 20
++ 21
+- 21
++ 22
+- 22
++ 23
+- 23
+& 36 Fcntl bootstrap
++ 36
+- 36
+- 1f
+- 35
+& 37 Fcntl BEGIN
++ 37
++ b
++ 3
+- 3
+- b
+- 37
++ e
+- e
+- 31
++ e
+- e
+- 2c
+& 38 IO::File BEGIN
++ 38
+& 39 File::Spec BEGIN
++ 39
++ 4
+- 4
+- 39
+& 3a File::Spec BEGIN
++ 3a
+& 3b vars BEGIN
++ 3b
+- 3b
+& 3c vars BEGIN
++ 3c
+& 3d warnings::register import
++ 3d
+& 3e warnings::register mkMask
++ 3e
+- 3e
++ 3e
+- 3e
+- 3d
+- 3c
+& 3f vars BEGIN
++ 3f
++ 4
++ 3
+- 3
+- 4
+- 3f
+& 40 vars import
++ 40
+- 40
+- 3a
+& 41 File::Spec::Unix BEGIN
++ 41
++ 4
+- 4
+- 41
+& 42 File::Spec::Unix BEGIN
++ 42
++ 40
+- 40
+- 42
+& 43 File::Spec::Unix BEGIN
++ 43
++ b
++ 3
+- 3
+- b
+- 43
+- 38
++ e
+- e
++ e
+- e
+- 26
+& 44 IO::Tty BEGIN
++ 44
+@ 0 0 1
+& 45 IO::Tty::Constant BEGIN
++ 45
++ 40
+- 40
+- 45
++ e
+- e
+- 44
+& 46 IO::Tty BEGIN
++ 46
++ e
+- e
+- 46
++ 44
++ 40
+- 40
+- 44
+& 47 POSIX BEGIN
++ 47
++ 4
+- 4
+- 47
+& 48 POSIX BEGIN
++ 48
++ 1e
+- 1e
+- 48
+& 49 POSIX BEGIN
++ 49
+& 4a AutoLoader BEGIN
++ 4a
++ 4
+- 4
+- 4a
+& 4b AutoLoader BEGIN
++ 4b
+- 4b
+& 4c AutoLoader BEGIN
++ 4c
+- 4c
+& 4d AutoLoader BEGIN
++ 4d
++ b
++ 3
+- 3
+- b
+- 4d
+& 4e AutoLoader BEGIN
++ 4e
++ b
++ 3
+- 3
+- b
+- 4e
+& 4f AutoLoader BEGIN
++ 4f
++ b
++ 3
+- 3
+- b
+- 4f
+& 50 AutoLoader import
++ 50
+- 50
+- 49
+& 51 POSIX BEGIN
++ 51
+- 51
+& 52 POSIX BEGIN
++ 52
++ e
+- e
+- 52
+& 53 POSIX BEGIN
++ 53
++ b
+- b
+- 53
+& 54 POSIX BEGIN
++ 54
++ d
+- d
+- 54
+& 55 POSIX::SigAction BEGIN
++ 55
++ 50
+- 50
+- 55
+& 56 POSIX::SigRt BEGIN
++ 56
++ 50
+- 50
+- 56
+& 57 POSIX::SigRt BEGIN
++ 57
+& 58 Tie::Hash BEGIN
++ 58
++ e
+- e
+- 58
+& 59 Tie::Hash BEGIN
++ 59
++ 3d
++ 3e
+- 3e
++ 3e
+- 3e
+- 3d
+- 59
+- 57
+& 5a POSIX::SigRt BEGIN
++ 5a
++ 40
+- 40
+- 5a
++ 1f
++ 20
+- 20
++ 21
+- 21
++ 22
+- 22
++ 23
+- 23
+& 5b POSIX bootstrap
++ 5b
+- 5b
+- 1f
+& 5c Tie::StdHash TIEHASH
++ 5c
+- 5c
+& 5d DynaLoader BEGIN
++ 5d
+- 5d
+& 5e DynaLoader BEGIN
++ 5e
+& 5f Config BEGIN
++ 5f
++ 4
+- 4
+- 5f
+& 60 Config BEGIN
++ 60
++ b
++ 3
+- 3
+- b
+- 60
+@ 0 0 1
+& 61 version (bool
++ 61
+- 61
+& 62 version (cmp
++ 62
+- 62
+& 63 Config TIEHASH
++ 63
+- 63
+& 64 Config import
++ 64
+- 64
+- 5e
+& 65 Config FETCH
++ 65
+& 66 Config AUTOLOAD
++ 66
+& 67 Config BEGIN
++ 67
++ 4
+- 4
+- 67
+& 68 Config launcher
+* 68
+& 69 Config fetch_string
+* 69
+- 66
+- 65
++ 65
++ 69
+- 69
+- 65
++ 65
+- 65
++ 65
+- 65
++ 65
+- 65
++ 65
+- 65
++ 65
+- 65
+& 6a IO::Stty BEGIN
++ 6a
+& 6b POSIX import
++ 6b
+& 6c POSIX AUTOLOAD
++ 6c
+& 6d AutoLoader AUTOLOAD
+* 6d
+& 6e AutoLoader find_filename
++ 6e
+- 6e
+& 6f POSIX load_imports
+* 6f
+- 6c
++ e
+& 70 Exporter export
++ 70
+& 71 Exporter as_heavy
++ 71
+& 72 Exporter::Heavy BEGIN
++ 72
++ 4
+- 4
+- 72
+& 73 Exporter::Heavy BEGIN
++ 73
++ b
++ 3
+- 3
+- b
+- 73
+& 74 Exporter::Heavy BEGIN
++ 74
++ d
+- d
+- 74
+- 71
+& 75 Exporter::Heavy heavy_export
+* 75
+@ 1 0 0
+- 70
+- e
+- 6b
+- 6a
+& 76 UNIVERSAL can
++ 76
+- 76
+& 77 DynaLoader bootstrap
++ 77
+& 78 DynaLoader dl_load_flags
++ 78
+- 78
++ 20
+@ 0 0 2
+- 20
++ 21
+- 21
++ 22
+- 22
++ 23
+- 23
+& 79 IO::Tty bootstrap
++ 79
+- 79
+- 77
+& 7a IO::Tty import
++ 7a
+& 7b Exporter export_to_level
++ 7b
++ 71
+- 71
+& 7c Exporter::Heavy heavy_export_to_level
+* 7c
++ 70
++ 71
+- 71
+* 75
+& 7d Exporter::Heavy _rebuild_cache
++ 7d
+- 7d
+- 70
+- 7b
+- 7a
+- f
+& 7e IO::Pty BEGIN
++ 7e
++ e
+- e
+- 7e
+& 7f IO::Pty BEGIN
++ 7f
++ 40
+- 40
+- 7f
+& 80 UNIVERSAL VERSION
++ 80
+- 80
++ e
+- e
+- 7
+& 81 Expect BEGIN
++ 81
++ 7a
++ 7b
++ 71
+- 71
+* 7c
++ 70
++ 71
+- 71
+* 75
+- 70
+- 7b
+- 7a
+- 81
+& 82 Expect BEGIN
++ 82
++ 4
++ 3
+- 3
+- 4
+- 82
+& 83 Expect BEGIN
++ 83
++ 4
++ 3
+- 3
+- 4
+- 83
+& 84 Expect BEGIN
++ 84
++ 4
++ 3
+- 3
+- 4
+- 84
+& 85 Expect BEGIN
++ 85
++ 6b
++ e
++ 70
++ 71
+- 71
+* 75
+- 70
+- e
+- 6b
+- 85
+& 86 Expect BEGIN
++ 86
++ e
++ 70
++ 71
+- 71
+* 75
+- 70
+- e
+- 86
+& 87 Expect BEGIN
++ 87
++ e
+- e
+- 87
+& 88 Expect BEGIN
++ 88
+- 88
+& 89 Expect BEGIN
++ 89
+- 89
+& 8a Expect BEGIN
++ 8a
+& 8b Errno BEGIN
++ 8b
+- 8b
+& 8c Errno BEGIN
++ 8c
++ 4
+- 4
+- 8c
+@ 0 0 1
+& 8d Errno BEGIN
++ 8d
++ b
++ 3
+- 3
+- b
+- 8d
+& 8e Errno TIEHASH
++ 8e
+- 8e
++ e
+- e
+- 8a
+& 8f Expect BEGIN
++ 8f
+- 8f
+& 90 Expect BEGIN
++ 90
++ 40
+- 40
+- 90
+@ 1 0 0
+& 91 Expect BEGIN
++ 91
++ b
++ 3
+- 3
+- b
+- 91
++ e
+- e
+- 5
+& 92 MSUNETHW::Cisco BEGIN
++ 92
+& 93 Time::HiRes BEGIN
++ 93
++ 4
+- 4
+- 93
+& 94 Time::HiRes BEGIN
++ 94
++ 40
+- 40
+- 94
+& 95 Time::HiRes BEGIN
++ 95
++ b
++ 3
+- 3
+- b
+- 95
++ 77
++ 78
+- 78
++ 20
+@ 0 0 1
+- 20
++ 21
+- 21
++ 22
+- 22
++ 23
+- 23
+& 96 Time::HiRes bootstrap
++ 96
+- 96
+- 77
+& 97 Time::HiRes import
++ 97
+& 98 Time::HiRes AUTOLOAD
++ 98
+& 99 Time::HiRes constant
++ 99
+- 99
+& 9a Time::HiRes __ANON__
+* 9a
+- 98
++ 98
++ 99
+- 99
+& 9b Time::HiRes __ANON__
+* 9b
+- 98
++ 7b
++ 71
+- 71
+* 7c
++ 70
++ 71
+- 71
+* 75
++ 7d
+- 7d
+- 70
+- 7b
+- 97
+- 92
+@ 0 0 1

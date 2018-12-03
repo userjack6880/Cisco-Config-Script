@@ -1,0 +1,171 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+...
+
+ >> 
+
+Expect: searching for 2 strs:  :# :>
+ << 
+c29s3.cab1.dc.mcarthur>
+c29s3.cab1.dc.mcarthur>
+Expect: matched string 2: >
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+c29s3.cab1.dc.mcarthur>
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(53)SE2, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Wed 21-Apr-10 06:08 by pro
+ << d_rel_team
+Image text-base: 0x00003000, data-base: 0x01B00000
+
+ROM: Bootstrap program is Alpha board boot loader
+BOOTLDR: C2960S Boot Loader (C2960S-HBOOT-M) Version 12.2(53r)SE, RELEASE SOFTWARE (fc3)
+
+c29s3.cab1.dc.mcarthur uptime is 26 minutes
+S
+ << ystem returned to ROM by power-on
+System image file is "flash:/c2960s-universalk9-mz.122-53.SE2/c2960s-universalk9-mz.122-53.SE2.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing impo
+ << rt, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and loca
+ << l country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may b
+ << e found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-24TS-L (PowerPC) processor (revision B0) with 131072K bytes of memory.
+Pr
+ << ocessor board ID FOC1451X0ND
+Last reset from power-on
+2 Virtual Ethernet interfaces
+1 FastEthernet interface
+28 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory
+ << .
+Base ethernet MAC Address       : 8C:B6:4F:A8:8D:80
+Motherboard assembly number     : 73-11910-06
+Power supply part number        : 341-0328-02
+Motherboard serial number       : FOC14511RPD
+Power supply serial number      : DCA1429M78Z
+Model revis
+ << ion number           : B0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-24TS-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC145115TT
+System serial number            : FOC1451X0N
+ << D
+Top Assembly Part Number        : 800-30954-02
+Top Assembly Revision Number    : A0
+Version ID                      : V02
+CLEI Code Number                : COMGG00ARB
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0x01
+
+
+ << 
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 28    WS-C2960S-24TS-L   12.2(53)SE2           C2960S-UNIVERSALK9-M     
+
+
+Configu
+ << ration register is 0xF
+
+c29s3.cab1.dc.mcarthur>
+Expect: matched string 2: >
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << write mem
+                        ^
+% Invalid input detected at '^' marker.
+
+c29s3.cab1.dc.mcarthur>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Password: 
+Expect: matched string 1: Password:
+ >> Area=l*w
+
+Expect: searching for 1 strs:  :#
+ << 
+c29s3.cab1.dc.mcarthur#
+Expect: matched string 1: #
+ >> wr erase
+ >> 
+
+ >> reload
+
+Expect: searching for 2 strs:  :# :>
+ << wr erase
+Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+[OK]
+Erase of nvram: complete
+c29s3.cab1.dc.mcarthur#reload
+Proceed with reload? [confirm]
+*Feb 28 18:26:27: %SYS-7-NV_BLOCK_INIT: Initialized the geometr
+Expect: matched string 1: #
+Expect: searching for 1 strs:  :Save?
+ << y of nvram
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+y of nvram
+...
+
+ >> 
+

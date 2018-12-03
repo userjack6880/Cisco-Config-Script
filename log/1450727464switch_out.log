@@ -1,0 +1,2609 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+
+
+         --- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'
+Expect: matched string 1: [yes/no]
+ >> 
+
+ >> no
+
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << .
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuratio
+ << n dialog? [yes/no]: 
+% Please answer 'yes' or 'no'.
+Would you like to enter the initial configuration dialog? [yes/no]: no
+Switch>term len 0
+Switch>
+*Mar  1 00:02:10.149: %LINK-5-CHANGED: Interface Vlan1, changed state to administratively down
+Expect: matched string 2: >
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(46)SE, RELEASE SOFTWARE (fc2)
+Copyright (c) 1986-2008 by Cisco Systems, Inc.
+Compiled Thu 21-Aug-08 15:59 by nachen
+Image text-base: 0x00003000, data-base: 0x01200000
+
+ << 
+ROM: Bootstrap program is C2960 boot loader
+BOOTLDR: C2960 Boot Loader (C2960-HBOOT-M) Version 12.2(25r)SEE1, RELEASE SOFTWARE (fc1)
+
+Switch uptime is 2 minutes
+System returned to ROM by power-on
+System image file is "flash:c2960-lanbasek9-mz.122-46
+ << .SE.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, expor
+ << t, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply 
+ << with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by 
+ << sending email to
+export@cisco.com.
+
+cisco WS-C2960-48TC-L (PowerPC405) processor (revision B0) with 61440K/4088K bytes of memory.
+Processor board ID FOC1025X5RL
+Last reset from power-on
+1 Virtual Ethernet interface
+48 FastEthernet interfaces
+2 Gig
+ << abit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+64K bytes of flash-simulated non-volatile configuration memory.
+Base ethernet MAC Address       : 00:18:73:D9:76:80
+Motherboard assembly number     : 73-9835-07
+Power supply part 
+ << number        : 341-0097-02
+Motherboard serial number       : FOC10251843
+Power supply serial number      : DCA101828VL
+Model revision number           : B0
+Motherboard revision number     : C0
+Model number                    : WS-C2960-48TC-L
+Syste
+ << m serial number            : FOC1025X5RL
+Top Assembly Part Number        : 800-26672-02
+Top Assembly Revision Number    : B0
+Version ID                      : V02
+CLEI Code Number                : COM3F00BRA
+Hardware Board Revision Number  : 0x02
+
+
+ << 
+Switch Ports Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 50    WS-C2960-48TC-L    12.2(46)SE            C2960-LANBASEK9-M        
+
+
+Config
+ << uration register is 0xF
+
+Switch>
+Expect: matched string 2: >
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+Switch#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Expect: matched string 1: (config)#
+ >> 
+
+ >> version 12.2
+
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> hostname c29s1.poultry.southfarm
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret 5 $1$M51B$xMewdVaHWnFLPlOBhrp1C.
+
+ >> enable password 7 013214015A560A4536
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6
+
+ >> clock summer-time CDT recurring
+
+ >> system mtu routing 1500
+
+ >> ip subnet-zero
+
+ >> ip dhcp snooping vlan 180
+
+ >> ip dhcp snooping
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.12
+
+ >> crypto pki trustpoint TP-self-signed-1432328832
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-1432328832
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-1432328832
+
+ >> crypto pki certificate chain TP-self-signed-1432328832
+
+ >>  certificate self-signed 01
+
+ >>   30820262 308201CB A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+
+ >>   31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+
+ >>   69666963 6174652D 31343332 33323838 3332301E 170D3933 30333031 30303030 
+
+ >>   34375A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+
+ >>   4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 34333233 
+
+ >>   32383833 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+
+ >>   8100D5FC 98CFF8E8 6C808CCC 0C0BBEE3 BB71C49F FB370824 F4560F91 EF94F81B 
+
+ >>   4FB485BE 12E5AD39 85655761 0B02F77E FF356169 0318A9DC 9C058689 9B021B36 
+
+ >>   88137DA4 E5498380 65B23FD2 FE03BC74 362BFBF2 AF1905B3 9046041D 17874FBB 
+
+ >>   2552DF11 74876068 DC4045ED 2F16DB00 879026D9 3E4F5981 C3B0E3CB 9F00E813 
+
+ >>   F17B0203 010001A3 81893081 86300F06 03551D13 0101FF04 05300301 01FF3033 
+
+ >>   0603551D 11042C30 2A822863 32397331 2E706F75 6C747279 2E736F75 74686661 
+
+ >>   726D2E6D 676D742E 6D737374 6174652E 65647530 1F060355 1D230418 30168014 
+
+ >>   31F1668C 4BAFB136 8D2771B2 7322901F 1E01F3A2 301D0603 551D0E04 16041431 
+
+ >>   F1668C4B AFB1368D 2771B273 22901F1E 01F3A230 0D06092A 864886F7 0D010104 
+
+ >>   05000381 81006790 FC99F110 FAF97783 C523DB82 D3AADFD4 81325CBD 8C2FDE4B 
+
+ >>   1002C293 47D05BAF 3A3F5494 BB7ADDBC 421CB860 38F4579C 21A21565 DF9A368E 
+
+ >>   5BB8140B 0FA6031A 16247FDF 2B9198D3 A04C7BDB A0ED219C 70C7FC48 C1B416E3 
+
+ >>   9A83297C F7503311 8E93881F E0D650A6 062DB95F 2B3CD4A1 644C04AD 380A94BF 
+
+ >>   2B3843AE C9E3
+
+ >>   quit
+
+ >> errdisable recovery cause udld
+
+ >> errdisable recovery cause bpduguard
+
+ >> errdisable recovery cause security-violation
+
+ >> errdisable recovery cause channel-misconfig
+
+ >> errdisable recovery cause pagp-flap
+
+ >> errdisable recovery cause dtp-flap
+
+ >> errdisable recovery cause link-flap
+
+ >> errdisable recovery cause sfp-config-mismatch
+
+ >> errdisable recovery cause gbic-invalid
+
+ >> errdisable recovery cause psecure-violation
+
+ >> errdisable recovery cause port-mode-failure
+
+ >> errdisable recovery cause dhcp-rate-limit
+
+ >> errdisable recovery cause mac-limit
+
+ >> errdisable recovery cause vmps
+
+ >> errdisable recovery cause storm-control
+
+ >> errdisable recovery cause inline-power
+
+ >> errdisable recovery cause loopback
+
+ >> errdisable recovery cause small-frame
+
+ >> errdisable recovery interval 1800
+
+ >> spanning-tree mode mst
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> vlan internal allocation policy ascending
+
+ >> interface FastEthernet0/1
+
+ >>  switchport access vlan 565
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/2
+
+ >>  description southfarm.poultry.ap1-1
+
+ >>  switchport access vlan 565
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/3
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/4
+
+ >>  description 130.18.180.120
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/5
+
+ >>  description 130.18.180.33
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/6
+
+ >>  description 130.18.180.238
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/7
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/8
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/9
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/10
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/11
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/12
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/13
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/14
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/15
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/16
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/17
+
+ >>  description br1r.poultry.southfarm
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport trunk allowed vlan 92,96,168,180,565
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  spanning-tree portfast
+
+ >>  spanning-tree bpdufilter enable
+
+ >>  spanning-tree bpduguard enable
+
+ >> interface FastEthernet0/18
+
+ >>  description br2r.poultry.southfarm
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport trunk allowed vlan 92,96,180,565
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  spanning-tree portfast
+
+ >>  spanning-tree bpdufilter enable
+
+ >>  spanning-tree bpduguard enable
+
+ >> interface FastEthernet0/19
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/20
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/21
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/22
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/23
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/24
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/25
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/26
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/27
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/28
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/29
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/30
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/31
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/32
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/33
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/34
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/35
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/36
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/37
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/38
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/39
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/40
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/41
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/42
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/43
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/44
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/45
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/46
+
+ >>  description 130.18.180.37
+
+ >>  switchport access vlan 180
+
+ >>  switchport mode access
+
+ >>  switchport port-security maximum 2
+
+ >>  switchport port-security
+
+ >>  switchport port-security aging time 15
+
+ >>  switchport port-security violation protect
+
+ >>  switchport port-security aging type inactivity
+
+ >>  spanning-tree portfast
+
+ >> interface FastEthernet0/47
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface FastEthernet0/48
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  no keepalive
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet0/1
+
+ >>  description c3560s1.rl2418.wise
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface GigabitEthernet0/2
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >>  ip dhcp snooping trust
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >>  ip address 10.92.1.116 255.255.0.0
+
+ >>  ip broadcast-address 10.92.255.255
+
+ >>  no ip route-cache
+
+ >> ip default-gateway 10.92.0.1
+
+ >> ip http server
+
+ >> ip http secure-server
+
+ >> logging facility local1
+
+ >> logging 130.18.8.12
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server community spongebob RO
+
+ >> snmp-server contact 6F-0909
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps transceiver all
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps rep
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps power-ethernet group 1
+
+ >> snmp-server enable traps power-ethernet police
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps config-ctid
+
+ >> snmp-server enable traps rtr
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps mac-notification change move threshold
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server enable traps errdisable
+
+ >> snmp-server host 130.18.8.12 sysnet 
+
+ >> control-plane
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  password 7 123817121356004E3D
+
+ >>  login
+
+ >> line vty 5 15
+
+ >>  password 7 096D5C0C18581B581C
+
+ >>  login
+
+ >> ntp clock-period 36029408
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << 
+Switch(config)#version 12.2
+Switch(config)#
+Switch(config)#no service pad
+Switch(config)#
+Switch(config)#service timestamps debug datetime localtime
+Switch(config)#
+Switch(config)#service timestamps log datetime localtime
+Switch(config)#
+Switch(
+ << config)#service password-encryption
+Switch(config)#
+Switch(config)#hostname c29s1.poultry.southfarm
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#boot-start-marker
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#boot-end-mark
+ << er
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#enable secret 5 $1$M51B$xMewdVaHWnFLPlOBhrp1C.
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#enable password 7 013214015A560A4536
+The enable password you have chosen is the sa
+ << me as your enable secret.
+This is not recommended.  Re-enter the enable password.
+
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#no aaa new-model
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#clock timezone CST -6
+c29s1.po
+ << ultry.southf(config)#
+c29s1.poultry.southf(config)#clock summer-time CDT recurring
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#system mtu routing 1500
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#ip subnet-zero
+c29s1.pou
+ << ltry.southf(config)#
+c29s1.poultry.southf(config)#ip dhcp snooping vlan 180
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#ip dhcp snooping
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#ip doma
+*Feb 28 18:03:02: %SYS-6-CLOCK
+ << UPDATE: System clock has been updated from 00:03:02 UTC Mon Mar 1 1993 to 18:03:02 CST Sun Feb 28 1993, configured from console by console.
+*Feb 28 18:03:02: %SYS-6-CLOCKUPDATE: System clock has been updated from 18:03:02 CST Sun Feb 28 1993 to 18:03:02 
+ << CST Sun Feb 28 1993, configured from console by console.in-name mgmt.msstate.edu
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#ip name-server 130.18.80.12
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#crypto pki trustpoint TP
+ << -self-signed-1432328832
+c29s1.poultry.southf(ca-trustpoint)#
+c29s1.poultry.southf(ca-trustpoint)# enrollment selfsigned
+c29s1.poultry.southf(ca-trustpoint)#
+c29s1.poultry.southf(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certific
+ << $me cn=IOS-Self-Signed-Certifica         te-143232Self-Signed-Certificate-1432328         832
+c29s1.poultry.southf(ca-trustpoint)#
+c29s1.poultry.southf(ca-trustpoint)# rev
+ << ocation-check none
+c29s1.poultry.southf(ca-trustpoint)#
+c29s1.poultry.southf(ca-trustpoint)# rsakeypair TP-self-signed-1432328832
+c29s1.poultry.southf(ca-trustpoint)#
+c29s1.poultry.southf(ca-trustpoint)#crypto pki certificate chain TP-self-sign
+ << $certificate chain TP-self-signe         d-1432328e chain TP-self-signed-14323288         32
+c29s1.poultry.southf(config-cert-chain)#
+c29s1.poultry.southf(config
+ << -cert-chain)# certificate self-signed 01
+Enter the certificate in hexidecimal representation....
+
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  30820262 308201CB A0030201 02020101 300
+ << $308201CB A0030201 02020101 300D         0609 2A860030201 02020101 300D0609 2A864         886 F70D020101 300D0609 2A864886 F70D01         01 040500
+ << D0609 2A864886 F70D0101 0405003         0 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  31312F30 2D060355 04031326 494F532D 536$2D060
+ << 355 04031326 494F532D 5365         6C66 2D534031326 494F532D 53656C66 2D536         967 6E656F532D 53656C66 2D536967 6E6564         2D 436572
+ << 56C66 2D536967 6E65642D 4365727         4 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  69666963 6174652D 31343332 33323838 333$6174652D 3134
+ << 3332 33323838 3332         301E 170D1343332 33323838 3332301E 170D3         933 30333323838 3332301E 170D3933 303330         31 303030
+ << 2301E 170D3933 30333031 3030303         0 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  34375A17 0D323030 31303130 30303030 305$0D323030 31303130 3
+ << 0303030 305A         3031 312F1303130 30303030 305A3031 312F3         02D 06035303030 305A3031 312F302D 060355         04 031326
+ << A3031 312F302D 06035504 0313264         9 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  4F532D53 656C662D 5369676E 65642D43 657$656C662D 5369676E 65642D4
+ << 3 6572         7469 6669369676E 65642D43 65727469 66696         361 74652642D43 65727469 66696361 74652D         31 343332
+ << 27469 66696361 74652D31 3433323         3 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  32383833 3230819F 300D0609 2A864886 F70$3230819F 300D0609 2A864886 F70D
+ <<          0101 010500D0609 2A864886 F70D0101 01050         003 818D0864886 F70D0101 01050003 818D00         30 818902
+ << D0101 01050003 818D0030 8189028         1 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  8100D5FC 98CFF8E8 6C808CCC 0C0BBEE3 BB7$98CFF8E8 6C808CCC 0C0BBEE3 BB71      
+ <<    C49F FB37C808CCC 0C0BBEE3 BB71C49F FB370         824 F45600BBEE3 BB71C49F FB370824 F4560F         91 EF94F8
+ << 1C49F FB370824 F4560F91 EF94F81         B 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  4FB485BE 12E5AD39 85655761 0B02F77E FF3$12E5AD39 85655761 0B02F77E FF35         
+ << 6169 03185655761 0B02F77E FF356169 0318A         9DC 9C05802F77E FF356169 0318A9DC 9C0586         89 9B021B5616
+ << 9 0318A9DC 9C058689 9B021B3         6 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  88137DA4 E5498380 65B23FD2 FE03BC74 362$E5498380 65B23FD2 FE03BC74 362B         
+ << FBF2 AF195B23FD2 FE03BC74 362BFBF2 AF190         5B3 9046003BC74 362BFBF2 AF1905B3 904604         1D 17874FBFBF2 AF19
+ << 05B3 9046041D 17874FB         B 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  2552DF11 74876068 DC4045ED 2F16DB00 879$74876068 DC4045ED 2F16DB00 8790         26D9 3
+ << E4FC4045ED 2F16DB00 879026D9 3E4F5         981 C3B0E16DB00 879026D9 3E4F5981 C3B0E3         CB 9F00E8026D9 3E4F5981 C
+ << 3B0E3CB 9F00E81         3 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  F17B0203 010001A3 81893081 86300F06 035$010001A3 81893081 86300F06 0355         1D13 0101
+ << 1893081 86300F06 03551D13 0101F         F04 05300300F06 03551D13 0101FF04 053003         01 01FF3051D13 0101FF04 0530030
+ << 1 01FF303         3 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  0603551D 11042C30 2A822863 32397331 2E7$11042C30 2A822863 32397331 2E70         6F75 6C74
+ << A822863 32397331 2E706F75 6C747         279 2E736397331 2E706F75 6C747279 2E736F         75 74686606F75 6C747279 2E736F75 7468
+ << 666         1 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  726D2E6D 676D742E 6D737374 6174652E 656$676D742E 6D737374 6174652E 6564         7530 1F06
+ << D737374 6174652E 65647530 1F060         355 1D23074652E 65647530 1F060355 1D2304         18 30168047530 1F060355 1D230418 3016801   
+ <<       4 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  31F1668C 4BAFB136 8D2771B2 7322901F 1E0$4BAFB136 8D2771B2 7322901F 1E01         F3A2 301D
+ << D2771B2 7322901F 1E01F3A2 301D0         603 551D022901F 1E01F3A2 301D0603 551D0E         04 1604141F3A2 301D0603 551D0E04 1604143         
+ << 1 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  F1668C4B AFB1368D 2771B273 22901F1E 01F$AFB1368D 2771B273 22901F1E 01F3         A230 0D06
+ << 771B273 22901F1E 01F3A230 0D060         92A 86488901F1E 01F3A230 0D06092A 864886         F7 0D01013A230 0D06092A 864886F7 0D01010         
+ << 4 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  05000381 81006790 FC99F110 FAF97783 C52$81006790 FC99F110 FAF97783 C523         DB82 D3AA
+ << C99F110 FAF97783 C523DB82 D3AAD         FD4 81325F97783 C523DB82 D3AADFD4 81325C         BD 8C2FDE3DB82 D3AADFD4 81325CBD 8C2FDE4         B 
+ << 
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  1002C293 47D05BAF 3A3F5494 BB7ADDBC 421$47D05BAF 3A3F5494 BB7ADDBC 421C         B860 38F4
+ << A3F5494 BB7ADDBC 421CB860 38F45         79C 21A217ADDBC 421CB860 38F4579C 21A215         65 DF9A36CB860 38F4579C 21A21565 DF9A368         E 
+c29s1
+ << .poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  5BB8140B 0FA6031A 16247FDF 2B9198D3 A04$0FA6031A 16247FDF 2B9198D3 A04C         7BDB A0ED6247F
+ << DF 2B9198D3 A04C7BDB A0ED2         19C 70C7F9198D3 A04C7BDB A0ED219C 70C7FC         48 C1B416C7BDB A0ED219C 70C7FC48 C1B416E         3 
+c29s1.poult
+ << ry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  9A83297C F7503311 8E93881F E0D650A6 062$F7503311 8E93881F E0D650A6 062D         B95F 2B3CE93881F E0D
+ << 650A6 062DB95F 2B3CD         4A1 644C0D650A6 062DB95F 2B3CD4A1 644C04         AD 380A94B95F 2B3CD4A1 644C04AD 380A94B         F 
+c29s1.poultry.south
+ << f(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  2B3843AE C9E3
+c29s1.poultry.southf(config-pubkey)#
+c29s1.poultry.southf(config-pubkey)#  quit
+c29s1.poultry.southf(config-cert-chain)#
+c29s1.poultry.southf(config-cert-chain)#errdisable recovery
+ <<  cause udld
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause bpduguard
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause security-violation
+c29s1.poultry.southf(config)#
+c29s1.po
+ << ultry.southf(config)#errdisable recovery cause channel-misconfig
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause pagp-flap
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause dtp-fl
+ << ap
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause link-flap
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause sfp-config-mismatch
+c29s1.poultry.southf(config)#
+c29s1.poultry.so
+ << uthf(config)#errdisable recovery cause gbic-invalid
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause psecure-violation
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause port-mode-f
+ << ailure
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause dhcp-rate-limit
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause mac-limit
+c29s1.poultry.southf(config)#
+c29s1.poultry.so
+ << uthf(config)#errdisable recovery cause vmps
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause storm-control
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause inline-power
+c29s1.pou
+ << ltry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause loopback
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisable recovery cause small-frame
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#errdisabl
+ << e recovery interval 1800
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#spanning-tree mode mst
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#spanning-tree portfast bpduguard default
+c29s1.poultry.southf(config)#
+c29s1.poultr
+ << y.southf(config)#spanning-tree extend system-id
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#spanning-tree mst configuration
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# name msstate
+c29s1.poultry.southf(config-ms
+ << t)#
+c29s1.poultry.southf(config-mst)# revision 1
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 3$ vlan 2, 7, 11, 20, 22, 24, 31, 35         
+ << , 37, 39-, 11, 20, 22, 24, 31, 35, 37, 39-4         0, 50, 6022, 24, 31, 35, 37, 39-40, 50, 60,          63, 70
+c29s1.poultry.southf(config-mst)#
+ << 
+c29s1.poultry.southf(config-mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 11$ vlan 78, 80, 86, 91, 96, 104, 110         , 126, 1380, 86, 91, 96, 104, 110, 1
+ << 26, 136         , 140, 15, 96, 104, 110, 126, 136, 140, 152         , 160
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 1 vlan 162-163, 168, 189, 194, 202
+ << $ vlan 162-163, 168, 189, 194, 202,          220, 222163, 168, 189, 194, 202, 220, 222,          230, 23289, 194, 2
+ << 02, 220, 222, 230, 232,          242, 246
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 996$ vlan 256, 611-612, 654, 741, 996,         
+ <<  999
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 2 vlan 2002, 2007, 2011, 2020, 202$ vlan 2002, 2007, 2011, 2020, 2022         , 2024, 2
+ << , 2007, 2011, 2020, 2022, 2024, 20         31, 2035,11, 2020, 2022, 2024, 2031, 2035,          2037, 2032022, 2024, 2031, 2035, 2037,
+ <<  2039         -2040
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 2 vlan 2050, 2060, 2063, 2070, 208$ vlan 2050, 2060, 2063, 2070, 2080         , 2086, 2
+ << , 2060, 2063, 2070, 2080, 2086, 20         96, 2104,63, 2070, 2080, 2086, 2096, 2104,          2110, 2122080, 2086,
+ <<  2096, 2104, 2110, 2126         
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 216$ vlan 2136, 2140, 2152, 2160, 2162         -21
+ << 63, 21, 2140, 2152, 2160, 2162-2163, 216         8, 2189, 52, 2160, 2162-2163, 2168, 2189, 2         194, 2202
+c29s1.poultry.southf(config-mst)#
+c29s
+ << 1.poultry.southf(config-mst)# instance 2 vlan 2220, 2222, 2232, 2242, 224$ vlan 2220, 2222, 2232, 2242, 2246         , 2611-26, 2222, 2232, 2242, 2246, 2611-26
+ << 1         2, 2654, 32, 2242, 2246, 2611-2612, 2654, 2         999
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72,
+ << $ vlan 42, 51, 59, 64, 66, 69, 72,          108, 113,51, 59, 64, 66, 69, 72, 108, 113,          128, 144,, 66, 69, 72, 108
+ << , 113, 128, 144,          176, 196
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 3 vlan 244, 248, 927
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 4 vlan 2042, 2051, 2059, 2064, 2
+ << 06$ vlan 2042, 2051, 2059, 2064, 2066         , 2069, 2, 2051, 2059, 2064, 2066, 2069, 20         72, 2108,
+ << 59, 2064, 2066, 2069, 2072, 2108,          2113, 2122066, 2069, 2072, 2108, 2113, 2128         
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 4 vlan 2144, 2176, 
+ << 2196, 2244, 224$ vlan 2144, 2176, 2196, 2244, 2248         , 2927
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 1
+ << $ vlan 16, 48, 58, 88, 121, 131, 13         3-134, 2148, 58, 88, 121, 131, 133-134, 216         , 228
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# i
+ << nstance 6 vlan 2016, 2048, 2058, 2088, 212$ vlan 2016, 2048, 2058, 2088, 2121         , 2131, 2, 2048, 2058, 2088, 2121, 2131, 21         33-2134, 
+ << 58, 2088, 2121, 2131, 2133-2134, 2         216, 2228
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 7
+ << $ vlan 9, 33-34, 38, 54, 56, 71, 75         , 82, 84,3-34, 38, 54, 56, 71, 75, 82, 84,          97, 114, 54, 56, 71, 75, 82, 84, 97, 114, 1        
+ <<  16, 124
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210$ vlan 172, 186, 192, 204-208, 210,          240-241,
+ << 186, 192, 204-208, 210, 240-241,          251-252, 204-208, 210, 240-241, 251-252, 6         30, 928
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# 
+ << instance 8 vlan 2009, 2033-2034, 2038, 2054$ vlan 2009, 2033-2034, 2038, 2054,          2056, 20, 2033-2034, 2038, 2054, 2056, 207         1, 2075, 
+ << 4, 2038, 2054, 2056, 2071, 2075, 2         082, 2084
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 217
+ << $ vlan 2097, 2114, 2116, 2124, 2172         , 2186, 2, 2114, 2116, 2124, 2172, 2186, 21         92, 2204-16, 2124, 2172, 2186, 2192, 2204-2       
+ <<   208, 2210
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630,$ vlan 2240-2241, 2251-2252, 2630,          2928
+c29s1.poultry.sout
+ << hf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57,$ vlan 4-5, 12, 18-19, 32, 44, 57,          62, 68, 712, 18-19, 32
+ << , 44, 57, 62, 68, 76         , 98-99, , 32, 44, 57, 62, 68, 76, 98-99, 1         02, 112
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 9 vlan 130, 132, 147-148, 
+ << 158, 212$ vlan 130, 132, 147-148, 158, 212,          226, 236132, 147-148, 158, 212, 226, 236,          500, 505
+ << 148, 158, 212, 226, 236, 500, 505,          510-511
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 9 vlan 522, 551-570, 603, 629, 633$ vlan 522, 551-570, 603, 629, 63
+ << 3,          742, 802551-570, 603, 629, 633, 742, 802,          926, 929
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019
+ << $0 vlan 2004-2005, 2012, 2018-2019,          2032, 204-2005, 2012, 2018-2019, 2032, 204         4, 2057, 12, 2018-201
+ << 9, 2032, 2044, 2057, 2         062, 2068
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 211$0 vlan 2076, 2098-2099, 2102, 2112         
+ << , 2130, 26, 2098-2099, 2102, 2112, 2130, 21         32, 2147-99, 2102, 2112, 2130, 2132, 2147-2         148, 2158
+c29s1.poultry.southf(config-mst
+ << )#
+c29s1.poultry.southf(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 25$0 vlan 2212, 2236, 2500, 2505, 251         0-2511, 22, 2236, 2500, 2505, 2510
+ << -2511, 25         22, 2603,500, 2505, 2510-2511, 2522, 2603,          2629, 263 2510-2511, 2522, 2603, 2629, 2633         
+c29s1.poultry.sout
+ << hf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 10 vlan 2802, 2926, 2929
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 1$1 vlan 8, 43
+ << , 52, 146, 156-157, 18         0, 200, 243, 52, 146, 156-157, 180, 200, 21         8
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146
+ << , 21$2 vlan 2008, 2043, 2052, 2146, 215         6-2157, 28, 2043, 2052, 2146, 2156-2157, 21         80, 2200,
+ << 052, 2146, 2156-2157, 2180, 2200,          2218
+c29s1.poultry.southf(config-mst)#
+c29s1.poultry.southf(config-mst)#vlan internal allocation policy ascending
+c29s1.poultry.southf(config)#
+c29s1.poultry.southf(config)#interface FastEthernet0/
+ << 1
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 565
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#
+ <<  spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use wi
+ << th CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/2
+c29s1.poultry.southf(con
+ << fig-if)#
+c29s1.poultry.southf(config-if)# description southfarm.poultry.ap1-1
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 565
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mo
+ << de access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ inte
+ << rface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/2 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.
+ << poultry.southf(config-if)#interface FastEthernet0/3
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.so
+ << uthf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchpo
+ << rt port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to
+ <<  a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/3 but will only
+ have effe
+ << ct when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/4
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# description 130.18.180.120
+c29s1.poultry.sou
+ << thf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-sec
+ << urity maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s
+ << 1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type
+ <<  inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, e
+ << tc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/4 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf
+ << (config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/5
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# description 130.18.180.33
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vla
+ << n 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf
+ << (config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+ << 
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.
+ << poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporar
+ << y bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/5 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/6
+ << 
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# description 130.18.180.238
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-i
+ << f)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)
+ << #
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# s
+ << witchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast 
+ << should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured 
+ << on FastEthernet0/6 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/7
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# s
+ << witchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+
+ << c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-securi
+ << ty violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf
+ << (config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled
+ << , can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/7 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#inter
+ << face FastEthernet0/8
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry
+ << .southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+ << 
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hu
+ << bs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/8 but will only
+ have effect when the interface is in a n
+ << on-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/9
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.
+ << southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.so
+ << uthf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.south
+ << f(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%War
+ << ning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has b
+ << een configured on FastEthernet0/9 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/10
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.sout
+ << hf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.sout
+ << hf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switch
+ << port port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s
+ << 1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when por
+ << tfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/10 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf
+ << (config-if)#interface FastEthernet0/11
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-i
+ << f)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-secur
+ << ity aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ h
+ << ost. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/11 but will only
+ have effect when the 
+ << interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/12
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-
+ << if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-securi
+ << ty
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+ << 
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning
+ << -tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTIO
+ << N
+
+%Portfast has been configured on FastEthernet0/12 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/13
+c29s1.poultry.southf(config-if)
+ << #
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 
+ << 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.sout
+ << hf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit    
+ <<      y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ << 
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/13 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+ << 
+c29s1.poultry.southf(config-if)#interface FastEthernet0/14
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.po
+ << ultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# 
+ << switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type i
+ << nactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports conn
+ << ected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/14 but will only
+ 
+ << have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.p
+ << oultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# s
+ << witchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultr
+ << y.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf
+ << (config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loo
+ << ps.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/15 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/16
+c29s1.poul
+ << try.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport p
+ << ort-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)
+ << #
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security agi
+ << ng type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bri
+ << dges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/16 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultr
+ << y.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/17
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# description br1r.poultry.southfarm
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# swi
+ << tchport trunk native vlan 92
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport trunk allowed vlan 92,96,168,180,$ trunk allowed vlan 92,96,168,180,5         65
+c29s1.poult
+ << ry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode trunk
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# no keepalive
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%War
+ << ning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has b
+ << een configured on FastEthernet0/17 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree bpdufilter enable
+c29s1.poultry.southf(config-if)#
+c29s1.poult
+ << ry.southf(config-if)# spanning-tree bpduguard enable
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/18
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# description br2r.poultry.southfarm
+c29s
+ << 1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport trunk native vlan 92
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport trunk allowed vlan 92,96,180,565
+c29s1.poultry.southf(config-if)#
+c29s1.poultry
+ << .southf(config-if)# switchport mode trunk
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# no keepalive
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enable
+ << d on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/18 b
+ << ut will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree bpdufilter enable
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree 
+ << bpduguard enable
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/19
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.
+ << southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.so
+ << uthf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.south
+ << f(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%War
+ << ning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has b
+ << een configured on FastEthernet0/19 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/20
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.sou
+ << thf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.sou
+ << thf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switc
+ << hport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29
+ << s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when po
+ << rtfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/20 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.south
+ << f(config-if)#interface FastEthernet0/21
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-
+ << if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-secu
+ << rity aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ 
+ << host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/21 but will only
+ have effect when the
+ <<  interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/22
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config
+ << -if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-secur
+ << ity
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+ << 
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spannin
+ << g-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTI
+ << ON
+
+%Portfast has been configured on FastEthernet0/22 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/23
+c29s1.poultry.southf(config-if
+ << )#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum
+ <<  2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.sou
+ << thf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit   
+ <<       y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ << 
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/23 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+ << 
+c29s1.poultry.southf(config-if)#interface FastEthernet0/24
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.p
+ << oultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#
+ <<  switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type 
+ << inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports con
+ << nected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/24 but will only
+
+ <<  have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/25
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.
+ << poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# 
+ << switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poult
+ << ry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.south
+ << f(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging lo
+ << ops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/25 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/26
+c29s1.pou
+ << ltry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport 
+ << port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if
+ << )#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security ag
+ << ing type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, br
+ << idges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/26 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poult
+ << ry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/27
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport
+ <<  mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poult
+ << ry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port
+ << -security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be
+ <<  enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEtherne
+ << t0/27 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/28
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport ac
+ << cess vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultr
+ << y.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation
+ <<  protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+ << 
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause 
+ << temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/28 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEt
+ << hernet0/29
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(co
+ << nfig-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.pou
+ << ltry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concen
+ << trators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/29 but will only
+ have effect when the interface is in a non-trunki
+ << ng mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/30
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(c
+ << onfig-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(con
+ << fig-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config
+ << -if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: po
+ << rtfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been conf
+ << igured on FastEthernet0/30 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/31
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(conf
+ << ig-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(conf
+ << ig-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport po
+ << rt-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security aging type inactivit         y
+c29s1.poult
+ << ry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast i
+ << s enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/31 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config
+ << -if)#interface FastEthernet0/32
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c2
+ << 9s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security agi
+ << ng time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging type inactivi
+ << $ port-security aging type inactivit         y
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Co
+ << nnecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/32 but will only
+ have effect when the interfa
+ << ce is in a non-trunking mode.
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)#interface FastEthernet0/33
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport access vlan 180
+c29s1.poultry.southf(config-if)#
+c
+ << 29s1.poultry.southf(config-if)# switchport mode access
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security maximum 2
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security
+c29
+ << s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security aging time 15
+c29s1.poultry.southf(config-if)#
+c29s1.poultry.southf(config-if)# switchport port-security violation protect
+c29s1.poultry.southf(config-if)#
+c29s1.
+ << poultry.southf(config-if)# switchport port-security aging type inactivi$ port-security agi
+ << 
+*Feb 28 18:05:05: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+

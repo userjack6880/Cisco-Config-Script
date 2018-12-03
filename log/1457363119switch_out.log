@@ -1,0 +1,1704 @@
+trying to use serial port: /dev/ttyUSB0
+ >> 
+ >> 
+
+Expect: searching for 4 strs:  :[yes/no] :Press RETURN to get started. :# :Switch>
+ << 
+c29s7.m3.bost#
+c29s7.m3.bost#
+c29s7.m3.bost#
+c29s7.m3.bost#
+Expect: matched string 3: #
+ >> term len 0
+
+Expect: searching for 2 strs:  :# :>
+ << term len 0
+c29s7.m3.bost#
+Expect: matched string 1: #
+ >> show version
+
+Expect: searching for 2 strs:  :# :>
+ << show version
+Cisco IOS Software, C2960S Software (C2960S-UNIVERSALK9-M), Version 12.2(55)SE7, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Mon 28-Jan-13 10:28 by pro
+ << d_rel_team
+Image text-base: 0x00003000, data-base: 0x01B00000
+
+ROM: Bootstrap program is Alpha board boot loader
+BOOTLDR: C2960S Boot Loader (C2960S-HBOOT-M) Version 12.2(55r)SE, RELEASE SOFTWARE (fc1)
+
+c29s7.m3.bost uptime is 12 minutes
+System ret
+ << urned to ROM by power-on
+System image file is "flash:/c2960s-universalk9-mz.122-55.SE7/c2960s-universalk9-mz.122-55.SE7.bin"
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, expor
+ << t, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country
+ <<  laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found a
+ << t:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+cisco WS-C2960S-48TS-L (PowerPC) processor (revision J0) with 131072K bytes of memory.
+Processor b
+ << oard ID FOC1720Y0J2
+Last reset from power-on
+2 Virtual Ethernet interfaces
+1 FastEthernet interface
+52 Gigabit Ethernet interfaces
+The password-recovery mechanism is enabled.
+
+512K bytes of flash-simulated non-volatile configuration memory.
+Base e
+ << thernet MAC Address       : D0:C7:89:D9:30:80
+Motherboard assembly number     : 73-11909-09
+Power supply part number        : 341-0327-04
+Motherboard serial number       : FOC17195PBN
+Power supply serial number      : LIT17151XWF
+Model revision numbe
+ << r           : J0
+Motherboard revision number     : A0
+Model number                    : WS-C2960S-48TS-L
+Daughterboard assembly number   : 73-11933-04
+Daughterboard serial number     : FOC17192DBZ
+System serial number            : FOC1720Y0J2
+Top As
+ << sembly Part Number        : 800-30950-06
+Top Assembly Revision Number    : A0
+Version ID                      : V06
+CLEI Code Number                : COMGF00ARF
+Daughterboard revision number   : A0
+Hardware Board Revision Number  : 0x01
+
+
+Switch P
+ << orts Model              SW Version            SW Image                 
+------ ----- -----              ----------            ----------               
+*    1 52    WS-C2960S-48TS-L   12.2(55)SE7           C2960S-UNIVERSALK9-M     
+
+
+Configuration re
+ << gister is 0xF
+
+c29s7.m3.bost#
+Expect: matched string 1: #
+ >> enable
+
+Expect: searching for 2 strs:  :Password: :#
+ << enable
+c29s7.m3.bost#
+Expect: matched string 2: #
+ >> configure terminal
+
+Expect: searching for 1 strs:  :(config)#
+ << configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+c29s7.m3.bost(config)#
+Expect: matched string 1: (config)#
+ >> 
+
+ >> version 12.2
+
+ >> no service pad
+
+ >> service timestamps debug datetime localtime
+
+ >> service timestamps log datetime localtime
+
+ >> service password-encryption
+
+ >> hostname c29s7.m3.bost
+
+ >> boot-start-marker
+
+ >> boot-end-marker
+
+ >> enable secret 5 $1$s6GO$UrhKVKOAEbq/smZUOjpb..
+
+ >> enable password 7 106F1B1C044A1E411B
+
+ >> username root privilege 15 secret 5 $1$pijk$IWu2HP7dYdz3xWkNFJF4q/
+
+ >> no aaa new-model
+
+ >> clock timezone CST -6
+
+ >> clock summer-time CDT recurring
+
+ >> system mtu routing 1500
+
+ >> ip domain-name mgmt.msstate.edu
+
+ >> ip name-server 130.18.80.12
+
+ >> crypto pki trustpoint TP-self-signed-1365699840
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-1365699840
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-1365699840
+
+ >> crypto pki trustpoint TP-self-signed-102971904
+
+ >>  enrollment selfsigned
+
+ >>  subject-name cn=IOS-Self-Signed-Certificate-102971904
+
+ >>  revocation-check none
+
+ >>  rsakeypair TP-self-signed-102971904
+
+ >> crypto pki certificate chain TP-self-signed-1365699840
+
+ >>  certificate self-signed 01 nvram:IOS-Self-Sig#3030.cer
+
+ >> crypto pki certificate chain TP-self-signed-102971904
+
+ >> errdisable recovery cause udld
+
+ >> errdisable recovery cause bpduguard
+
+ >> errdisable recovery cause security-violation
+
+ >> errdisable recovery cause channel-misconfig (STP)
+
+ >> errdisable recovery cause pagp-flap
+
+ >> errdisable recovery cause dtp-flap
+
+ >> errdisable recovery cause link-flap
+
+ >> errdisable recovery cause sfp-config-mismatch
+
+ >> errdisable recovery cause gbic-invalid
+
+ >> errdisable recovery cause psecure-violation
+
+ >> errdisable recovery cause port-mode-failure
+
+ >> errdisable recovery cause dhcp-rate-limit
+
+ >> errdisable recovery cause mac-limit
+
+ >> errdisable recovery cause vmps
+
+ >> errdisable recovery cause storm-control
+
+ >> errdisable recovery cause inline-power
+
+ >> errdisable recovery cause loopback
+
+ >> errdisable recovery cause small-frame
+
+ >> errdisable recovery interval 1800
+
+ >> spanning-tree mode mst
+
+ >> spanning-tree portfast bpduguard default
+
+ >> spanning-tree extend system-id
+
+ >> spanning-tree mst configuration
+
+ >>  name msstate
+
+ >>  revision 1
+
+ >>  instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 39-40, 50, 60, 63, 70
+
+ >>  instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126, 136, 140, 152, 160
+
+ >>  instance 1 vlan 162-163, 168, 189, 194, 202, 220, 222, 230, 232, 242, 246
+
+ >>  instance 1 vlan 256, 611-612, 654, 741, 996, 999
+
+ >>  instance 2 vlan 2002, 2007, 2011, 2020, 2022, 2024, 2031, 2035, 2037, 2039-2040
+
+ >>  instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086, 2096, 2104, 2110, 2126
+
+ >>  instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163, 2168, 2189, 2194, 2202
+
+ >>  instance 2 vlan 2220, 2222, 2232, 2242, 2246, 2611-2612, 2654, 2999
+
+ >>  instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 113, 128, 144, 176, 196
+
+ >>  instance 3 vlan 244, 248, 927
+
+ >>  instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069, 2072, 2108, 2113, 2128
+
+ >>  instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+
+ >>  instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134, 216, 228
+
+ >>  instance 6 vlan 2016, 2048, 2058, 2088, 2121, 2131, 2133-2134, 2216, 2228
+
+ >>  instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, 84, 97, 114, 116, 124
+
+ >>  instance 7 vlan 172, 186, 192, 204-208, 210, 240-241, 251-252, 630, 928
+
+ >>  instance 8 vlan 2009, 2033-2034, 2038, 2054, 2056, 2071, 2075, 2082, 2084
+
+ >>  instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186, 2192, 2204-2208, 2210
+
+ >>  instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+
+ >>  instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68, 76, 98-99, 102, 112
+
+ >>  instance 9 vlan 130, 132, 147-148, 158, 212, 226, 236, 500, 505, 510-511
+
+ >>  instance 9 vlan 522, 551-570, 603, 629, 633, 742, 802, 926, 929
+
+ >>  instance 10 vlan 2004-2005, 2012, 2018-2019, 2032, 2044, 2057, 2062, 2068
+
+ >>  instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130, 2132, 2147-2148, 2158
+
+ >>  instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511, 2522, 2603, 2629, 2633
+
+ >>  instance 10 vlan 2802, 2926, 2929
+
+ >>  instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200, 218
+
+ >>  instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157, 2180, 2200, 2218
+
+ >> no spanning-tree vlan 61,67,90,142,300,359,500,502-519,522,551-570,601-607,610
+
+ >> no spanning-tree vlan 617,627,629-630,632-637,645,649-652,654-655,674-680,690
+
+ >> no spanning-tree vlan 691-693,698,701,741-742,800-802,807,880,902-908,910-916
+
+ >> no spanning-tree vlan 927-930,970,994-1000
+
+ >> vlan internal allocation policy ascending
+
+ >> interface GigabitEthernet1/0/1
+
+ >>  switchport access vlan 148
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/2
+
+ >>  switchport access vlan 148
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/3
+
+ >>  description extadm06.ext
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/4
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/5
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/6
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/7
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/8
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/9
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/10
+
+ >>  description lan-sw1
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/11
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/12
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/13
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/14
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/15
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/16
+
+ >>  description ws235-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/17
+
+ >>  description ws160-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/18
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/19
+
+ >>  description 130.18.148.78
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/20
+
+ >>  description ws162-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/21
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/22
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/23
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/24
+
+ >>  description ws188-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/25
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/26
+
+ >>  description ws247-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/27
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/28
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/29
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/30
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/31
+
+ >>  description ws184-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/32
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/33
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/34
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/35
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/36
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/37
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/38
+
+ >>  description ws225-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/39
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/40
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/41
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/42
+
+ >>  description 130.18.148.8
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/43
+
+ >>  description ws195-149.bost.dynamic
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/44
+
+ >>  description 130.18.148.157
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/45
+
+ >>  switchport access vlan 148
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/46
+
+ >>  switchport access vlan 91
+
+ >>  switchport mode access
+
+ >>  spanning-tree portfast
+
+ >> interface GigabitEthernet1/0/47
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >> interface GigabitEthernet1/0/48
+
+ >>  description c29s1p.m3.bost
+
+ >>  switchport trunk native vlan 92
+
+ >>  switchport mode trunk
+
+ >> interface Vlan1
+
+ >>  no ip address
+
+ >>  no ip route-cache
+
+ >>  shutdown
+
+ >> interface Vlan92
+
+ >>  ip address 10.92.3.34 255.255.0.0
+
+ >>  ip broadcast-address 10.92.255.255
+
+ >>  no ip route-cache
+
+ >> ip default-gateway 10.92.0.1
+
+ >> no ip http server
+
+ >> ip http secure-server
+
+ >> ip sla enable reaction-alerts
+
+ >> logging facility local1
+
+ >> logging 130.18.8.12
+
+ >> access-list 1 permit 130.18.92.0 0.0.3.255
+
+ >> access-list 1 permit 10.92.0.0 0.0.255.255
+
+ >> access-list 1 permit 130.18.8.0 0.0.0.255
+
+ >> snmp-server community sysnet RO 1
+
+ >> snmp-server community c2-b2=a2 RW 1
+
+ >> snmp-server community spongebob RO
+
+ >> snmp-server contact 6F-1695
+
+ >> snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+
+ >> snmp-server enable traps tty
+
+ >> snmp-server enable traps cluster
+
+ >> snmp-server enable traps entity
+
+ >> snmp-server enable traps cpu threshold
+
+ >> snmp-server enable traps vtp
+
+ >> snmp-server enable traps vlancreate
+
+ >> snmp-server enable traps vlandelete
+
+ >> snmp-server enable traps flash insertion removal
+
+ >> snmp-server enable traps port-security
+
+ >> snmp-server enable traps envmon fan shutdown supply temperature status
+
+ >> snmp-server enable traps config-copy
+
+ >> snmp-server enable traps config
+
+ >> snmp-server enable traps bridge newroot topologychange
+
+ >> snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+
+ >> snmp-server enable traps syslog
+
+ >> snmp-server enable traps vlan-membership
+
+ >> snmp-server host 130.18.8.12 sysnet 
+
+ >> line con 0
+
+ >> line vty 0 4
+
+ >>  access-class 1 in
+
+ >>  password 7 0325490E07522D0659
+
+ >>  login
+
+ >>  transport input all
+
+ >> line vty 5 15
+
+ >>  access-class 1 in
+
+ >>  password 7 052A140A201142430E
+
+ >>  login
+
+ >>  transport input all
+
+ >> ntp clock-period 36029174
+
+ >> ntp server 10.92.0.5
+
+ >> end
+
+ >> end
+
+Expect: searching for 1 strs:  :Configured
+ << 
+c29s7.m3.bost(config)#version 12.2
+c29s7.m3.bost(config)#no service pad
+c29s7.m3.bost(config)#service timestamps debug datetime localtime
+c29s7.m3.bost(config)#service timestamps log datetime localtime
+c29s7.m3.bost(config)#service password-encrypti
+ << on
+c29s7.m3.bost(config)#hostname c29s7.m3.bost
+c29s7.m3.bost(config)#boot-start-marker
+c29s7.m3.bost(config)#boot-end-marker
+c29s7.m3.bost(config)#enable secret 5 $1$s6GO$UrhKVKOAEbq/smZUOjpb..
+The enable secret you have chosen is the same as your e
+ << nable password.
+This is not recommended.  Re-enter the enable secret.
+
+c29s7.m3.bost(config)#enable password 7 106F1B1C044A1E411B
+The enable password you have chosen is the same as your enable secret.
+This is not recommended.  Re-enter the enable pas
+ << sword.
+
+c29s7.m3.bost(config)#username root privilege 15 secret 5 $1$pijk$IWu2HP7dYdz$ot privilege 15 secret 5 $1$pijk$IWu2HP7dYdz3         xWkNFJF4q
+ << ge 15 secret 5 $1$pijk$IWu2HP7dYdz3xWkNFJF4q/         
+c29s7.m3.bost(config)#no aaa new-model
+c29s7.m3.bost(config)#clock timezone CST -6
+c29s7.m3.bost(config)#clock summer-time CDT recurring
+c29s7.m3.bost(config)#system mtu rou
+ << ting 1500
+                                 ^
+% Invalid input detected at '^' marker.
+
+c29s7.m3.bost(config)#ip domain-name mgmt.msstate.edu
+c29s7.m3.bost(config)#ip name-server 130.18.80.12
+c29s7.m3.bost(config)#crypto pki trustpoint TP-self-signed-
+ << 1365699840
+c29s7.m3.bost(ca-trustpoint)# enrollment selfsigned
+c29s7.m3.bost(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Cert
+*Feb 28 18:12:45: %SYS-6-CLOCKUPDATE: System clock has been updated from 18:12:45 CST Sun Feb 28 1993 to 18:12:45 CST Sun 
+ << Feb 28 1993, configured from console by console.
+*Feb 28 18:12:45: %SYS-6-CLOCKUPDATE: System clock has been updated from 18:12:45 CST Sun Feb 28 1993 to 18:12:45 CST Sun Feb 28 1993, configured from console by console.ificate-136
+ << $me cn=IOS-Self-Signed-Certificate-1365         699840
+c29s7.m3.bost(ca-trustpoint)# revocation-check none
+c29s7.m3.bost(ca-trustpoint)# rsakeypair TP-self-signed-1365699840
+c29s7.m3.bost(ca-trustpoint)#crypto pki trust
+ << point TP-self-signed-102971904
+c29s7.m3.bost(ca-trustpoint)# enrollment selfsigned
+c29s7.m3.bost(ca-trustpoint)# subject-name cn=IOS-Self-Signed-Certificate-102$me cn=IOS-Self-Signed-Certificate-1029      
+ <<    71904
+c29s7.m3.bost(ca-trustpoint)# revocation-check none
+c29s7.m3.bost(ca-trustpoint)# rsakeypair TP-self-signed-102971904
+c29s7.m3.bost(ca-trustpoint)#crypto pki certificate chain TP-self-signed-1365
+ << $certificate chain TP-self-signed-13656         99840
+c29s7.m3.bost(config-cert-chain)# certificate self-signed 01 nvram:IOS-Self-S$e self-signed 01 nvram:IOS-Self-Si         g#3030.c
+ << ened 01 nvram:IOS-Self-Sig#3030.cer         
+c29s7.m3.bost(config-cert-chain)#crypto pki certificate chain TP-self-signed-$certificate chain TP-self-signed-1 
+ <<         02971904
+c29s7.m3.bost(config-cert-chain)#errdisable recovery cause udld
+c29s7.m3.bost(config)#errdisable recovery cause bpduguard
+c29s7.m3.bost(config)#errdisable recovery cause security-violation
+c29s7.m3.bost(config)#errdisable rec
+ << overy cause channel-misconfig (STP)
+c29s7.m3.bost(config)#errdisable recovery cause pagp-flap
+c29s7.m3.bost(config)#errdisable recovery cause dtp-flap
+c29s7.m3.bost(config)#errdisable recovery cause link-flap
+c29s7.m3.bost(config)#errdisable recovery 
+ << cause sfp-config-mismatch
+c29s7.m3.bost(config)#errdisable recovery cause gbic-invalid
+c29s7.m3.bost(config)#errdisable recovery cause psecure-violation
+c29s7.m3.bost(config)#errdisable recovery cause port-mode-failure
+c29s7.m3.bost(config)#errdisable
+ <<  recovery cause dhcp-rate-limit
+c29s7.m3.bost(config)#errdisable recovery cause mac-limit
+c29s7.m3.bost(config)#errdisable recovery cause vmps
+c29s7.m3.bost(config)#errdisable recovery cause storm-control
+c29s7.m3.bost(config)#errdisable recovery caus
+ << e inline-power
+c29s7.m3.bost(config)#errdisable recovery cause loopback
+c29s7.m3.bost(config)#errdisable recovery cause small-frame
+c29s7.m3.bost(config)#errdisable recovery interval 1800
+c29s7.m3.bost(config)#spanning-tree mode mst
+c29s7.m3.bost(con
+ << fig)#spanning-tree portfast bpduguard default
+c29s7.m3.bost(config)#spanning-tree extend system-id
+c29s7.m3.bost(config)#spanning-tree mst configuration
+c29s7.m3.bost(config-mst)# name msstate
+c29s7.m3.bost(config-mst)# revision 1
+c29s7.m3.bost(confi
+ << g-mst)# instance 1 vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, $ vlan 2, 7, 11, 20, 22, 24, 31, 35, 37, 3         9-40, 50,, 11, 20, 22, 24, 31, 35, 3
+ << 7, 39-40, 50,          60, 63, 722, 24, 31, 35, 37, 39-40, 50, 60, 63, 70         
+c29s7.m3.bost(config-mst)# instance 1 vlan 78, 80, 86, 91, 96, 104, 110, 126,
+ << $ vlan 78, 80, 86, 91, 96, 104, 110, 126,          136, 140,80, 86, 91, 96, 104, 110, 126, 136, 140,          152, 160
+c29s7.m3.bost(config-mst)# instance 1 vlan
+ <<  162-163, 168, 189, 194, 202, 220, $ vlan 162-163, 168, 189, 194, 202, 220, 2         22, 230, 163, 168, 189, 194, 202, 220, 222, 230, 2         
+ << 32, 242, 89, 194, 202, 220, 222, 230, 232, 242, 2         46
+c29s7.m3.bost(config-mst)# instance 1 vlan 256, 611-612, 654, 741, 996, 999
+c29s7.m3.bost(config-mst)# instance 2 vlan 2002, 
+ << 2007, 2011, 2020, 2022, 2024$ vlan 2002, 2007, 2011, 2020, 2022, 2024,          2031, 20, 2007, 2011, 2020, 2022, 2024, 2031, 203         
+ << 5, 2037, 11, 2020, 2022, 2024, 2031, 2035, 2037, 2         039-2040
+c29s7.m3.bost(config-mst)# instance 2 vlan 2050, 2060, 2063, 2070, 2080, 2086
+ << $ vlan 2050, 2060, 2063, 2070, 2080, 2086,          2096, 21, 2060, 2063, 2070, 2080, 2086, 2096, 210         4, 2110, 63, 2070, 2080,
+ <<  2086, 2096, 2104, 2110, 2         126
+c29s7.m3.bost(config-mst)# instance 2 vlan 2136, 2140, 2152, 2160, 2162-2163,$ vlan 2136, 2140, 2152, 2160, 2162-2163,          2168, 218
+ << , 2140, 2152, 2160, 2162-2163, 2168, 2189         , 2194, 252, 2160, 2162-2163, 2168, 2189, 2194, 22         02
+c29s7.m3.bost(config-mst)# instan
+ << ce 2 vlan 2220, 2222, 2232, 2242, 2246, 2611$ vlan 2220, 2222, 2232, 2242, 2246, 2611-         2612, 265, 2222, 2232, 2242, 2246, 2611-2612, 2654
+ <<          , 2999
+c29s7.m3.bost(config-mst)# instance 3 vlan 42, 51, 59, 64, 66, 69, 72, 108, 1$ vlan 42, 51, 59, 64, 66, 69, 72, 108, 11         3, 128, 1
+ << 51, 59, 64, 66, 69, 72, 108, 113, 128, 14         4, 176, 1, 66, 69, 72, 108, 113, 128, 144, 176, 19         6
+c29s7.m3.bost(config-mst)# instance 3 vlan 244, 248, 927
+ << 
+c29s7.m3.bost(config-mst)# instance 4 vlan 2042, 2051, 2059, 2064, 2066, 2069$ vlan 2042, 2051, 2059, 2064, 2066, 2069,          2072, 21, 2051,
+ <<  2059, 2064, 2066, 2069, 2072, 210         8, 2113, 59, 2064, 2066, 2069, 2072, 2108, 2113, 2         128
+c29s7.m3.bost(config-mst)# instance 4 vlan 2144, 2176, 2196, 2244, 2248, 2927
+c
+ << 29s7.m3.bost(config-mst)# instance 5 vlan 16, 48, 58, 88, 121, 131, 133-134,$ vlan 16, 48, 58, 88, 121, 131, 133-134,          216, 228
+c29s7.m3.bost(config-mst)# instance 6 vlan 2016, 2048, 205
+ << 8, 2088, 2121, 2131$ vlan 2016, 2048, 2058, 2088, 2121, 2131,          2133-213, 2048, 2058, 2088, 2121, 2131, 2133-2134         , 2216,
+ <<  258, 2088, 2121, 2131, 2133-2134, 2216, 22         28
+c29s7.m3.bost(config-mst)# instance 7 vlan 9, 33-34, 38, 54, 56, 71, 75, 82, $ vlan 9, 33
+ << -34, 38, 54, 56, 71, 75, 82, 8         4, 97, 113-34, 38, 54, 56, 71, 75, 82, 84, 97, 114         , 116, 1254, 56, 71, 75, 82, 84, 97, 11
+ << 4, 116, 124         
+c29s7.m3.bost(config-mst)# instance 7 vlan 172, 186, 192, 204-208, 210, 240-2$ vlan 172, 186, 192, 204-208, 210, 240-24         1, 251-25
+ << 186, 192, 204-208, 210, 240-241, 251-252         , 630, 92204-208, 210, 240-241, 251-252, 630, 928         
+c29s7.m3.bost(config-mst)# instance 8 vlan 2009, 2033-203
+ << 4, 2038, 2054, 2056,$ vlan 2009, 2033-2034, 2038, 2054, 2056,          2071, 207, 2033-2034, 2038, 2054, 2056, 2071, 2075         , 2082
+ << , 24, 2038, 2054, 2056, 2071, 2075, 2082, 20         84
+c29s7.m3.bost(config-mst)# instance 8 vlan 2097, 2114, 2116, 2124, 2172, 2186$ vlan 2097
+ << , 2114, 2116, 2124, 2172, 2186,          2192, 22, 2114, 2116, 2124, 2172, 2186, 2192, 220         4-2208, 216, 2124, 2172, 2186, 2192, 2
+ << 204-2208, 22         10
+c29s7.m3.bost(config-mst)# instance 8 vlan 2240-2241, 2251-2252, 2630, 2928
+c29s7.m3.bost(config-mst)# instance 9 vlan 4-5, 12, 18-19, 32, 44, 57, 62, 68$ vlan 4-5, 12, 
+ << 18-19, 32, 44, 57, 62, 68,          76, 98-912, 18-19, 32, 44, 57, 62, 68, 76, 98-99         , 102, 11, 32, 44, 57, 62, 68, 76, 98-99, 102
+ << , 112         
+c29s7.m3.bost(config-mst)# instance 9 vlan 130, 132, 147-148, 158, 212, 226, $ vlan 130, 132, 147-148, 158, 212, 226, 2         36, 500, 
+ << 132, 147-148, 158, 212, 226, 236, 500, 5         05, 510-5148, 158, 212, 226, 236, 500, 505, 510-51         1
+c29s7.m3.bost(config-mst)# instance 9 vlan 522, 551-570, 603
+ << , 629, 633, 742, $ vlan 522, 551-570, 603, 629, 633, 742, 8         02, 926, 551-570, 603, 629, 633, 742, 802, 926, 9         29
+c29s7.m
+ << 3.bost(config-mst)# instance 10 vlan 2004-2005, 2012, 2018-2019, 2032,$0 vlan 2004-2005, 2012, 2018-2019, 2032,          2044, 2054-2005, 2012, 2
+ << 018-2019, 2032, 2044, 2057         , 2062, 212, 2018-2019, 2032, 2044, 2057, 2062, 20         68
+c29s7.m3.bost(config-mst)# instance 10 vlan 2076, 2098-2099, 2102, 2112, 2130
+ << $0 vlan 2076, 2098-2099, 2102, 2112, 2130,          2132, 216, 2098-2099, 2102, 2112, 2130, 2132, 214         7-2148, 2
+ << 99, 2102, 2112, 2130, 2132, 2147-2148, 21         58
+c29s7.m3.bost(config-mst)# instance 10 vlan 2212, 2236, 2500, 2505, 2510-2511$0 vlan 2212, 2236, 2500, 2505, 2510-2511, 
+ <<          2522, 262, 2236, 2500, 2505, 2510-2511, 2522, 260         3, 2629, 500, 2505, 2510-2511, 2522, 2603, 2629, 2         63
+ << 3
+c29s7.m3.bost(config-mst)# instance 10 vlan 2802, 2926, 2929
+c29s7.m3.bost(config-mst)# instance 11 vlan 8, 43, 52, 146, 156-157, 180, 200$1 vlan 8, 43, 52, 146, 156-157, 180, 200,          2
+ << 18
+c29s7.m3.bost(config-mst)# instance 12 vlan 2008, 2043, 2052, 2146, 2156-2157$2 vlan 2008, 2043, 2052, 2146, 2156-2157,          2180, 228, 2
+ << 043, 2052, 2146, 2156-2157, 2180, 220         0, 2218
+c29s7.m3.bost(config-mst)#no spanning-tree vlan 61,67,90,142,300,359,500,502-$-tree vlan 61,67,90,142,300,359,500,502-5         19,
+ << 522,55 61,67,90,142,300,359,500,502-519,522,551         -570,601-142,300,359,500,502-519,522,551-570,601-6         07,610
+c29s7.m3.bost(
+ << config)#no spanning-tree vlan 617,627,629-630,632-637,645,649-6$-tree vlan 617,627,629-630,632-637,645,649-65         2,654-655 617,627,6
+ << 29-630,632-637,645,649-652,654-655,         674-680,629-630,632-637,645,649-652,654-655,674-680,69         0
+c29s7.m3.bost(config)#no spanning-tree vlan 691-693,698,701,741-742,800-8
+ << 02,8$-tree vlan 691-693,698,701,741-742,800-802,80         7,880,902 691-693,698,701,741-742,800-802,807,880,902-         908,91
+ << 0-998,701,741-742,800-802,807,880,902-908,910-91         6
+c29s7.m3.bost(config)#no spanning-tree vlan 927-930,970,994-1000
+c29s7.m3.bost(config)#vlan internal allocation policy ascending
+c
+ << 29s7.m3.bost(config)#interface GigabitEthernet1/0/1
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport trunk native vlan 92
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree
+ <<  portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+
+ << %Portfast has been configured on GigabitEthernet1/0/1 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/2
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(c
+ << onfig-if)# switchport trunk native vlan 92
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators
+ << , switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/2 but will only
+ have effect when the interface is in a non-trunking 
+ << mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/3
+c29s7.m3.bost(config-if)# description extadm06.ext
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-
+ << tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+ << 
+
+%Portfast has been configured on GigabitEthernet1/0/3 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/4
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bo
+ << st(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when p
+ << ortfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/4 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthern
+ << et1/0/5
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting 
+ << hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/5 but will only
+ have effect when the interface is
+ <<  in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/6
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast
+ <<  should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured
+ <<  on GigabitEthernet1/0/6 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/7
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode ac
+ << cess
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause tem
+ << porary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/7 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/8
+c29s7.m3.bost(config-if)
+ << # switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, br
+ << idges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/8 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m
+ << 3.bost(config-if)#interface GigabitEthernet1/0/9
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports 
+ << connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/9 but will
+ <<  only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/10
+c29s7.m3.bost(config-if)# description lan-sw1
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# swi
+ << tchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled
+ << , can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/10 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/11
+c29s7.m
+ << 3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrat
+ << ors, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/11 but will only
+ have effect when the interface is in a non-trunk
+ << ing mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/12
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only b
+ << e enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEth
+ << ernet1/0/12 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/13
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.
+ << m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridg
+ << ing loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/13 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/14
+c29s7.m3.bost(config-if)# switchpo
+ << rt access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc
+ << ... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/14 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(co
+ << nfig-if)#interface GigabitEthernet1/0/15
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connecte
+ << d to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/15 but will only
+
+ <<  have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/16
+c29s7.m3.bost(config-if)# description ws235-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-
+ << if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is
+ <<  enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/16 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/17
+ << 
+c29s7.m3.bost(config-if)# description ws160-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enab
+ << led on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1
+ << /0/17 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/18
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bos
+ << t(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging lo
+ << ops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/18 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/19
+c29s7.m3.bost(config-if)# description 13
+ << 0.18.148.78
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connect
+ << ing hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/19 but will only
+ have effect when the interfa
+ << ce is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/20
+c29s7.m3.bost(config-if)# description ws162-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+
+ << c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary
+ <<  bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/20 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/21
+c29s7.m3.bost(config-if)# sw
+ << itchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridge
+ << s, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/21 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.b
+ << ost(config-if)#interface GigabitEthernet1/0/22
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports co
+ << nnected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/22 but will 
+ << only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/23
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# s
+ << panning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with
+ <<  CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/23 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/24
+c29s7.m3.bost(config-if)# description ws188-149.bost.dy
+ << namic
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hu
+ << bs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/24 but will only
+ have effect when the interface is 
+ << in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/25
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast
+ <<  should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured
+ <<  on GigabitEthernet1/0/25 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/26
+c29s7.m3.bost(config-if)# description ws247-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchpo
+ << rt access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc
+ << ... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/26 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(co
+ << nfig-if)#interface GigabitEthernet1/0/27
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connecte
+ << d to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/27 but will only
+
+ <<  have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/28
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spannin
+ << g-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTI
+ << ON
+
+%Portfast has been configured on GigabitEthernet1/0/28 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/29
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m
+ << 3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  wh
+ << en portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/29 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitE
+ << thernet1/0/30
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Conne
+ << cting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/30 but will only
+ have effect when the inter
+ << face is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/31
+c29s7.m3.bost(config-if)# description ws184-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+ << 
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause tempora
+ << ry bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/31 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/32
+c29s7.m3.bost(config-if)# 
+ << switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, brid
+ << ges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/32 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3
+ << .bost(config-if)#interface GigabitEthernet1/0/33
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports 
+ << connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/33 but wil
+ << l only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/34
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)#
+ <<  spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use wi
+ << th CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/34 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/35
+c29s7.m3.bost(config-if)# switchport access vlan 148
+ << 
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ inter
+ << face  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/35 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface 
+ << GigabitEthernet1/0/36
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ hos
+ << t. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/36 but will only
+ have effect when t
+ << he interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/37
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%W
+ << arning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has
+ <<  been configured on GigabitEthernet1/0/37 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/38
+c29s7.m3.bost(config-if)# description ws225-149.bost.dynamic
+c29s7.m3.bost(conf
+ << ig-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switch
+ << es, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/38 but will only
+ have effect when the interface is in a non-trunking mode.
+
+ << c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/39
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled o
+ << n ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/39
+ <<  but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/40
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(con
+ << fig-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ << 
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/40 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/41
+c29s7.m3.bost(config-if)# switchport access v
+ << lan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ << 
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/41 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#in
+ << terface GigabitEthernet1/0/42
+c29s7.m3.bost(config-if)# description 130.18.148.8
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast
+ <<  should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured
+ <<  on GigabitEthernet1/0/42 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/43
+c29s7.m3.bost(config-if)# description ws195-149.bost.dynamic
+c29s7.m3.bost(config-if)# switchpo
+ << rt access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc
+ << ... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/43 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(co
+ << nfig-if)#interface GigabitEthernet1/0/44
+c29s7.m3.bost(config-if)# description 130.18.148.157
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warn
+ << ing: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has be
+ << en configured on GigabitEthernet1/0/44 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/45
+c29s7.m3.bost(config-if)# switchport access vlan 148
+c29s7.m3.bost(config-if)# swi
+ << tchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc... to this
+ interface  when portfast is enabled
+ << , can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/45 but will only
+ have effect when the interface is in a non-trunking mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/46
+c29s7.m
+ << 3.bost(config-if)# switchport access vlan 91
+c29s7.m3.bost(config-if)# switchport mode access
+c29s7.m3.bost(config-if)# spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrato
+ << rs, switches, bridges, etc... to this
+ interface  when portfast is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+%Portfast has been configured on GigabitEthernet1/0/46 but will only
+ have effect when the interface is in a non-trunki
+ << ng mode.
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/47
+c29s7.m3.bost(config-if)# switchport trunk native vlan 92
+c29s7.m3.bost(config-if)# switchport mode trunk
+c29s7.m3.bost(config-if)#interface GigabitEthernet1/0/48
+c29s7.m3.bost(config-
+ << if)# description c29s1p.m3.bost
+c29s7.m3.bost(config-if)# switchport trunk native vlan 92
+c29s7.m3.bost(config-if)# switchport mode trunk
+c29s7.m3.bost(config-if)#interface Vlan1
+c29s7.m3.bost(config-if)# no ip address
+c29s7.m3.bost(config-if)# no ip
+ <<  route-cache
+c29s7.m3.bost(config-if)# shutdown
+c29s7.m3.bost(config-if)#interface Vlan92
+c29s7.m3.bost(config-if)# ip address 10.92.3.34 255.255.0.0
+c29s7.m3.bost(config-if)# ip broadcast-address 10.92.255.255
+c29s7.m3.bost(config-if)# no ip route-c
+ << ache
+c29s7.m3.bost(config-if)#ip default-gateway 10.92.0.1
+c29s7.m3.bost(config)#no ip http server
+c29s7.m3.bost(config)#ip http secure-server
+c29s7.m3.bost(config)#ip sla enable reaction-alerts
+c29s7.m3.bost(config)#logging facility local1
+c29s7.m3
+ << .bost(config)#logging 130.18.8.12
+c29s7.m3.bost(config)#access-list 1 permit 130.18.92.0 0.0.3.255
+c29s7.m3.bost(config)#access-list 1 permit 10.92.0.0 0.0.255.255
+c29s7.m3.bost(config)#access-list 1 permit 130.18.8.0 0.0.0.255
+c29s7.m3.bost(config)#s
+ << nmp-server community sysnet RO 1
+c29s7.m3.bost(config)#snmp-server community c2-b2=a2 RW 1
+c29s7.m3.bost(config)#snmp-server community spongebob RO
+c29s7.m3.bost(config)#snmp-server contact 6F-1695
+c29s7.m3.bost(config)#snmp-server enable traps snmp a
+ << uthentication linkdown l$ enable traps snmp authentication linkdown li         nkup coldaps snmp authentication linkdown linkup colds    
+ <<      tart warmuthentication linkdown linkup coldstart warms         tart
+c29s7.m3.bost(config)#snmp-server enable traps tty
+c29s7.m3.bost(config)#snmp-server enable traps cluster
+c
+ << 29s7.m3.bost(config)#snmp-server enable traps entity
+c29s7.m3.bost(config)#snmp-server enable traps cpu threshold
+c29s7.m3.bost(config)#snmp-server enable traps vtp
+c29s7.m3.bost(config)#snmp-server enable traps vlancreate
+c29s7.m3.bost(config)#snmp-s
+ << erver enable traps vlandelete
+c29s7.m3.bost(config)#snmp-server enable traps flash insertion removal
+c29s7.m3.bost(config)#snmp-server enable traps port-security
+c29s7.m3.bost(config)#snmp-server enable traps envmon fan shutdown supply tem
+ << $ enable traps envmon fan shutdown supply temp         erature saps envmon fan shutdown supply temperature st         atus
+c29s7.m3.bost(con
+ << fig)#snmp-server enable traps config-copy
+c29s7.m3.bost(config)#snmp-server enable traps config
+c29s7.m3.bost(config)#snmp-server enable traps bridge newroot topologychange
+c29s7.m3.bost(config)#snmp-server enable traps stpx inconsistency root-incons
+ << $ enable traps stpx inconsistency root-inconsi         stency loaps stpx inconsistency root-inconsistency loo         p-inconsi
+ << nconsistency root-inconsistency loop-inconsis         tency
+c29s7.m3.bost(config)#snmp-server enable traps syslog
+c29s7.m3.bost(config)#snmp-server enable traps vlan-membership
+c29s7.m3.bost(c
+ << onfig)#snmp-server host 130.18.8.12 sysnet 
+c29s7.m3.bost(config)#line con 0
+c29s7.m3.bost(config-line)#line vty 0 4
+c29s7.m3.bost(config-line)# access-class 1 in
+c29s7.m3.bost(config-line)# password 7 0325490E07522D0659
+c29s7.m3.bost(config-line)# l
+ << ogin
+c29s7.m3.bost(config-line)# transport input all
+c29s7.m3.bost(config-line)#line vty 5 15
+c29s7.m3.bost(config-line)# access-class 1 in
+c29s7.m3.bost(config-line)# password 7 052A140A201142430E
+c29s7.m3.bost(config-line)# login
+c29s7.m3.bost(con
+ << fig-line)# transport input all
+c29s7.m3.bost(config-line)#ntp clock-period 36029174
+%NTP: unreasonable value
+c29s7.m3.bost(config)#ntp server 10.92.0.5
+c29s7.m3.bost(config)#end
+c29s7.m3.bost#end
+Translating "end"...domain server (130.18.80.12)
+*Fe
+ << b 28 18:13:57: %SYS-5-CONFIG_I: Configured from console by console
+Expect: matched string 1: Configured
+ >> 
+
+ >> write mem
+
+Expect: searching for 2 strs:  :# :>
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+ << 
+Expect: did not match any strings!
+...
+
+...
+
