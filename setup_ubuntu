@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#install
+apt update
+apt install perl libdbd-mysql-perl libdbi-perl libexpect-perl libnet-dbus-perl libsnmp-perl libdevice-serialport-perl libterm-readkey-perl
