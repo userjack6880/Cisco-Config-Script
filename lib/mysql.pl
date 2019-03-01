@@ -36,7 +36,7 @@ sub db_query{
 	my @result = ();
 	my $select = $dbh->prepare($query);
 
-	$select->execute() or warn ("problem with query $!");
+	$select->execute() or warn ("problem with query $!\nquery: $query");
 	$tempval = $select->fetchrow_hashref();
 	if ($tempval){
 		return $tempval;

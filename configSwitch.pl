@@ -23,7 +23,7 @@ use Data::Dumper;
 
 # version number
 
-my $script_version = "3.18.01.23.1030";
+my $script_version = "3.19.03.01.1310";
 
 # Configuration Variables -------------------------------------------------------------------------
 
@@ -417,10 +417,14 @@ while (!($action eq "q")) {
 		my $dhcpsnoop = "";
 		$dhcpsnoop    = prompt("Enable DHCP Snooping? \t\t  ", "bool");
 
+		my %vlan_list;       # we can do some magic where duplicate keys/values don't happen (hacky hacky)
+		$vlan_list{92} = 92; # we should always have an uplink VLAN
+
 		if ($dhcpsnoop) {
 			$S->{'info'}{'dhcp_snoop'} = 1;
 			$dhcpvlan     = prompt("DHCP Snooping VLAN \t\t\t", "int_list");
 			$S->{'info'}{'dhcp_snoop_vlan'} = $dhcpvlan;
+			$vlan_list{$dhcpvlan} = $dhcpvlan;
 		}
 
 		my $vlan = "";
@@ -434,6 +438,7 @@ while (!($action eq "q")) {
 		$S->{'info'}{'vlan'} = $vlan;
 		$S->{'info'}{'use_security'} = $security;
 		$S->{'info'}{'dot1q_trunk'} = $dot1q_trunk;
+		$vlan_list{$vlan} = $vlan;
 
 		# additional copper uplinks besides dedicated uplinks
 		my $copper_trnk = "";
@@ -513,6 +518,8 @@ while (!($action eq "q")) {
 			                           'passthrough' => $passthrough,
 			                           'vlan2'       => $vlan2
 			                         };
+			$vlan_list{$avlans} = $avlans;
+			$vlan_list{$vlan2} = $vlan2;
 			$addportnum++;
 		}
 
@@ -936,6 +943,24 @@ while (!($action eq "q")) {
 			sleep 5;
 		}
 
+		# Generate the VLANs too
+		debug("defining vlans...",1);
+		if ($debug > 0) {
+			sleep 5;
+		}
+
+		foreach my $vlan_key (keys %vlan_list) {
+			my $vlan_name = getVLAN($vlan_key);
+
+			if ($vlan_name ne '') {
+				$S->enable();
+				$S->configure("terminal");
+				$S->{'interface'}->send("vlan $vlan_key\n");
+				$S->{'interface'}->send("name $vlan_name\n");
+				$S->endconfigure();
+			}
+		}
+
 		GENKEY:
 		debug("generating rsa key...",1);
 		if ($debug > 0) {
@@ -1055,7 +1080,7 @@ while (!($action eq "q")) {
 		if ($updateSIP) {
 			print "Updating Static IP Database.\n";
 			updateSIP($ip_address,$hostname,$location);
-			update_conf_db($serialnum,$location,$hostname,'',$modelnum,$inventory,$ip_address,$netid);
+			update_conf_db($serialnum,$location,$hostname,'',$modelnum,$inventory,$ip_address,$netid,"$Bin/cfg/hosts/$hostname.cfg");
 		}
 
 		RESET:
@@ -1288,6 +1313,26 @@ sub ipPad {
 	return $padded;
 }
 
+sub getVLAN {
+	my $vlanid = shift;
+	my $vlanname = '';
+
+	# we shouldn't get a VLAN ID 1 or 0 or blank, but if it is, return empty
+	
+	if ($vlanid eq 1 || $vlanid eq 0 || $vlanid eq '') {
+		return '';
+	} else {
+		db_connect($conf{'mysql_db_netdb'}, $conf{'mysql_user'},$conf{'mysql_pass'});
+		my $query = "SELECT name FROM lan WHERE valid = 1 and vlan_id = $vlanid";
+		my $result = db_query($query);
+
+		if ($result) { return $result->{'name'}; } 
+		else         { return ''; }
+
+		db_disconnect();
+	}
+}
+
 sub getIP {
 	my $hostname = shift;
 	my $location = shift;
@@ -1389,11 +1434,22 @@ sub update_conf_db {
 	my $inventory = shift;
 	my $ip = shift;
 	my $netid = shift;
+	my $fn = shift;
 
+	# we need to convert a file into a huge string and just shove that into the database
+	
+	open(IFN, "<" . $fn) or die ("Error: cannot open configuration file: $fn : $!");
+	my $line = "";
+	my $config = "";
+	while ($line = <IFN>) {
+		$config .= "$line";
+	}
+
+	close(IFN);
 	
 	db_connect($conf{'mysql_db_SNDB'}, $conf{'mysql_user'},$conf{'mysql_pass'});
 
-	my $query = "INSERT INTO configured_switches (serial,location,name,series,model,inventory,ip,last_handled,configured_by,picked_up,configured_date) VALUES ('".$serial."','".$location."','".$name."','".$series."','".$model."','".$inventory."','".$ip."','".$netid."','".$netid."',0,NOW())";
+	my $query = "INSERT INTO configured_switches (serial,location,name,series,model,inventory,ip,last_handled,configured_by,picked_up,configured_date,configuration) VALUES ('$serial','$location','$name','$series','$model','$inventory','$ip','$netid','$netid',0,NOW(),'$config')";
 	my $continue = db_do($query);
 	if (!$continue) { print "problem\n"; }
 
