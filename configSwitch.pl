@@ -510,6 +510,7 @@ while (!($action eq "q")) {
 			my $vlan2 = "";
 			if ($passthrough) {
 				$vlan2 = prompt("Passthrough Vlan \t\t\t", "text");
+				$vlan_list{$vlan2} = $vlan2;
 			}
 			$addports[$addportnum] = { 'ports'       => $aports,
 			                           'vlan'        => $avlans,
@@ -519,7 +520,6 @@ while (!($action eq "q")) {
 			                           'vlan2'       => $vlan2
 			                         };
 			$vlan_list{$avlans} = $avlans;
-			$vlan_list{$vlan2} = $vlan2;
 			$addportnum++;
 		}
 
