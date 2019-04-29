@@ -1,5 +1,11 @@
 #!/bin/sh
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
 #install
 apt update
 apt install perl libdbd-mysql-perl libdbi-perl libexpect-perl libnet-dbus-perl libsnmp-perl libdevice-serialport-perl libterm-readkey-perl
+
+echo "\nCreating Directories\n"
+mkdir $SCRIPT_DIR/cfg/hosts/
+mkdir $SCRIPT_DIR/log/

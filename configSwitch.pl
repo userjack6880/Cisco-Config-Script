@@ -23,7 +23,7 @@ use Data::Dumper;
 
 # version number
 
-my $script_version = "3.19.03.01.1310";
+my $script_version = "3.19.04.29.1";
 
 # Configuration Variables -------------------------------------------------------------------------
 
@@ -1000,6 +1000,7 @@ while (!($action eq "q")) {
 
 		if ($action eq "4" || $backupconfig) {
 			print "Backing up config.\n";
+			sleep 2; #sometimes we're going WAYYY to fast
 			saveConfig($S, "$Bin/cfg/hosts/$hostname.cfg");
 		}
 

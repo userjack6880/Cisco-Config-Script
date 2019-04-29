@@ -1,4 +1,10 @@
 #!/bin/sh
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
 #install
 dnf install perl 'perl(DBD::mysql)' 'perl(DBI)' 'perl(Expect)' 'perl(Net::DBus)' 'perl(Net::SNMP)' 'perl(SNMP)' 'perl(Device::SerialPort)' 'perl(Term::ReadKey)'
+
+echo "\nCreating Directories\n"
+mkdir -v $SCRIPT_DIR/cfg/hosts/
+mkdir -v $SCRIPT_DIR/log/

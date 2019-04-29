@@ -394,7 +394,7 @@ sub get_model {
 		$self->{'info'}->{'model'} = $1;
 		$self->debug("model: $1", 1);
 
-		if ($self->{'info'}->{'model'} =~ /-C(\w+)-/ || $self->{'info'}->{'model'} =~ /(IE-4000)/ || $self->{'info'}->{'model'} =~ /(C9300)/) {
+		if ($self->{'info'}->{'model'} =~ /-C(\w+)-/ || $self->{'info'}->{'model'} =~ /(IE-4000)/ || $self->{'info'}->{'model'} =~ /(C9300)/ || $self->{'info'}->{'model'} =~ /(C9200\w\-\d+\w\-\d\w)/) {
 			$self->{'info'}->{'modelnum'} = $1;
 		}
 		return($self->{'info'}->{'model'});
@@ -616,7 +616,7 @@ sub get_info {
 				$self->debug("model: $1",1);
 			}
 			# and neither will work on new 9300 switches (I love cisco)
-			if ($retval{'modelnum'} =~ /(C9300)/) {
+			if ($retval{'modelnum'} =~ /(C9\d00)/) {
 				$found = 1;
 				$retval{'model'} = $1;
 				$self->debug("model: $1",1);
@@ -895,7 +895,6 @@ sub set_port_vlan {
 			else {
 				$self->{interface}->send("power inline never\n");
 			}
-			$self->{interface}->send("shutdown\n");
 		}
 	}
 	$self->endconfigure();
@@ -942,7 +941,6 @@ sub set_port_trunk {
 				$self->{'interface'}->send("ip dhcp snooping trust\n");
 				$self->{'interface'}->send("no keepalive\n");
 			}
-			$self->{'interface'}->send("shutdown\n");
 		}
 	}
 	$self->endconfigure();
@@ -1054,6 +1052,8 @@ sub skip_initial_configuration {
 		sleep 2;
 		$self->{'interface'}->send("\n\r");
 		$self->{'interface'}->send("no\n");
+    # a second return character will skip autoinstalls on 9200's (and maybe others)
+    $self->{'interface'}->send("\n\r");
 	}
 	elsif ($action == 2) {
 		$self->debug("matched start...",1);
@@ -1061,6 +1061,8 @@ sub skip_initial_configuration {
 		sleep 2;
 		$self->{'interface'}->send("\n\r");
 		$self->{'interface'}->send("no\n");
+		# like above... skip autoinstall
+		$self->{'interface'}->send("\n\r");
 	}
 	elsif (($action != 3) && ($action != 4)) {
 		# have it check for ">" now, since it causes problems otherwise
@@ -1119,10 +1121,10 @@ sub gen_key {
 	$self->check_conn();
 	$self->enable();
 	$self->configure("terminal");
-	$self->{'interface'}->send("crypto key generate rsa\n");
-	$self->{'interface'}->send("no\n");
-	$self->{'interface'}->send("2048\n");
-	$self->{'interface'}->expect(10,"OK","(config)#");
+	$self->{'interface'}->send("crypto key generate rsa modulus 4096\n");
+#	$self->{'interface'}->send("no\n");
+#	$self->{'interface'}->send("2048\n");
+#	$self->{'interface'}->expect(10,"OK","(config)#");
 	$self->endconfigure();
 }
 

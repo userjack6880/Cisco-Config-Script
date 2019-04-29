@@ -525,6 +525,15 @@ our %ciscoModels = (
 	                          "poe"          => 0
 	                        },
 
+# 9200
+	"C9200L-48T-4G"       => { "num_ports"   => 48,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "gi1/1/",
+	                           "poe"         => 0
+                           },
+
 # 9300
 	"C9300-24T"           => { "num_ports"   => 24,
                              "port_type"   => "gigabitethernet",
@@ -532,6 +541,15 @@ our %ciscoModels = (
                              "num_uplinks" => 8,
                              "uplink_pre"  => "te1/1/",
 															"poe"        => 1
+                           },
+
+# 9500
+	"C9500-16X"           => { "num_ports"   => 16,
+                             "port_type"   => "tengigabitethernet",
+                             "port_prefix" => "te1/0/",
+                             "num_uplinks" => 8,
+                             "uplink_pre"  => "te1/1/|fo1/1/",
+															"poe"        => 0
                            },
 
 # IE-4000
