@@ -526,11 +526,67 @@ our %ciscoModels = (
 	                        },
 
 # 9200
+	"C9200L-24T-4G"       => { "num_ports"   => 24,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "gi1/1/",
+	                           "poe"         => 0
+                           },
+
+	"C9200L-24P-4G"       => { "num_ports"   => 24,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "gi1/1/",
+	                           "poe"         => 1
+                           },
+
+	"C9200L-24T-4X"       => { "num_ports"   => 24,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "te1/1/",
+	                           "poe"         => 0
+                           },
+
+	"C9200L-24P-4X"       => { "num_ports"   => 24,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "te1/1/",
+	                           "poe"         => 1
+                           },
+
 	"C9200L-48T-4G"       => { "num_ports"   => 48,
 	                           "port_type"   => "gigabitethernet",
 	                           "port_prefix" => "gi1/0/",
 	                           "num_uplinks" => 4,
 	                           "uplink_pre"  => "gi1/1/",
+	                           "poe"         => 0
+                           },
+
+	"C9200L-48P-4G"       => { "num_ports"   => 48,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "gi1/1/",
+	                           "poe"         => 1
+                           },
+
+	"C9200L-48T-4X"       => { "num_ports"   => 48,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "te1/1/",
+	                           "poe"         => 0
+                           },
+
+	"C9200L-48P-4X"       => { "num_ports"   => 48,
+	                           "port_type"   => "gigabitethernet",
+	                           "port_prefix" => "gi1/0/",
+	                           "num_uplinks" => 4,
+	                           "uplink_pre"  => "te1/1/",
 	                           "poe"         => 0
                            },
 
@@ -549,6 +605,14 @@ our %ciscoModels = (
                              "port_prefix" => "te1/0/",
                              "num_uplinks" => 8,
                              "uplink_pre"  => "te1/1/|fo1/1/",
+															"poe"        => 0
+                           },
+
+	"C9500-24Y4C"         => { "num_ports"   => 24,
+                             "port_type"   => "twentyfivegigabitethernet",
+                             "port_prefix" => "twe1/0/",
+                             "num_uplinks" => 4,
+                             "uplink_pre"  => "hu1/0/",
 															"poe"        => 0
                            },
 

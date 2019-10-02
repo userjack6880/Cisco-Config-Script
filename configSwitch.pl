@@ -23,7 +23,7 @@ use Data::Dumper;
 
 # version number
 
-my $script_version = "3.19.04.29.1";
+my $script_version = "3.19.08.06.1";
 
 # Configuration Variables -------------------------------------------------------------------------
 
@@ -327,14 +327,14 @@ while (!($action eq "q")) {
 				# if the switch has uplinks, which it *should*
 				if ($S->{'info'}{'num_uplinks'} > 0) {
 					# if the uplink prefix is the *same* as the port prefix, just increment by one
-					if ($ciscoModels{$modelnum}{'uplink_pre'} eq $ciscoModels{$modelnum}{'port_prefix'}) {
+					#if ($ciscoModels{$modelnum}{'uplink_pre'} eq $ciscoModels{$modelnum}{'port_prefix'}) {
 						$S->debug("uplink prefix and port prefix match - setting increment...\n",1);
 						$S->{'info'}{'uplink_start'} = $ciscoModels{$modelnum}{'num_ports'} + 1;
-					}
-					else {
-						$S->debug("uplink prefix and port prefix do not match - continuing...\n",1);
-						$S->{'info'}{'uplink_start'} = 1;
-					}
+					#}
+					#else {
+					#	$S->debug("uplink prefix and port prefix do not match - continuing...\n",1);
+					#	$S->{'info'}{'uplink_start'} = 1;
+					#}
 					$S->{'info'}{'uplink_end'} = $S->{'info'}{'uplink_start'} + $S->{'info'}{'num_uplinks'} - 1;
 				}
 			}
@@ -1053,18 +1053,18 @@ while (!($action eq "q")) {
 		}
 
 		# throw in some more thorough error checking...
-		my $line_error = checkLines($filename, $basecfg, $treecfg);
+#		my $line_error = checkLines($filename, $basecfg, $treecfg);
 
-		if ($line_error > $missing_lines) {
-			my $reattempt = prompt("Too many errors. Continue? \t  ", "bool");
-			if ($reattempt) {
-				print "Ignoring errors.\n";
-				goto UPDATE;
-			}
-			print "Reattempting configuration. Too many errors.\n";
-			$restorefile = $basecfg;
-			goto RESTORE;
-		}
+#		if ($line_error > $missing_lines) {
+#			my $reattempt = prompt("Too many errors. Continue? \t  ", "bool");
+#			if ($reattempt) {
+#				print "Ignoring errors.\n";
+#				goto UPDATE;
+#			}
+#			print "Reattempting configuration. Too many errors.\n";
+#			$restorefile = $basecfg;
+#			goto RESTORE;
+#		}
 
 		sleep 30;
 
