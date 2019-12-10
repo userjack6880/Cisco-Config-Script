@@ -9,21 +9,19 @@
 require 5.005;
 use strict;
 use SNMP;
-#use Net::TFTP;
 
 use FindBin qw($Bin);
 use lib "$Bin/lib";
 
 use MSUNETHW::Switch;
 use MSUNETHW::File;
-#use MSUNETHW::TelnetCom;
 use MSUNETHW::SerialCom;
 
 use Data::Dumper;
 
 # version number
 
-my $script_version = "3.19.08.06.1";
+my $script_version = "3.19.12.10.1";
 
 # Configuration Variables -------------------------------------------------------------------------
 
@@ -51,10 +49,10 @@ my $interface = "serial";      # default interface is serial
 my $confmode = "single";       # default configuration mode is single action
 my $treemode = "mst";
 my $pipe = "less";             # using less by default because I like it...
-my $manualIP = 0;
+my $manualIP = 1;              # welcome to the new world, we're reversing this decision.
 my $updateSIP = 0;
 my $netid = "";
-my $missing_lines = 16;         # acceptable number of missing lines
+my $missing_lines = 16;        # acceptable number of missing lines
 
 my $dbUpdate = 0;
 
@@ -132,7 +130,7 @@ my %conf_menu = ( "title"     => "Script Configuration",
                   "3"         => "Set Switch Type",
 									"4"					=> "Set Spanning Tree Type",
                   "5"         => "Set Pipe Application",
-                  "6"         => "Manual IP Input",
+#                  "6"         => "Manual IP Input",
                   "7"         => "Password",
                   "b"         => "Go Back"
                 );
@@ -141,7 +139,7 @@ my %int_menu  = ( "prompt"    => "Choose Interface",
                   "1"         => "Serial",
                   "2"         => "USB (Warning: unstable)",
 #                  "3"         => "Telnet",
-                  "4"         => "Output to File"
+#                  "4"         => "Output to File"
                 );
 
 my %type_menu = ( "prompt"    => "Choose Switch Type",
@@ -159,7 +157,7 @@ my %tree_menu = ( "prompt"    => "Chose Spanning Tree Type",
                   "8"         => "PVST (MVRDL)"
                 );
 
-# Main Function -----------------------------------------------------------------------------------
+# Start UX ----------------------------------------------------------------------------------------
 
 MAINLOOP:
 
@@ -175,6 +173,8 @@ while (!($action eq "q")) {
 		next MAINLOOP;
 	}
 
+# Main Menu ---------------------------------------------------------------------------------------
+
 	# if we aren't actively doing something, we need to be at the starting menu
 	if ($action eq "start") {
 		if ($interface eq "file") {
@@ -186,6 +186,8 @@ while (!($action eq "q")) {
 		next MAINLOOP;
 	}
 
+# Configuration - Connect -------------------------------------------------------------------------
+
 	# let's configure a switch
 	if ($action =~ /\d/ || $action eq 'h' || $action eq 'i' || $action eq "int" ) {
 		debug("action: $action", 1);
@@ -196,9 +198,6 @@ while (!($action eq "q")) {
 		if (!$connected) {
 			print "Connecting to switch.\n";
 
-			# if we're doing telnet, we need to get some info
-#			if ($interface eq "telnet") { $ip = prompt("Enter IP", "ip"); }
-
 			# if simply creating a .cfg file, we can create a different type of thing
 			if ($interface eq "file") {
 				$S = MSUNETHW::File->new($ip, $debug, $conf{'switchpw'}, $type);
@@ -208,12 +207,6 @@ while (!($action eq "q")) {
 				$S = MSUNETHW::Switch->new($ip, $debug, $conf{'switchpw'}, $type);
 			}
 
-			# let's now connect to the switch via telnet, if we chose this
-#			if ($interface eq "telnet") {
-#				$connected = $S->connect("network", $ip);
-#				$S->{'protocol'} = "network";
-#				debug("connecting via telnet to $ip", 1);
-#			}
 			# and if we're doing serial ports...
 			debug("OS is $os", 1);
 			if ($interface eq "serial") {
@@ -222,9 +215,7 @@ while (!($action eq "q")) {
 			}
 
 			if ($interface eq "usb") {
-#				print color 'red';
 				print "Warning: USB mode is highly experimental and is not recommended. Seriously. Don't.\n";
-#				print color 'reset';
 				if ($os eq "darwin") { $port = get_serial_port($conf{'m_darwin_usb'}); }
 				elsif ($os eq "linux") { $port = get_serial_port($conf{'m_linux_usb'}); }
 			}
@@ -241,9 +232,6 @@ while (!($action eq "q")) {
 				$connected = $S->connect("serial", $port);
 				$S->{'protocol'} = "serial";
 				debug("connecting via serial", 1);
-
-				# and since we're connecting by serial, let's speed up the pace a bit...
-
 			}
 
 			if ($interface eq "file") {
@@ -259,6 +247,7 @@ while (!($action eq "q")) {
 			}
 		}
 
+		# skip the initial configuration promp
 		if ($interface ne "file") {
 			my $init_conf = $S->skip_initial_configuration();
 
@@ -272,6 +261,8 @@ while (!($action eq "q")) {
 			$S->paging_off();
 			sleep 2;                     # and still give it some time to reconnect at new speed
 		}
+
+# Configuration - Get Switch Information ----------------------------------------------------------
 
 		debug("getting model number", 1);
 
@@ -368,6 +359,8 @@ while (!($action eq "q")) {
 		my $hostname = "";
 		my $restorefile = "";
 
+# Script Switch Point -----------------------------------------------------------------------------
+
 		# set to skip to certain parts of the script...
 		if ($action eq "2")   { goto RESTORE; }
 		if ($action eq "3")   { goto TFTP; }
@@ -380,6 +373,8 @@ while (!($action eq "q")) {
 		if ($action eq "i")   { goto INVENTORY; }
 		if ($action eq "int") { goto INTERFACE; }
 		if ($action eq "50")  { goto RESET; }
+
+# Configuation - User Input -----------------------------------------------------------------------
 
 		CONFIG:
 
@@ -498,20 +493,28 @@ while (!($action eq "q")) {
 			}
 			my $avlans  = prompt("VLAN \t\t\t\t\t", "text");
 			my $asecure = prompt("Enable Port Security? \t\t  ", "bool");
-			my $apoe    = 0;
-			if ($poe eq "1") {
-				$apoe  = prompt("Enable POE? \t\t\t  ", "bool");
-				if ($apoe) {
-					my $poe_max    = prompt("Enable 15.4W? \t\t\t  ", "bool");
-					if ($poe_max) { $apoe++; }
-				}
-			}
-			my $passthrough = prompt("Passthrough? \t\t\t  ", "bool");
+			my $apoe    = 1;
+
+# PULL THIS SECTION OUT TO ALWAYS ENABLE POE
+#			if ($poe eq "1") {
+#				$apoe  = prompt("Enable POE? \t\t\t  ", "bool");
+#				if ($apoe) {
+#					my $poe_max    = prompt("Enable 15.4W? \t\t\t  ", "bool");
+#					if ($poe_max) { $apoe++; }
+#				}
+#			}
+
+# PULL THIS SECTION OUT BECAUSE WE DON'T USE THIS ANYMORE
+#			my $passthrough = prompt("Passthrough? \t\t\t  ", "bool");
+#			my $vlan2 = "";
+#			if ($passthrough) {
+#				$vlan2 = prompt("Passthrough Vlan \t\t\t", "text");
+#				$vlan_list{$vlan2} = $vlan2;
+#			}
+
+			my $passthrough = 0;
 			my $vlan2 = "";
-			if ($passthrough) {
-				$vlan2 = prompt("Passthrough Vlan \t\t\t", "text");
-				$vlan_list{$vlan2} = $vlan2;
-			}
+
 			$addports[$addportnum] = { 'ports'       => $aports,
 			                           'vlan'        => $avlans,
 			                           'security'    => $asecure,
@@ -523,21 +526,21 @@ while (!($action eq "q")) {
 			$addportnum++;
 		}
 
-		my $updatecablemgmt = "";
+		# define additional vlans not assigned to ports, but may be used downstream
+		while (prompt("Define Additional VLANs? \t  ", "bool")) {
+			debug("defining additional vlans...", 1);
+			my $avlans = prompt("VLAN \t\t\t\t\t", "text");
+			$vlan_list{$avlans} = $avlans;
+		}
+
+		my $updatedb = "";
 		my $backupconfig = "";
 		$backupconfig = "1";
 
 		# ask if cable management should be updated
 		if ($interface ne "file") {
-			$updatecablemgmt = prompt("Update Cable MGMT Database? \t  ", "bool");
+			$updatedb = prompt("Update Databases? \t\t  ", "bool");
 		}
-
-#			# ask user if they want to backup to file
-#			if ($interface ne "file") {
-#				$backupconfig = prompt("Backup Config to File? \t\t  ", "bool");
-#			}
-
-		$updateSIP = prompt("Update Static IP Database? \t  ", "bool");
 
 		# confirm configuration with user
 		if ($debug < 1)
@@ -599,17 +602,11 @@ while (!($action eq "q")) {
 			}
 		}
 
-		if ($updatecablemgmt) {
-			print "+ Cable MGMT database will be updated.\n";
+		if ($updatedb) {
+			print "+ Databases will be updated.\n";
 		}
 		else {
-			print "- Cable MGMT database will not be updated.\n";
-		}
-		if ($updateSIP) {
-			print "+ Static IP will be updated.\n";
-		}
-		else {
-			print "- Static IP will not be updated.\n";
+			print "- Databases will not be updated.\n";
 		}
 		if ($backupconfig) {
 			print "+ Configuration will be backed up to $Bin/cfg/hosts/$hostname.cfg \n";
@@ -626,65 +623,9 @@ while (!($action eq "q")) {
 			goto CONFIG;
 		}
 
-		TFTP:
-
-# for TFTP restores
-#		if ($action eq "3") {
-#			# ask for hostname and new inventory
-#			$hostname = prompt("Enter existing switch name", "text");
-#			$inventory = prompt("Enter new inventory", "text");
-#
-#			# get config from redoak
-#			debug("getting file from redoak", 1);
-#			my $tftp = getTFTP($hostname);
-#			debug("done", 1);
-#
-#			# check to see if it was successful
-#			if($tftp) {
-#				print "Could not find config.\n";
-#				next MAINLOOP;
-#			}
-#
-#			# set restorefile to downloaded file, restore switch
-#			$restorefile = "$Bin/cfg/hosts/$hostname.cfg";
-#
-#			# now restore from file
-#			print "Restoring config.\n";
-#			restoreConfig($S,$restorefile);
-#			debug("done", 1);
-#
-#			sleep 5;			
-#
-#			# change inventory number
-#			print "Setting inventory.\n";
-#			debug("using $inventory", 1);
-#	    setInventory($S,$inventory);
-#			debug("done", 1);
-#
-#			sleep 5;
-#
-#			# write mem, then go to main menu
-#     debug("saving config...",1);
-#      $S->write_mem();
-#      sleep 2;
-#      $S->{'interface'}->send("\r\r");
-#      $S->{'interface'}->expect(10,"#",">");
-#      debug("done.",1);
-#
-#			sleep 1;
-#
-#			$action = "start";
-#     $S->disconnect();
-#      $connected = 0;
-#			next MAINLOOP;
-#
-#		}
+# Configuration - Restore From File Base/Whole Config ---------------------------------------------
 
 		RESTORE:
-
-#		if ($interface eq "serial") {
-#			$S->change_baud(115200);     # we want this to go quicker, but not useful when saving data to file, apparently
-#		}
 
 		# if we're skipping here, we need to specify a restore file...
 		if ($action eq "2") { 
@@ -708,6 +649,7 @@ while (!($action eq "q")) {
 
 		sleep 2;
 
+		# add spanning tree stuff
 		$restorefile = $swconfigpath;
 
 		if ($treemode eq "pvstmeridian") {
@@ -740,6 +682,8 @@ while (!($action eq "q")) {
 		debug ("completed", 1);
 
 		sleep 1;
+
+# Configuration - Define Switch Attributes --------------------------------------------------------
 
 		HOSTNAME:
 		if ($action eq 'h') {
@@ -777,6 +721,8 @@ while (!($action eq "q")) {
 			sleep 1;
 		}
 
+# Configuration - Define Ports --------------------------------------------------------------------
+
 		print "Configuring ports.\n";
 
 		# Configure Default Ports
@@ -790,6 +736,7 @@ while (!($action eq "q")) {
 		debug("done",1);
 
 		INTERFACE:
+	# SUBSECTION - Interface-Only-Config ------------------------------------------------------------
 		if ($action eq "int") {
 			$addportnum = 0;
 			$copper_trnk = prompt("Configure Trunk? \t\t  ", "bool");
@@ -961,6 +908,8 @@ while (!($action eq "q")) {
 			}
 		}
 
+# Configuration - Generate RSA Key ----------------------------------------------------------------
+
 		GENKEY:
 		debug("generating rsa key...",1);
 		if ($debug > 0) {
@@ -976,6 +925,8 @@ while (!($action eq "q")) {
 			next MAINLOOP;
 		}
 
+# Configuration - Save Switch Config --------------------------------------------------------------
+
 		# Save the Switch Config
 		if ($interface ne "file") {
 			debug("saving config...",1);
@@ -986,11 +937,7 @@ while (!($action eq "q")) {
 			debug("done.",1);
 		}
 
-#		if ($interface eq "serial") {
-#			$S->change_baud(9600);
-#
-#			sleep 5;    # give it a bit
-#		}
+# Configuration - Backup Config -------------------------------------------------------------------
 
 		BACKUP:
 		# backup config to file
@@ -1003,6 +950,8 @@ while (!($action eq "q")) {
 			sleep 2; #sometimes we're going WAYYY to fast
 			saveConfig($S, "$Bin/cfg/hosts/$hostname.cfg");
 		}
+
+# Error Checking (buggy) --------------------------------------------------------------------------
 
 		CHECKS:
 		# checks to see if outputted file is big enough
@@ -1049,48 +998,29 @@ while (!($action eq "q")) {
 		debug("checking filesize...",1);
 		debug("filesize: $filesize",1);
 		if ($filesize < 10000) {
-			print "Caution! File size: $filesize - too small. Check config.\n";
+			print "Caution! File size: $filesize - too small. Check config. (error check may be buggy)\n";
 		}
 
-		# throw in some more thorough error checking...
-#		my $line_error = checkLines($filename, $basecfg, $treecfg);
-
-#		if ($line_error > $missing_lines) {
-#			my $reattempt = prompt("Too many errors. Continue? \t  ", "bool");
-#			if ($reattempt) {
-#				print "Ignoring errors.\n";
-#				goto UPDATE;
-#			}
-#			print "Reattempting configuration. Too many errors.\n";
-#			$restorefile = $basecfg;
-#			goto RESTORE;
-#		}
-
 		sleep 30;
+
+# Update Databases --------------------------------------------------------------------------------
 
 		UPDATE:
 		# update database
 		if ($action eq "5") {
 			$hostname = prompt("Enter hostname:", "text");
 		}
-		if ($updatecablemgmt || ($action eq "5")) {
+		if ($updatedb || ($action eq "5")) {
 			print "Updating Cable MGMT Database.\n";
 			dbUpdate($S,$hostname);
-		}
-
-		if ($updateSIP) {
-			print "Updating Static IP Database.\n";
-			updateSIP($ip_address,$hostname,$location);
 			update_conf_db($serialnum,$location,$hostname,'',$modelnum,$inventory,$ip_address,$netid,"$Bin/cfg/hosts/$hostname.cfg");
 		}
+
+# Reset Switch ------------------------------------------------------------------------------------
 
 		RESET:
 		# reset swtich
 		if ($action eq "6") {
-			# before we reset, let's bump it down to 9600
-#			if ($interface eq "serial") {
-#				$S->change_baud(9600);
-#			}
 			print "Resetting switch. Please wait.\n";
 			sleep 1;
 			$S->write_mem();     # because I don't feel like fixing the reset function right now
@@ -1104,6 +1034,8 @@ while (!($action eq "q")) {
 			next MAINLOOP;
 		}
 
+# Show Running Config -----------------------------------------------------------------------------
+
 		SHCONFIG:
 		# show running config
 		if ($action eq "7") {
@@ -1115,13 +1047,9 @@ while (!($action eq "q")) {
 			next MAINLOOP;
 		}
 
-#		if ($interface eq "serial") {
-#			$S->change_baud(9600); # final hoorah to make sure it's set to 9600 baud...
-#		}
-
-#		print color 'bold white';
 		print "Setup Done!\n";
-#		print color 'reset';
+
+# Finished Configuration! -------------------------------------------------------------------------
 
 		$S->disconnect();
 		$connected = 0;
@@ -1135,6 +1063,8 @@ while (!($action eq "q")) {
 			$action = "start";
 		}
 	}
+
+# Configuration Menus -----------------------------------------------------------------------------
 
 	# let the user do some script configurations for non-default actions
 	if ($action eq "c") {
@@ -1398,34 +1328,6 @@ sub getIP {
 	return $ip_sel;
 }
 
-sub updateSIP {
-	my $ip = shift;
-	my $hostname = shift;
-	my $location = shift;
-	
-	db_connect($conf{'mysql_db_netdb'}, $conf{'mysql_user'},$conf{'mysql_pass'});
-
-	# look for existing entry
-	my $query = "SELECT ip_address FROM device WHERE ip_address = '".ipPad($ip)."' AND valid = 1";
-	my $result = db_query($query);
-
-	# if it returns an existing entry, we need to update the entry and make it invalid, then insert new one
-	if ($result) {
-		$query = "UPDATE device SET valid = 0 WHERE ip_address = '".ipPad($ip)."' AND valid = 1";
-		my $continue = db_do($query);
-		if (!$continue) { print "problem\n";}
-	}
-
-	# now, after everything, put in the new info
-	$query = "INSERT INTO device (ip_address, description, contact, location, mac_address, dns_name, valid, activity_date, netid) VALUES ('".ipPad($ip)."','".$hostname."','NS','".$location."','','',1,NOW(),'".$netid."')";
-	my $continue = db_do($query);
-	if (!$continue) { print "problem\n"; }
-
-	db_disconnect();
-
-	return 0;
-}
-
 sub update_conf_db {
 	my $serial = shift;
 	my $location = shift;
@@ -1686,25 +1588,6 @@ sub debug {
 		print $fullmessage;
 	}
 }
-
-# get config via TFTP
-#sub getTFTP {
-#	my $tftpHost = shift;
-#	my $tftp; 
-#	debug("connecting via TFTP to redoak", 1);
-#	$tftp = Net::TFTP->new("redoak.its.msstate.edu");
-#	$tftp->binary;
-#	debug("getting file from redoak", 1);
-#	$tftp->get("cisco/cfg/$tftpHost", "$Bin/cfg/hosts/$tftpHost.cfg");
-#	debug("tftp errors: $tftp->error", 1);
-#	debug("done", 1);
-#	if ($tftp->error) {
-#		return 1;
-#	}
-#	else {
-#		return 0;
-#	}
-#}
 
 # get serial port
 sub get_serial_port {

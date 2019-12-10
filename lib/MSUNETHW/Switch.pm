@@ -886,15 +886,15 @@ sub set_port_vlan {
 				$self->{interface}->send("switchport port-security violation protect\n");
 				$self->{interface}->send("switchport port-security aging type inactivity\n");
 			}
-			if ($poe eq "1") {
-				$self->{interface}->send("no power inline consumption\n");
-			}
-			elsif ($poe eq "2") {
-				$self->{interface}->send("power inline consumption 15400\n");
-			}
-			else {
-				$self->{interface}->send("power inline never\n");
-			}
+			#if ($poe eq "1") {
+			#	$self->{interface}->send("no power inline consumption\n");
+			#}
+			#elsif ($poe eq "2") {
+			#	$self->{interface}->send("power inline consumption 15400\n");
+			#}
+			#else {
+			#	$self->{interface}->send("power inline never\n");
+			#}
 		}
 	}
 	$self->endconfigure();
@@ -1122,10 +1122,16 @@ sub gen_key {
 	$self->enable();
 	$self->configure("terminal");
 	$self->{'interface'}->send("crypto key generate rsa modulus 4096\n");
-#	$self->{'interface'}->send("no\n");
-#	$self->{'interface'}->send("2048\n");
-#	$self->{'interface'}->expect(10,"OK","(config)#");
 	$self->endconfigure();
+}
+
+sub set_stack_master {
+	my $self = shift;
+	$self->debug("setting stack master", 1);
+
+	$self->check_conn();
+	$self->enable();
+	$self->{'interface'}->send("switch 1 priority 15\n");
 }
 
 1;
