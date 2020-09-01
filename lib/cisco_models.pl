@@ -619,11 +619,19 @@ our %ciscoModels = (
 # IE-4000
 	"IE-4000-4GS8GP4G-E" => { "num_ports"    => 16,
 	                          "port_type"    => "gigabitethernet",
-				  "port_prefix"  => "gi1/",
-				  "num_uplinks"  => 0,
-				  "uplink_pre"   => "",
-				  "poe"          => 1
-				},
+	                          "port_prefix"  => "gi1/",
+	                          "num_uplinks"  => 0,
+	                          "uplink_pre"   => "",
+	                          "poe"          => 1
+	                         },
 
+# 1000
+	"C1000-16FP-2G-L"    => { "num_ports"    => 16,
+	                          "port_type"    => "gigabitethernet",
+	                          "port_prefix"  => "gi1/0/",
+	                          "num_uplinks"  => 2,
+	                          "uplink_pre"   => "gi1/0/",
+	                          "poe"          => 1
+	                        },
 );
 

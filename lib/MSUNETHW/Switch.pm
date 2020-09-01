@@ -621,6 +621,12 @@ sub get_info {
 				$retval{'model'} = $1;
 				$self->debug("model: $1",1);
 			}
+			# and of course they add a new series that also breaks convention
+			if ($retval{'modelnum'} =~ /(C1\d00)/) {
+				$found = 1;
+				$retval{'model'} = $1;
+				$self->debug("model: $1",1);
+			}
 		}
 
 		# info for serial number
