@@ -21,7 +21,7 @@ use Data::Dumper;
 
 # version number
 
-my $script_version = "3.19.12.10.1";
+my $script_version = "3.20.09.01.1";
 
 # Configuration Variables -------------------------------------------------------------------------
 
