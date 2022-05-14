@@ -3,7 +3,9 @@
 #
 # configSwitch.pl
 # script to configure switches
-# jeb446
+# John Bradley
+# Mississippi State University
+# and others
 #
 
 require 5.005;
@@ -87,6 +89,8 @@ if ($action eq "help") {
 	print "(sudo) perl configSwitch.pl [args]\n".
 	      "[0-9]\t\tenables desired level of debugging\n".
 	      "-d\t--debug\tenables debugging\n".
+          "-r\t--reset\tresets switch\n".
+          "-m\t--manual\tmanual IP assignment".
 	      "-h\t--help\tdisplays this help text\n";
 	exit;
 }
@@ -128,7 +132,7 @@ my %conf_menu = ( "title"     => "Script Configuration",
                   "1"         => "Debug Level",
                   "2"         => "Set Interface Type",
                   "3"         => "Set Switch Type",
-									"4"					=> "Set Spanning Tree Type",
+                  "4"         => "Set Spanning Tree Type",
                   "5"         => "Set Pipe Application",
 #                  "6"         => "Manual IP Input",
                   "7"         => "Password",
@@ -168,10 +172,12 @@ while (!($action eq "q")) {
 		clear_screen();
 	}
 	print "MSU Network Services Switch Configuration Script\n\n";
-	if ($netid eq "") {
-		$netid = prompt("NetID", "text");
-		next MAINLOOP;
-	}
+
+### Commented out this section since it was for accounting purposes ###
+#	if ($netid eq "") {
+#		$netid = prompt("NetID", "text");
+#		next MAINLOOP;
+#	}
 
 # Main Menu ---------------------------------------------------------------------------------------
 
@@ -493,24 +499,22 @@ while (!($action eq "q")) {
 			}
 			my $avlans  = prompt("VLAN \t\t\t\t\t", "text");
 			my $asecure = prompt("Enable Port Security? \t\t  ", "bool");
-			my $apoe    = 1;
+			my $apoe    = 0;
 
-# PULL THIS SECTION OUT TO ALWAYS ENABLE POE
-#			if ($poe eq "1") {
-#				$apoe  = prompt("Enable POE? \t\t\t  ", "bool");
-#				if ($apoe) {
-#					my $poe_max    = prompt("Enable 15.4W? \t\t\t  ", "bool");
-#					if ($poe_max) { $apoe++; }
-#				}
-#			}
+			if ($poe eq "1") {
+				$apoe  = prompt("Enable POE? \t\t\t  ", "bool");
+				if ($apoe) {
+					my $poe_max    = prompt("Enable 15.4W? \t\t\t  ", "bool");
+					if ($poe_max) { $apoe++; }
+				}
+			}
 
-# PULL THIS SECTION OUT BECAUSE WE DON'T USE THIS ANYMORE
-#			my $passthrough = prompt("Passthrough? \t\t\t  ", "bool");
-#			my $vlan2 = "";
-#			if ($passthrough) {
-#				$vlan2 = prompt("Passthrough Vlan \t\t\t", "text");
-#				$vlan_list{$vlan2} = $vlan2;
-#			}
+			my $passthrough = prompt("Passthrough? \t\t\t  ", "bool");
+			my $vlan2 = "";
+			if ($passthrough) {
+				$vlan2 = prompt("Passthrough Vlan \t\t\t", "text");
+				$vlan_list{$vlan2} = $vlan2;
+			}
 
 			my $passthrough = 0;
 			my $vlan2 = "";
@@ -533,14 +537,15 @@ while (!($action eq "q")) {
 			$vlan_list{$avlans} = $avlans;
 		}
 
-		my $updatedb = "";
+### Commented out this section since it was for accounting purposes ###
+#		my $updatedb = "";
 		my $backupconfig = "";
 		$backupconfig = "1";
 
-		# ask if cable management should be updated
-		if ($interface ne "file") {
-			$updatedb = prompt("Update Databases? \t\t  ", "bool");
-		}
+#		# ask if cable management should be updated
+#		if ($interface ne "file") {
+#			$updatedb = prompt("Update Databases? \t\t  ", "bool");
+#		}
 
 		# confirm configuration with user
 		if ($debug < 1)
@@ -602,12 +607,13 @@ while (!($action eq "q")) {
 			}
 		}
 
-		if ($updatedb) {
-			print "+ Databases will be updated.\n";
-		}
-		else {
-			print "- Databases will not be updated.\n";
-		}
+### Commented out this section since it was for accounting purposes ###
+#		if ($updatedb) {
+#			print "+ Databases will be updated.\n";
+#		}
+#		else {
+#			print "- Databases will not be updated.\n";
+#		}
 		if ($backupconfig) {
 			print "+ Configuration will be backed up to $Bin/cfg/hosts/$hostname.cfg \n";
 		}
@@ -1005,16 +1011,17 @@ while (!($action eq "q")) {
 
 # Update Databases --------------------------------------------------------------------------------
 
-		UPDATE:
-		# update database
-		if ($action eq "5") {
-			$hostname = prompt("Enter hostname:", "text");
-		}
-		if ($updatedb || ($action eq "5")) {
-			print "Updating Cable MGMT Database.\n";
-			dbUpdate($S,$hostname);
-			update_conf_db($serialnum,$location,$hostname,'',$modelnum,$inventory,$ip_address,$netid,"$Bin/cfg/hosts/$hostname.cfg");
-		}
+### Commented out this section since it was for accounting purposes ###
+#		UPDATE:
+#		# update database
+#		if ($action eq "5") {
+#			$hostname = prompt("Enter hostname:", "text");
+#		}
+#		if ($updatedb || ($action eq "5")) {
+#			print "Updating Cable MGMT Database.\n";
+#			dbUpdate($S,$hostname);
+#			update_conf_db($serialnum,$location,$hostname,'',$modelnum,$inventory,$ip_address,$netid,"$Bin/cfg/hosts/$hostname.cfg");
+#		}
 
 # Reset Switch ------------------------------------------------------------------------------------
 
